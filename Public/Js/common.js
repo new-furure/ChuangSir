@@ -2,6 +2,10 @@
 公用函数块
 
 */
+
+var new_talk=0;
+var new_question = 0;
+var new_idea = 0;
 $(function () {
 	//alert('function');
 	var layer=document.createElement("div");
@@ -33,7 +37,6 @@ $('#up').click(function() //点赞函数，实现点赞之后赞数+1并显示�
 });
 $('#down').click(function() //点踩函数。
 {
-
 	var ar = $(this);
 	var aid = ar.attr('aid');
 	var vl=ar.find(".down_num").text();
@@ -80,7 +83,6 @@ $('#focus').click(function() //关注函数。
 });
 $('#collect').click(function() //收藏函数。
 {
-
 	var ar = $(this);
 	var aid = ar.attr('aid');
 	var vl=ar.find(".collect_num").text();
@@ -151,15 +153,16 @@ function submit(){
 	layer.id="layer";
 	var top_num =  document.documentElement.scrollTop -480 +"px";
 	var profile;
-	var title=$('input[name=article_title]');
-	if(title.val()==''){
-		title.focus();
-		return;
-	}
+	var title;
 	switch(article_type){
 	case 'policy':
+		title=$('input[name=article_title]');
+		if(title.val()==''){
+			title.focus();
+			return;
+		}
+		title=title.val();
 		profile=$('textarea[name=profile]');
-		biaoqian=$('input[name=biaoqian]').val();
 		if(profile.val()==''){
 		profile.focus();
 		return;
@@ -167,9 +170,12 @@ function submit(){
 		profile=profile.val();
 		break;
 	case 'project':
-		/*var ao = document.getElementById('avatar_priview');
-	    pic_name=ao.getAttribute('avatar_url');
-	    alert(pic_name);*/
+		title=$('input[name=article_title]');
+		if(title.val()==''){
+			title.focus();
+			return;
+		}
+		title=title.val();
 		profile=$('textarea[name=profile]');
 		if(profile.val()==''){
 		profile.focus();
@@ -178,10 +184,24 @@ function submit(){
 		profile=profile.val();
 		break;
 	case 'question':
+		title=$('input[name=article_title]');
+		if(title.val()==''){
+			title.focus();
+			return;
+		}
+		title=title.val();
 		profile ='';
+		new_question+=1;
+		break;
+	case 'talk':
+		new_talk+=1;
+		break;
+	case 'idea':
+		new_idea += 1;
 		break;
 	default:
 		profile ='';
+		break;
 	}
 	//var content=UE.getEditor('editor').getContent();array:array,
 	var content=$('textarea[name=content]');
@@ -189,7 +209,7 @@ function submit(){
 		content.focus();
 		return;
 	}
-	$.post(submit_url,{article_type:article_type,title:title.val(),content:content.val(),
+	$.post(submit_url,{article_type:article_type,title:title,content:content.val(),
 		profile:profile,pic_url:pic_url},
 		function(data){
 			switch(data.type){
@@ -200,9 +220,9 @@ function submit(){
 				case 2:
 					var time=new Date();
 					if(data.article_picture_url){
-						var Content = "<dl><dt><img src='/mrchuang/Public/Img/msgUserImg_2.png' /><div class='userConWindow rn ss'><div class='userConWindowBox'><img class='userConImg' src='/mrchuang/Public/Img/msgUserImg_2.png' /><span><b class='rs'>加好友</b><b class='rs'>关注</b><b class='rs'>私信</b></span><p><a class='userConWindowUserName' href='###'>十一的眼泪</a><br /><a href='###'>关注（0）</a><strong>|</strong><a href='###'>粉丝（0）</a></p><font><a href='###'>个人主页</a><strong>|</strong><a href='###'>个人资料</a><strong>|</strong><a href='###'>项目主页</a></font></div></div></dt><dd><i>"+data.user_name+"在"+article_cat+"有了新动态</i><em>刚刚</em><h3>"+data.article_title+"</h3><font>我是动感超人</font><p>"+data.article_content+"<strong>显示更多</strong></p>"+"<div><img id='img1' width='110px' height='140px' src='"+data.article_picture_url+"'/></div>"+"<ul><li class='msgIcon_1 mo clk'>关注问题</li><li class='msgIcon_2 mo clk'>收藏</li><li class='msgIcon_3 mo clk'>赞(0)</li><li class='msgIcon_4 mo clk'>踩(0)</li><li class='msgIcon_5 mo clk'>评论(0)</li><li class='msgIcon_6 mo clk'>分享</li></ul></dd></dl>";
+						var Content = "<dl><dt><img src='/mrchuang/Public/Img/msgUserImg_2.png' /><div class='userConWindow rn ss'><div class='userConWindowBox'><img class='userConImg' src='/mrchuang/Public/Img/msgUserImg_2.png' /><span><b class='rs'>加好友</b><b class='rs'>关注</b><b class='rs'>私信</b></span><p><a class='userConWindowUserName' href='###'>十一的眼泪</a><br /><a href='###'>关注（0）</a><strong>|</strong><a href='###'>粉丝（0）</a></p><font><a href='###'>个人主页</a><strong>|</strong><a href='###'>个人资料</a><strong>|</strong><a href='###'>项目主页</a></font></div></div></dt><dd><i>"+data.user_name+"在"+article_cat+"有了新动态</i><em>"+time+"</em><h3>"+data.article_title+"</h3><p>"+data.article_content+"<strong>显示更多</strong></p>"+"<div><img id='img1' width='110px' height='140px' src='"+data.article_picture_url+"'/></div>"+"<ul><li class='msgIcon_1 mo clk'>关注问题</li><li class='msgIcon_2 mo clk'>收藏</li><li class='msgIcon_3 mo clk'>赞(0)</li><li class='msgIcon_4 mo clk'>踩(0)</li><li class='msgIcon_5 mo clk'>评论(0)</li><li class='msgIcon_6 mo clk'>分享</li></ul></dd></dl>";
 					}else{
-						var Content = "<dl><dt><img src='/mrchuang/Public/Img/msgUserImg_2.png' /><div class='userConWindow rn ss'><div class='userConWindowBox'><img class='userConImg' src='/mrchuang/Public/Img/msgUserImg_2.png' /><span><b class='rs'>加好友</b><b class='rs'>关注</b><b class='rs'>私信</b></span><p><a class='userConWindowUserName' href='###'>十一的眼泪</a><br /><a href='###'>关注（0）</a><strong>|</strong><a href='###'>粉丝（0）</a></p><font><a href='###'>个人主页</a><strong>|</strong><a href='###'>个人资料</a><strong>|</strong><a href='###'>项目主页</a></font></div></div></dt><dd><i>"+data.user_name+"在"+article_cat+"有了新动态</i><em>刚刚</em><h3>"+data.article_title+"</h3><font>我是动感超人</font><p>"+data.article_content+"<strong>显示更多</strong></p><ul><li class='msgIcon_1 mo clk'>关注问题</li><li class='msgIcon_2 mo clk'>收藏</li><li class='msgIcon_3 mo clk'>赞(0)</li><li class='msgIcon_4 mo clk'>踩(0)</li><li class='msgIcon_5 mo clk'>评论(0)</li><li class='msgIcon_6 mo clk'>分享</li></ul></dd></dl>";
+						var Content = "<dl><dt><img src='/mrchuang/Public/Img/msgUserImg_2.png' /><div class='userConWindow rn ss'><div class='userConWindowBox'><img class='userConImg' src='/mrchuang/Public/Img/msgUserImg_2.png' /><span><b class='rs'>加好友</b><b class='rs'>关注</b><b class='rs'>私信</b></span><p><a class='userConWindowUserName' href='###'>十一的眼泪</a><br /><a href='###'>关注（0）</a><strong>|</strong><a href='###'>粉丝（0）</a></p><font><a href='###'>个人主页</a><strong>|</strong><a href='###'>个人资料</a><strong>|</strong><a href='###'>项目主页</a></font></div></div></dt><dd><i>"+data.user_name+"在"+article_cat+"有了新动态</i><em>刚刚</em><h3>"+data.article_title+"</h3><p>"+data.article_content+"<strong>显示更多</strong></p><ul><li class='msgIcon_1 mo clk'>关注问题</li><li class='msgIcon_2 mo clk'>收藏</li><li class='msgIcon_3 mo clk'>赞(0)</li><li class='msgIcon_4 mo clk'>踩(0)</li><li class='msgIcon_5 mo clk'>评论(0)</li><li class='msgIcon_6 mo clk'>分享</li></ul></dd></dl>";
 					}
 					
 					$(".msgBox").prepend(Content);
@@ -215,7 +235,7 @@ function submit(){
 		}
 		,'json');
 	$(".upImgWindow").hide();
-	document.getElementById('send_state').innerHTML = '';
+	document.getElementById('send_state').innerHTML = '';//图片发送状态。
 	document.getElementById("imgPreview").innerHTML="<img id='img1' src='/ChuangSir/Public/Img/error.jpg' width='110' height='140' onclick='openBrowse()'/>";
 }
 //存草稿函数，根据不同的文章类型异步传值，并返回状态信息。
