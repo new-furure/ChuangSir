@@ -27,11 +27,11 @@ class IndexController extends Controller {
 
     //项目页
     public function project(){
-        $this->indexGoto(C("POLICY_TYPE"));
+        $this->indexGoto(C("PROJECT_TYPE"));
     }
     //政策页
     public function policy(){
-        $this->indexGoto(C("PROJECT_TYPE"));
+        $this->indexGoto(C("POLICY_TYPE"));
     }
     //创意页
     public function idea(){
