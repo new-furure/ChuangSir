@@ -8,7 +8,7 @@ $(function () {
 	layer.id="layer";
 	var top_num = document.documentElement.scrollTop + 
     	document.documentElement.clientHeight/2-60+"px";
-$('#up').live('click',function() //点赞函数，实现点赞之后赞数+1并显示取消赞，已赞则-1并显示赞。
+$('#up').click(function() //点赞函数，实现点赞之后赞数+1并显示取消赞，已赞则-1并显示赞。
 {
 	var ar = $(this);
 	var aid = ar.attr('aid');
@@ -31,7 +31,7 @@ $('#up').live('click',function() //点赞函数，实现点赞之后赞数+1并�
         }
     },'json'); 
 });
-$('#down').live('click',function() //点踩函数。
+$('#down').click(function() //点踩函数。
 {
 
 	var ar = $(this);
@@ -55,7 +55,7 @@ $('#down').live('click',function() //点踩函数。
         }
     },'json'); 
 });
-$('#focus').live('click',function() //关注函数。
+$('#focus').click(function() //关注函数。
 {
 	var ar = $(this);
 	var aid = ar.attr('aid');
@@ -78,7 +78,7 @@ $('#focus').live('click',function() //关注函数。
         }
     },'json'); 
 });
-$('#collect').live('click',function() //收藏函数。
+$('#collect').click(function() //收藏函数。
 {
 
 	var ar = $(this);
@@ -147,9 +147,6 @@ function edit(){
 }
 //提交的处理函数。根据不同的文章类型先判断输入的合法性。异步提交并返回一定的信息。
 function submit(){ 
-	$(".upImgWindow").hide();
-	document.getElementById("imgPreview").innerHTML="<img id='img1' src='/ChuangSir/Public/Img/error.jpg' width='110' height='140' onclick='openBrowse()'/>";
-	//alert(article_type);
 	var layer=document.createElement("div");
 	layer.id="layer";
 	var top_num =  document.documentElement.scrollTop -480 +"px";
@@ -217,16 +214,9 @@ function submit(){
 			}
 		}
 		,'json');
-	 	/*$.ajax(
-                {
-                    url:submit_url, //你处理上传文件的服务端
-                    dataType: 'json',
-                    success:function(data)
-                        {
-                              alert(data.file_infor);
-                        }
-                }
-            );*/
+	$(".upImgWindow").hide();
+	document.getElementById('send_state').innerHTML = '';
+	document.getElementById("imgPreview").innerHTML="<img id='img1' src='/ChuangSir/Public/Img/error.jpg' width='110' height='140' onclick='openBrowse()'/>";
 }
 //存草稿函数，根据不同的文章类型异步传值，并返回状态信息。
 function save_draft(){
@@ -344,4 +334,36 @@ function showimg(obj){
         obj.src = errorimg;
         document.getElementById( "img" ).style.height = "150px"; 
         
+}
+
+
+//时间字符串转换为unix时间戳
+function strtotime(strings){
+    var arr = strings.split(" ");
+    var arr1 = arr[0].split("-");
+    var arr2 = arr[1].split(":");
+    var year = arr1[0];
+    var month = arr1[1]-1;
+    var day = arr1[2];
+    var hour = arr2[0];
+    var mon = arr2[1];
+    var timestamp = new Date(year,month,day,hour,mon).getTime()/1000; 
+    return timestamp;
+}
+//时间输出格式化
+function formatTime(time){
+    var timestamp=strtotime(time);
+    var curTimestamp=new Date().getTime()/1000;
+    var interval=curTimestamp-timestamp;
+    var pastMin=Math.floor(interval/60);
+    if(pastMin>0 && pastMin<60){
+        return pastMin+"分钟前";
+    }else if(pastMin>=60){
+        var pastHour=Math.floor(interval/3600);
+        if(pastHour<=24){
+            return pastHour+"小时前";
+        }else{
+            return time.substr(5,11);
+        }
+    }
 }

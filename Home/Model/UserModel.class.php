@@ -53,6 +53,8 @@ class UserModel extends Model
 				dump( $_POST );
 			}
 			E( '空密码！' );
+		}else{
+			return;
 		}
 
 		//前端是否已经MD5加密

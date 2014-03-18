@@ -22,12 +22,45 @@ class IndexController extends Controller {
      *添加逻辑 
      */
     public function indexAll(){
+        $this->indexGoto();      
+    }
+
+    //项目页
+    public function project(){
+        $this->indexGoto(C("POLICY_TYPE"));
+    }
+    //政策页
+    public function policy(){
+        $this->indexGoto(C("PROJECT_TYPE"));
+    }
+    //创意页
+    public function idea(){
+        $this->indexGoto(C("IDEA_TYPE"));
+    }
+    //时光机页
+    public function talk(){
+        $this->indexGoto(C("TALK_TYPE"));
+    }
+    //孵化器页
+    public function incubator(){
+        $this->indexGoto(C("INCUBATOR_TYPE")); 
+    }
+    //投资人页
+    public function vc(){
+        $this->indexGoto(C("VC_TYPE"));
+    }
+    public function question(){
+        $this->indexGoto(C("QUESTION_TYPE"));
+    }
+
+    //先生汇不同页面数据
+    public function indexGoto($article_type=null){
         $user_id=get_id();
         $Article=M('article');
         $fieldSql='article.*,user.user_nickname as user_name,user.user_id,user.user_avatar_url,user.user_focus_number';
         $joinSql=array();//user join sql
         $joinSql[0]="left join __USER__ as user on user.user_id=article.user_id";
-        $article_type=I('get.type');//不同模块
+        //$article_type=I('get.type');//不同模块
         
         if($article_type){
             $typeSql=' and article.article_type='.$article_type;
@@ -41,7 +74,7 @@ class IndexController extends Controller {
         //$condition='article_effective=1 and user.user_id in (select user_id_focused from focus_on_user where user_id='.$user_id.')'.$typeSql;
         $count=$Article->where($condition)->count();
         import('ORG.Util.Page');
-        $Page=new \Think\Page($count,6);
+        $Page=new \Think\Page($count,12);
         $show=$Page->show();
         
         //ajax请求
@@ -74,6 +107,7 @@ class IndexController extends Controller {
             $this->assign('list', $articleList);
             $this->assign('page', $show);
         }
+
         $goto='indexAll';
         switch ($article_type) {
             case C("IDEA_TYPE"):
@@ -101,7 +135,6 @@ class IndexController extends Controller {
         }
         $this->display($goto);
     }
-
     //几个搜索方面的方法
     //@author:牛亮
     //调用的函数来自于search.php
@@ -159,12 +192,6 @@ class IndexController extends Controller {
             $this->display();}
         else{
             $this->error('没有返回结果,请检查您的勾选选项或关键字.'); }
-    }
-    //风投页
-    //@作者：
-    public function vc()
-    {
-
     }
 
     //介绍页
