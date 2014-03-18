@@ -74,7 +74,7 @@ class IndexController extends Controller {
         //$condition='article_effective=1 and user.user_id in (select user_id_focused from focus_on_user where user_id='.$user_id.')'.$typeSql;
         $count=$Article->where($condition)->count();
         import('ORG.Util.Page');
-        $Page=new \Think\Page($count,6);
+        $Page=new \Think\Page($count,12);
         $show=$Page->show();
         
         //ajax请求
