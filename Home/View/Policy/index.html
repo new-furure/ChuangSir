@@ -1,102 +1,175 @@
-{//政策浏览页}
-<extend name="Home/Public/base.html" />
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>政策</title>
+<!--<link href="css/bootstrap.min.css" rel="stylesheet">-->
+<script type="text/javascript" src="__ROOT__/Public/Js/jquery-1.10.2.js"></script>
+<script type="text/javascript" src="__ROOT__/Public/Js/normal.js"></script>
+<link type="text/css" rel="stylesheet" href="__ROOT__/Public/CSS/normal.css" />
 
-<block name="headfiles">
-  <link rel="shortcut icon" type="image/x-icon" href="__ROOT__/Public/Img/blue-logo.png" />
-  <link rel="stylesheet" type="text/css" href="__ROOT__/Public/Css/mystyle.css" media="all"/>
-</block>
-<block name="javascript">
-  <include file="Home/Public/tool_infocard_js.html"/>
-</block>
+<style type="text/css">
+div, a { color:#a7a9ac;}
 
-<block name="title">
-  <title>政策-Mr.Chuang</title>
-</block>
-
-<block name="nav">
-  <include file="Home/Public/header1.html" />
-  <script type="text/javascript" src="__ROOT__/Public/Js/common.js"></script>
-  <script type="text/javascript">
-  var verify_url='{:U("Base/verify")}';
-  var publish_url='{:U("Policy/publish")}';
-  var article_type = 'policy';
-  var errorimg = "__ROOT__/Public/Img/error.jpg";
-  </script>
-  <script>
-    document.getElementById("nav_policy").className="nav__myactive";
-  </script>
-</block>
-
-<block name="main">
-     <div class="uglydiv">1 </div>
-<div style="width:100%; height:15px;"></div>
-<div class="row article-index__headdiv">
-  <div class="col-md-4 col-md-offset-2">
-    筛选：
-    <a class="text-success public__pointer">最新发布</a>&nbsp;/&nbsp;
-    <a class="text-info public__pointer">本周最热</a>&nbsp;/&nbsp;
-    <a class="text-warning public__pointer">本月最热</a>&nbsp;/&nbsp;
-    <a class="text-primary public__pointer">高级搜索</a>
-  </div>
-  <div class="col-md-2">
-    <if condition="$verify">
-    <button type="button" id="policy-publish-button" class="btn btn-block policy__publish-button" onclick="publish()" onmouseover="a()" onmouseout="b()"><span class="glyphicon glyphicon-file"></span>&nbsp;发布政策</button>
-    </if>
-  </div>
-    <script type="text/javascript">
-    function a()
-    {document.getElementById("policy-publish-button").setAttribute("style","background-color:#5b949a;color:white;");}
-    function b()
-    {document.getElementById("policy-publish-button").setAttribute("style","background-color:#8cb7bd;color:white;");}
-    </script>
-</div>
-<div class="row">
-  <!-- <div class="col-md-2">
-
-    <div class="public__left-sidebar">
-      <button type="button" class="btn btn-info btn-lg btn-block" onclick="publish()">发布政策</button>
-    </div>
-
-    <div class="public__left-sidebar">
-      <br/>筛选：<br/>
-      <center>
-      <a class="text-success public__pointer">最新发布</a>
-      <a class="text-info public__pointer">本周最热</a>
-      <a class="text-warning public__pointer">本月最热</a>
-    </center>
-    </div>
-
-        <br/>
-    <div class="input-group public__left-sidebar">
-      <input type="text" class="form-control" placeholder="搜政策~">
-      <span class="input-group-btn">
-        <button class="btn btn-info" type="button">搜!</button>
-      </span>
-    </div>
-
-  </div> -->
-
-
-  <div class="col-md-6 col-md-offset-2 main__body__contentcontainer">
-    <!--这里新鲜事-->
-
-    <div>
-      <volist name="policy_list" id="vo">
-    <include file="Policy:policyitem" pic="{$vo['user_avatar_url'] | default='__ROOT__/Public/Img/error.jpg'}" government_name="{$vo['user_nickname']}" up_number="{$vo['article_up_number']}" down_number="{$vo['article_down_number']}" focus_number="{$vo['article_focus_number']}" collect_number="{$vo['article_collect_number']}" comment_number="{$vo['article_comment_number']}" time="{$vo['article_time']|date = 'Y-m-d H:i',strtotime(###)}" title="{$vo['article_title']}" content="{$vo['article_profile']}" id="{$vo['article_id']}" uid="{$vo['user_id']}"/>
-      </volist>
-      <div class="page-division" style="text-align:center;margin-left:auto;margin-right:auto;font-size:120%">
-        {$page}
-             
-          </div>
-    </div>
-
-  </div><!--main__body__contentcontainer end -->
-  <div class="col-md-2 main__sidebar__container">
-    <include file="User:mysidebar"/>
-    <include file="Home/Public/sidebar.html"/>
-  </div>
+</style>
+</head>
+<body>
+<div class="top">
+	<div class="topBox">
+		<a class="logo" href="###"><img src="__ROOT__/Public/Img/logo.gif" /></a>
+		<span class="searchInput rs"><input type="text" value="搜索话题、问题或人..." /></span>
+		<input class="searchButton rs" type="button" value="提问" />
+		<ul>
+			<li><a href="indexAll.html">先生汇</a></li><li>|</li><li><a href="###">爱创圈</a></li><li>|</li>
+			<li><a href="###">政策</a></li><li>|</li><li><a href="###">消息</a></li>
+		</ul>
+		<a class="userImg"><img src="__ROOT__/Public/Img/userImg.gif" /></a>
+	</div>
 </div>
 
-<include file="User:infocard"/>
-<include file="Message:sixinmodel"/>
- </block> 
+<div class="main bor">
+	<div class="tools">
+		<a href="#">最新发布</a>
+		<a href="#">本周热门</a>
+		<a href="#">本月最热</a>
+		<a href="#">高级搜索</a>
+	</div>
+	<div class="row">
+	  <div class="col-md-8 he bor">
+       <div id="localuser">
+		  <div class="person" >
+		  	<img class="userlogo" src="__ROOT__/Public/Img/testUserImg_6.png" />	
+            <div class="Udetail" >
+            	<span>隋  蓉<img src="__ROOT__/Public/Img/userConWindowSex.gif" />
+                </span>
+                <em>个人用户</em>
+                <em><i>好友(123)</i><i style="border-left: 2px #48c9b0 solid;">粉丝(234)</i></em>
+                <div>签名：纯属现代派，追寻自己的女权王国</div>
+            </div>
+            <ul>
+                <li><a href="#">个人主页</a></li>
+                <li><a href="#">个人资料</a></li>
+                <li><a href="#">项目主页</a></li>
+            </ul>
+            <div style=" clear: both;"></div>
+		  </div>
+	   </div>
+      	<div class="policyBox">
+				<dl>
+					<dt>
+						<img src="__ROOT__/Public/Img/policy1.png" />
+						<div class="userConWindow rn ss">
+							<div class="userConWindowBox">
+								<img class="userConImg" src="__ROOT__/Public/Img/policy1.png" />
+								<span><b class="rs">加好友</b><b class="rs">关注</b><b class="rs">私信</b></span>
+								<p>
+									<a class="userConWindowUserName" href="###">十一的眼泪</a>
+									<br /><a href="###">关注（465）</a><strong>|</strong><a href="###">粉丝（374）</a>
+								</p>
+								<font><a href="###">个人主页</a><strong>|</strong><a href="###">个人资料</a><strong>|</strong><a href="###">项目主页</a></font>
+							</div>
+						</div>
+					</dt>
+					<dd>
+                    	<font>国务院公报<i>V</i></font>
+						<h3>（2014年第7号） 【质检总局  工业和信息化部关于加强建筑防水行业质量建设促进建筑防水卷材产品―质量提升的指导意见】</h3>
+						<p>各省、自治区、直辖市质量技术监督局、工业和信息化主管部门：<br />为了贯彻落实国务院《质量发展纲要（2011-2020）》，全面加强建筑防水行业质量建设，提升防水卷材质量，促进行业持续健康发展、制定本意见。一、加强建筑防水卷材行业质量建设的重要性建筑防水卷材作为工程建设的基础性材料，是关系国计民生的重要功能性产品。近年来，我国建筑防水卷材产业持续快速增长，产量已连续多年居世界首位。但是，我国建筑防水卷材产业大而不强，结构不合理、生产集中度低、产能利用率不高、市场竞争……</p>
+						<em>发布于2014-03-08 15:25</em>
+						<ul>
+							<li class="msgIcon_1 mo clk">关注问题</li>
+							<li class="msgIcon_2 mo clk">收藏</li>
+							<li class="msgIcon_3 mo clk">赞(142)</li>
+							<li class="msgIcon_4 mo clk">踩(657)</li>
+							<li class="msgIcon_5 mo clk">评论(6841)</li>
+							<li class="msgIcon_6 mo clk">分享</li>
+						</ul>
+					</dd>
+				</dl>
+				<dl>
+					<dt>
+						<img src="__ROOT__/Public/Img/policy1.png" />
+						<div class="userConWindow rn ss">
+							<div class="userConWindowBox">
+								<img class="userConImg" src="__ROOT__/Public/Img/policy1.png" />
+								<span><b class="rs">加好友</b><b class="rs">关注</b><b class="rs">私信</b></span>
+								<p>
+									<a class="userConWindowUserName" href="###">十一的眼泪</a>
+									<br /><a href="###">关注（465）</a><strong>|</strong><a href="###">粉丝（374）</a>
+								</p>
+								<font><a href="###">个人主页</a><strong>|</strong><a href="###">个人资料</a><strong>|</strong><a href="###">项目主页</a></font>
+							</div>
+						</div>
+					</dt>
+					<dd>
+                    	<font>国务院公报<i>V</i></font>
+						<h3>（2014年第7号）  【国务院办公厅关于天津东丽经济开发升级为国家级经济技术开发区的复函】</h3>
+						<p>（一）推进完善应用领域的招投标机制。运用市场机制，有效破除单纯的“最低价中标”招投标模式坚持以质量为核心要素的招投标导向。支持招标方、生产企业和用户要联合起来，共同抵制恶意低价竞标，有效防止低价竞标代带来的偷工减料、以次充好……<strong>显示更多</strong></p>
+                        <em>发布于2014-03-19 17:62</em>
+						<ul>
+							<li class="msgIcon_1 mo clk">关注问题</li>
+							<li class="msgIcon_2 mo clk">收藏</li>
+							<li class="msgIcon_3 mo clk">赞(142)</li>
+							<li class="msgIcon_4 mo clk">踩(657)</li>
+							<li class="msgIcon_5 mo clk">评论(6841)</li>
+							<li class="msgIcon_6 mo clk">分享</li>
+						</ul>
+					</dd>
+				</dl>
+                <ul class="pagelist">
+                	<li class="page"><a href="#">首页</a></li>
+                    <li class="page now"><a href="#">1</a></li>
+                    <li class="page"><a href="#">2</a></li>
+                    <li class="page"><a href="#">3</a></li>
+                    <li class="page"><a href="#">4</a></li>
+                    <li class="page"><a href="#">5</a></li>
+                    <li class="page">...</li>
+                    <li class="page"><a href="#">末页</a></li>
+                </ul>
+			</div>
+	  	
+	  	
+	 
+      </div>
+	</div>
+</div>
+<!--<script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script type="text/javascript">
+// 	var id ="";
+// 	$(function(){
+// 		$('.usercd').mouseover(function(e) {
+// 			id = e.target.id
+// 			content = "";
+// 			var options = {trigger:'hover',content:data(),html:'html',delay: { show: 100, hide: 5000 }};
+// 			$('.usercd').popover(options);
+// 			//console.log(e.target);
+// 			setTimeout("$('.usercd').popover('destroy')", 5000 )
+// 		});
+// 	});
+	function data(){
+		console.log(id);
+		var data = ""
+		data = '<div class="usercard">';
+		data += '<div class="row">';
+		data += '<div class="col-md-3 person-img"><img alt="" src="image/title.png" width="50" height="50"></div>';
+		data += '<div class="col-md-8">';
+		data += '<div class="top2">';
+		data += '<a href="#"><img alt="" src="image/add.png" height="30"></a>';
+		data += '<a href="#"><img alt="" src="image/attention.png" height="30"></a>';
+		data += '<a href="#"><img alt="" src="image/message.png" height="30"></a>';
+		data += '</div>';
+		data += '<div class="top2"><img alt="" src="image/person.png"><a href="http://meego123.net" class="bind_hover_card" bm_user_id="1">'+id+'</a></div>';
+		data += '<div>关注(123)<span class="mid">|</span>粉丝(34)</div>';
+		data += '</div>';
+		data += '</div>';
+		data += '<div class="bot-info" >';
+		data += '<a href="#">个人主页</a><span class="mid">|</span>';
+		data += '<a href="#">个人资料</a><span class="mid">|</span>';
+		data += '<a href="#">项目主页</a><span class="mid">|&nbsp;</span>';
+		data += '</div>';
+		data += '</div>';
+		return data;
+	}
+</script>-->
+</body>
+</html>
