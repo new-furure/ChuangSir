@@ -1,228 +1,168 @@
-{//单个政策大概查看页}
-<extend name="Home/Public/base.html" />
-<block name="javascript">
-<include file="Home/Public/tool_infocard_js.html"/>
-<script type="text/javascript">
-var up_url='{:U("/Home/Base/up_article")}';
-var down_url='{:U("/Home/Base/down_article")}';
-var focus_url='{:U("/Home/Base/focus")}';
-var collect_url='{:U("/Home/Base/collect")}';
-var report='{:U("/Home/Base/report")}';
-var edit_url='{:U("/Home/Project/edit/aid/","","")}';
-var delete_url='{:U("/Home/Base/delete","","")}';
-var report_article_url='{:U/Home/Base/report_article}';
-var report_comment_url='{:U/Home/Base/report_comment}';
-var errorimg = "__ROOT__/Public/Img/error.jpg";
-</script>  
-<script type="text/javascript" src="__ROOT__/Public/Js/common.js"></script>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-<script>
-$(document).ready(function(){
-    //$('#content').load('/example/jquery/demo_test.txt');//路径！
-})
-</script>
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>政策</title>
+<!--<link href="css/bootstrap.min.css" rel="stylesheet">-->
+<script type="text/javascript" src="../../../Public/Js/jquery-1.10.2.js"></script>
+<script type="text/javascript" src="../../../Public/Js/normal.js"></script>
+<link type="text/css" rel="stylesheet" href="../../../Public/CSS/normal.css" />
+<style type="text/css">
+div, a { color:#a7a9ac;}
+span, center { color: #777;}
 
-<script type="text/javascript">
-$(document).ready(function(){
-  $("#dianjizhediewenda").click(function(){
-  $("#wenda").toggle();
-  });
-});
-</script>
-<script defer type="text/javascript" language="javascript">
+#contenter .country { margin-top: 15px; float:left; width: 218px; border: 1px #a7a9ac solid; border-radius: 8px; padding: 5px;}
+#contenter .country img { width: 60px; height: 72px;}
+#contenter .country .guo { float: right; width: 146px; padding-left: 10px;}
+#contenter .country .guo font { font-family: "黑体"; font-weight: bold; font-size: 14px; float:left; color:#777; line-height:14px; clear:both;}
+#contenter .country .guo font i { padding-left: 4px; font-family: "Times New Roman", Times, serif; font-size:20px; color:#00a0e9; line-height: 20px;}
+#contenter .country .guo em { float: left; font-size: 12px; line-height: 18px; clear: both;}
+#contenter .country .guo div { float: left; font-size: 13px; line-height: 18px; clear: both;}
+#contenter .country ul { float: right; list-style: none; padding: 5px 0px;}
+#contenter .country ul li { float: left; padding: 0px 4px;}
+#contenter .country ul .lii { border-right: 1px #7ad8c5 solid;}
+#contenter .country ul li a div { float: left; width: 16px; height: 14px; background-image:url(../../../Public/Img/haha.png)}
+#contenter .country ul li a { color: #999;}
+#contenter .detail { float:right; width: 675px; margin-top: 15px; border: 1px #a7a9ac solid; border-radius: 8px; padding: 10px 20px;}
+#contenter .detail h3 { float:right; color:#196790; font-size:16px; line-height:18px; clear:both;}
+#contenter .detail .toright { text-align: right;}
+#contenter .detail span { font-size: 14px; line-height: 18px;}
+#contenter .detail .title { font-size: 18px; line-height: 20px; margin-top: 80px; margin-bottom: 40px;}
+#contenter .detail .fu { margin-top: 50px;}
+#contenter .detail p { margin:10px 0px 10px 0px; color:#777; line-height:22px; font-family: "微软雅黑";}
 
-function getid(el){return document.getElementById(el)}
-
-function response(obj)
-{
-    var oComment=obj.parentNode;//找到当前留言对象。
-    oComment.appendChild(getid("response"));
-    getid("response").style.display="block";
-}
-function response2()
-{
-  getid("wendalist").appendChild(getid("111"));
-  document.getElementById("aaa").innerHTML=document.getElementById("content1").value;
-  getid("111").style.display="block";
-  document.getElementById("content1").value="";
-}
-function response3()
-{
-  getid("pinglunlist").appendChild(getid("222"));
-  document.getElementById("bbb").innerHTML=document.getElementById("content2").value;
-  getid("222").style.display="block";
-  document.getElementById("content2").value="";
-}
-
-
-  </script>
-</block>  
-
-
-<block name="headfiles">
-  <link rel="shortcut icon" type="image/x-icon" href="__ROOT__/Public/Img/blue-logo.png" />
-  <link rel="stylesheet" type="text/css" href="__ROOT__/Public/Css/mystyle.css" media="all"/>
-</block>
-
-<block name="title">
-  <title>政策-{$data['article_title']}-Mr.Chuang</title>
-</block>
-
-<block name="nav">
-  <include file="Home/Public/header1.html" />
-</block>
-
-<block name="main">
-<div class="uglydiv">1 </div>
-<div style="width:100%; height:15px;"></div>
-<div class="row">
-<div class="col-md-8 col-md-offset-2 well">
-  <div class="row">
-  <div class="col-md-3">
-    <a href="{:get_url_by_id($data['user_id'])}" class="thumbnail infocardshow" onmouseover="SetInfocardPosition()">
-      <img data-src="holder.js/100%x180"  id="img" onerror="showimg(this);" alt="..." src="{$data['user_avatar_url'] | default='__ROOT__/Public/Img/error.jpg'}"/>
-    </a>
-    <a href="{:get_url_by_id($data['user_id'])}" class="infocardshow" onmouseover="SetInfocardPosition()">
-      <span class="label label-warning">V{$data['user_nickname']}</span>
-    </a>
-  </div>
-  <div class="col-md-9 detail__includeimg">
-    <h3>{$data['article_title']}</h3>
-    <h5 class="text-muted">发布于{$data['article_time']|date = 'Y-m-d,H:i',strtotime(###)}</h5>
-    <volist name="tag" id="v">
-    <span class="label label-info" style="margin-right:1em">{$v['tag_title']}</span>
-    </volist>
-    <h5>政策简介：</h5>
-    <h4 id="profile">{$data['article_profile']}</h4>
-      <br/>    
-  </div>
-  </div><!--top row-->
-
- <div class="btn-group">
-      <button id="up" aid="{$data['article_id']}" class="btn detail__btn btn--blue1" onmouseover="mOver1()" onmouseout="mOut1()">
-          <h6 style="cursor:pointer"  ><span class="glyphicon glyphicon-thumbs-up"></span><span class="up"><php>if(in_list($curr_user_id,$data['article_id'],'up')){echo '取消赞';}else{echo '赞';}</php></span>（<span class="up_num">{$data['article_up_number']}</span>）</h6>
-      </button>
-      <button id="down" aid="{$data['article_id']}" class="btn detail__btn btn--blue2" onmouseover="mOver2()" onmouseout="mOut2()">
-          <h6 style="cursor:pointer" ><span class="glyphicon glyphicon-thumbs-down"></span><span class="down"><php>if(in_list($curr_user_id,$data['article_id'],'down')){echo '取消踩';}else{echo '踩';}</php></span>（<span class="down_num">{$data['article_down_number']}</span>）</h6>
-      </button>
-      <button aid="{$data['article_id']}" id="focus"class="btn detail__btn btn--blue3" onmouseover="mOver3()" onmouseout="mOut3()">
-          <h6 style="cursor:pointer" ><span class="glyphicon glyphicon-heart"><span class="focus"><php>if(in_list($curr_user_id,$data['article_id'],'focus')){echo '取消关注';}else{echo '关注';}</php></span>（<span class="focus_num">{$data['article_focus_number']}</span>）</h6>
-      </button>
-      <button  aid="{$data['article_id']}" id="collect" class="btn detail__btn btn--blue4" onmouseover="mOver4()" onmouseout="mOut4()">
-          <h6 style="cursor:pointer"><span class="collect"><php>if(in_list($curr_user_id,$data['article_id'],'collect')){echo '取消收藏';}else{echo '收藏';}</php></span>（<span class="collect_num">{$data['article_collect_number']}</span>）</h6>
-      </button>
-      <button id="pinglun_button" class="btn detail__btn btn--blue5" onmouseover="mOver5()" onmouseout="mOut5()">
-          <h6 style="cursor:pointer">评论（{$data['article_comment_number']}）</h6>
-      </button>
-      <button id="fenxiang_button" class="btn detail__btn btn--blue6" onmouseover="mOver6()" onmouseout="mOut6()" data-toggle="dropdown" href="#">
-          <h6 >分享</h6>
-      </button>
-            <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-              <!-- <li><a style="cursor:pointer" data-toggle="modal" data-target="#fenxiangmodal">私信分享</a></li> -->
-              <li><a class="shareto_button_tsina"></a></li>
-              <li><a class="shareto_button_kaixin001"></a></li>
-              <li><a class="shareto_button_renren"></a></li></li>
-              <li><a class="shareto_button_douban"></a></li>
-              <li><a href="http://shareto.com.cn/share.html" class="shareto_button_compact">更多</a></li>
-
-              <script type="text/javascript" src="http://s.shareto.com.cn/js/shareto_button.js" charset="utf-8"></script>
-            </ul>
-      <php>
-            if(edit_verify($data['article_id'])){
-            echo '<button id="edit" onclick="edit();" class="btn detail__btn btn--blue7"><h6>修改</h6></button>
-              <button id="delete" data-toggle="modal" data-target="#deletemodal" class="btn detail__btn btn--blue7" ><h6>删除</h6></button>';
-            }
-      </php>
-            <include file="Home/Public/tool_detail_button_js.html"/>
-
-    </div><!--btn-group-->
-
-    <div>
-        <h5>政策内容：</h5>
-        <h4 id="content" style="text-align:center">{$data['article_content']|htmlspecialchars_decode}</h4>
-    </div>
-
-</div><!--8__2 well end-->
-</div><!--row end-->
-
-<div class="table-responsive row">
-   <div class="col-md-6 col-md-offset-2"><!--评论开始-->
-
-    <include file="Home/Public/comment_list.html" />
-
-   </div><!--评论、问答 结束-->
-
-  <script type="text/javascript">
-    var comment_type='policy_comment';
-    var handleUrlRA='{:U("/Home/Policy/reply_to_article")}';
-    var redirectUrl='{:U("/Home/Policy/detail",'','')}';
-    var handleUrlRC='{:U("/Home/Policy/reply_to_comment")}';
-  </script>
-  <script type="text/javascript" src="__ROOT__/Public/Js/handleComment.js"></script>
-  <include file="Home/Public/comment_form.html" />
-
-    <div class="col-md-2">
-      <div class="panel panel-warning">
-        <div class="panel-heading">
-          <h3 class="panel-title">关注人</h3>
-        </div>
-        <div class="panel-body">
-    <div class="row" id="img_div1">
-      
-      <volist name ="focus_list" id = "vo" >
-        <div class="col-md-3">
-        <a href="{:get_url_by_id($vo['user_id'])}" >
-          <img id="i1" src="{$vo['user_avatar_url'] | default='__ROOT__/Public/Img/error.jpg'}" alt="..." >
-        </a> 
-      </div>
-     </volist>
-
-      <script type="text/javascript">
-        var img_width=screen.width*0.027;
-        var s_width=img_width.toString();
-        var fanwei1=document.getElementById("img_div1");
-        var fanwei2=fanwei1.getElementsByTagName("img");
-        for(var i = 0 ; i < 3 ; i++)
-        {
-        fanwei2[i].style.width=s_width+"px";
-        fanwei2[i].style.height=s_width+"px";
-        }
-      </script>
-    </div>
-        <!-- <div class="panel-heading">
-          <h3 class="panel-title">关注该政策的风投</h3>
-        </div>
-        <div class="panel-body">
-    <div class="row" id="img_div2">
-      <div class="col-md-3">
-        <a href="#" >
-          <img id="i1" src="__ROOT__/Public/Img/333.jpg" alt="...">
-        </a>
-      </div>
-      <div class="col-md-3">
-        <a href="#" >
-          <img id="" src="__ROOT__/Public/Img/333.jpg" alt="...">
-        </a>
-      </div> 
-      <script type="text/javascript">
-        var img_width=screen.width*0.027;
-        var s_width=img_width.toString();
-        var fanwei1=document.getElementById("img_div2");
-        var fanwei2=fanwei1.getElementsByTagName("img");
-        for(var i = 0 ; i < 3 ; i++)
-        {
-        fanwei2[i].style.width=s_width+"px";
-        fanwei2[i].style.height=s_width+"px";
-        }
-      </script><
-    </div>-->
-        <!-- </div>-->
-      </div> 
-    </div>
-  </div>
+#contenter .reback { float: right; clear: both; width: 715px;}
+#contenter .reback form .ping { margin: 20px 0px 10px 0px; float: right; width: 689px; height: 100px; border: 3px #7cbef5 solid; border-radius: 8px; background-color:#efefef; padding: 10px; color: #999;}
+#contenter .reback form .tosubmit { float:right; width: 80px; height: 40px; background-color:#7cbef5; color:#fff; text-decoration: none; border: 1px #aad5f9 solid; border-radius: 8px;}
+</style>
+</head>
+<body>
+<div class="top">
+	<div class="topBox">
+		<a class="logo" href="###"><img src="../../../Public/Img/logo.gif" /></a>
+		<span class="searchInput rs"><input type="text" value="搜索话题、问题或人..." /></span>
+		<input class="searchButton rs" type="button" value="提问" />
+		<ul>
+			<li><a href="indexAll.html">先生汇</a></li><li>|</li><li><a href="###">爱创圈</a></li><li>|</li>
+			<li><a href="###">政策</a></li><li>|</li><li><a href="###">消息</a></li>
+		</ul>
+		<a class="userImg"><img src="../../../Public/Img/userImg.gif" /></a>
+	</div>
 </div>
-<include file="User:infocard"/>
-<include file="Message:sixinmodel"/>
-<include file="Project:deletemodal"/>
 
-</block>
+<div class="main bor">
+	<div class="tools">
+		<a href="#">最新发布</a>
+		<a href="#">本周热门</a>
+		<a href="#">本月最热</a>
+		<a href="#">高级搜索</a>
+	</div>
+    <div class="main" id="contenter">
+    	<div class="country">
+        	<img src="../../../Public/Img/policy1.png" />
+            <div class="guo">
+            	<font>国务院公报<i>V</i></font>
+                <em>政府用户</em>
+                <div>签名：国务院公报是	1955年经国务院常务会议决定创办，由国务院办公厅编辑出版面向国内外公开发行的政府出版物，公报上刊登的行政法规和规章文本为标准文本。</div>
+            </div>
+            <ul>
+            	<li class="lii"><a href="#"><div style="background-position: 0px 0px;"></div>加好友</a></li>
+                <li class="lii"><a href="#"><div style="background-position: -65px 0px;"></div>关注</a></li>
+                <li><a href="#"><div style="background-position: -123px 0px;"></div>私信</a></li>
+            </ul>
+        </div>
+        <div class="detail">
+        	<h3>（2014年第7号） 【质检总局  工业和信息化部关于加强建筑防水行业质量建设促进建筑防水卷材产品―质量提升的指导意见】</h3>
+            <div class="toright"><span>标签：质检总局 建筑 质量 防水</span></div>
+            <div class="toright"><span>发布员：质检总局</span></div>
+            <div class="title"><center>简介：质检总局 工业和信息化部关于加强建筑防水行业质量建设</center>
+            <center>促进建筑防水卷材产品治理康提升的知道意见</center></div>
+            <div class="toright"><span>国质检兼联[2013]644号</span></div>
+            <p>各省、自治区、直辖市质量技术监督局、工业和信息化主管部门：</p><p>为了贯彻落实国务院《质量发展纲要（2011-2020）》，全面加强建筑防水行业质量建设，提升防水卷材质量，促进行业持续健康发展、制定本意见。</p><p>一、加强建筑防水卷材行业质量建设的重要性</p><p>建筑防水卷材作为工程建设的基础性材料，是关系国计民生的重要功能性产品。近年来，我国建筑防水卷材产业持续快速增长，产量已连续多年居世界首位。但是，我国建筑防水卷材产业大而不强，结构不合理、生产集中度低、产能利用率不高、市场竞争不规范、创新能力不强等问题仍很突出。一些企业片面追求速度和数量，忽视发展质量和效益，质量水平提升滞后于产业规模扩张。质量提升是兴业之道、强业之策。各单位要充分认识加强建筑防水行业质量建设，提升质量总体水平的重要意义，采取综合施治措施，夯实质量建设基础，解决突出存在的重点问题，通过质量建设着力推动建筑防水卷材行业实现以质取胜、强化提质增效、促进转型升级。</p><p>二、工作方针和目标</p><p>以落实科学发展、转变发展方式、实现以质取胜为主线，坚持企业主体、政府监督、市场调节、行业自律和社会参与相结合，按照系统推进、突出重点、综合施策、标本兼治的工作方针，以保证质量安全为根本要求，以落实企业主体责任为关键，以严格政府监管为保障，以公平竞争、质量诚信为导向，着力加强建筑防水材料行业质量建设，有效解决制约行业发展和质量提升的关键症结和主要问题，全面提升建筑防水材料行业发展水平、质量保障水平和中体质量水平。</p><p>三、加强企业产品质量主体责任能力建设</p><p>（一）强化企业产品质量主体责任意识，引导企业树立“诚信为本、以质取胜”的经营理念，建立质量安全控制关键岗位责任制。独处企业法定代表人或主要负责人对质量安全负首要责任、企业质量主管人员对质量安全负直接责任。对于质量问题突出的生产和经营企业，质量监管部门对其法定代表人和质量安全负责人进行约谈。督促企业严格实施岗位质量规范与质量考核制度，实行质量安全“一票否决”。</p><p>（二）以严格的内部质量管理有效解决质量不稳定的突出问题。督促生产企业结合建筑防水产品生产实际和质量不可靠、不稳定等突出问题，严格按标准组织生产，严格质量控制，严格原材料把关，严格质量检验和计量检测。鼓励企业利用先进适用的现代信息技术手段和现代质量管理理念方法，广泛开展质量改进、质量攻关、质量风险分析活动。</p><p>（三）重视以技术创新促进质量提升。鼓励企业按行业准入条件要求，积极应用新技术、新工艺、新材料，加快转杯改造和技术进步、提升生产控制盒综合管理水平，开发新产品，从生产源头入手稳定提高产品质量。把技术壮心作为提高质量的抓手，持续改善品种质量，提升产品档次和服务水平，研究开发具有核心竞争力、高附加值和自主知识产权的创新型建筑防水卷材产品。</p><p>（四）有事企业要带头履行产品质量社会责任。引导行业龙头企业发挥质量诚信的师范作用，主动发布社会责任报告，率先承诺不生产和销售质量不合格产品。积极践行质量承诺，试行产品质量保证期制，主动接受政府部门、社会和媒体监督，主动抵制恶意市场竞争，勇于承担对企业员工、消费者和合作方的社会责任，有限树立对用户、对行业、对社会负责的良好形象。</p><p>四、加强全链条质量监督管理体系建设</p><p>（一）从生产源头严把质量准入关。一是严格生产许可管理，严格执行新公布的建筑防水卷材生产许可证实施细则，按照上限要求严格实施企业实地核查和产品发证检验，从严审批合法生产许可证，对达不到生产许可和实施细则要求的企业，坚决不予发证。二是在获证企业日常管理中，督促企业持续稳定地运行质量管理体系，实现从原材料进厂把关、生产过程控制盒出厂检验全过程质量管理。三是严格执行行业准入条件、清洁生产和节能减排等产业政策，对不符合产业政策要求的，依法注销生产许可证。</p><p>（二）建立和完善应用领域质量管控制度。一是推动完善重点领域业主单位、施工单位的采购质量把关制度，建立防水卷材质量生产、销售、应用记录“三统一”的追溯机制，形成生产、流通、一个与欧诺个等关键环节全产业链条质量监管模式，全链条杜绝假冒伪劣产品进入使用领域。二是完善应用领域建筑防水技术规范和产品标准，鼓励业主单位采用先进的产品、技术和管理方法。</p>
+            <div class="toright"><span>质&nbsp;&nbsp;&nbsp;检&nbsp;&nbsp;&nbsp;总&nbsp;&nbsp;&nbsp;局</span></div>
+            <div class="toright"><span>工业和信息化部</span></div>
+            <div class="toright"><span>2013年12月6日</span></div>
+            <h3>查看发布源：质检总局</h3>
+        </div>
+        <div class=" seeon">
+            <ul>
+                <li class="msgIcon_1 mo clk">关注问题</li>
+                <li class="msgIcon_2 mo clk">收藏</li>
+                <li class="msgIcon_3 mo clk">赞(142)</li>
+                <li class="msgIcon_4 mo clk">踩(657)</li>
+                <li class="msgIcon_5 mo clk">评论(6841)</li>
+                <li class="msgIcon_6 mo clk">分享</li>
+            </ul>
+        </div>
+        <div class="pinh">
+        	<dl>
+                <dt>
+                    <img src="../../../Public/Img/msgUserImg_1.png" />
+                    <div class="userConWindow rn ss">
+                        <div class="userConWindowBox">
+                            <img class="userConImg" src="../../../Public/Img/msgUserImg_1.png" />
+                            <span><b class="rs">加好友</b><b class="rs">关注</b><b class="rs">私信</b></span>
+                            <p>
+                                <a class="userConWindowUserName" href="###">十一的眼泪</a>
+                                <br /><a href="###">关注（465）</a><strong>|</strong><a href="###">粉丝（374）</a>
+                            </p>
+                            <font><a href="###">个人主页</a><strong>|</strong><a href="###">个人资料</a><strong>|</strong><a href="###">项目主页</a></font>
+                        </div>
+                    </div>
+                </dt>
+                <dd>
+                    <!--<i>法学　下很多人赞同了回答</i><em>10分钟前</em>-->
+                    <h3>国外遗产税很高的话，是否富豪家族几代后就会变普通人？</h3>
+                    <!--<font>匿名用户</font>-->
+                    <p>确实，国外的遗产税很高，美国征收的遗产税最高税率达55%。问题是，在要求高税率的同时，也提供了足够的税收策划空间，导致很多富人有规避的空间。之前看过相关资料，这里顺便将材料内容整理一下吧。以下所述内容均以美国为例。一、财产规划传承工具 在美…</p>
+                    <ul>
+                        <li class="msgIcon_1 mo clk">关注问题</li>
+                        <li class="msgIcon_2 mo clk">收藏</li>
+                        <li class="msgIcon_3 mo clk">赞(142)</li>
+                        <li class="msgIcon_4 mo clk">踩(657)</li>
+                        <li class="msgIcon_5 mo clk">评论(6841)</li>
+                        <li class="msgIcon_6 mo clk">分享</li>
+                    </ul>
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <img src="../../../Public/Img/msgUserImg_1.png" />
+                    <div class="userConWindow rn ss">
+                        <div class="userConWindowBox">
+                            <img class="userConImg" src="../../../Public/Img/msgUserImg_1.png" />
+                            <span><b class="rs">加好友</b><b class="rs">关注</b><b class="rs">私信</b></span>
+                            <p>
+                                <a class="userConWindowUserName" href="###">十一的眼泪</a>
+                                <br /><a href="###">关注（465）</a><strong>|</strong><a href="###">粉丝（374）</a>
+                            </p>
+                            <font><a href="###">个人主页</a><strong>|</strong><a href="###">个人资料</a><strong>|</strong><a href="###">项目主页</a></font>
+                        </div>
+                    </div>
+                </dt>
+                <dd>
+                    <!--<i>法学　下很多人赞同了回答</i><em>10分钟前</em>-->
+                    <h3>国外遗产税很高的话，是否富豪家族几代后就会变普通人？</h3>
+                    <!--<font>匿名用户</font>-->
+                    <p>确实，国外的遗产税很高，美国征收的遗产税最高税率达55%。问题是，在要求高税率的同时，也提供了足够的税收策划空间，导致很多富人有规避的空间。之前看过相关资料，这里顺便将材料内容整理一下吧。以下所述内容均以美国为例。一、财产规划传承工具 在美…</p>
+                    <ul>
+                        <li class="msgIcon_1 mo clk">关注问题</li>
+                        <li class="msgIcon_2 mo clk">收藏</li>
+                        <li class="msgIcon_3 mo clk">赞(142)</li>
+                        <li class="msgIcon_4 mo clk">踩(657)</li>
+                        <li class="msgIcon_5 mo clk">评论(6841)</li>
+                        <li class="msgIcon_6 mo clk">分享</li>
+                    </ul>
+                </dd>
+            </dl>
+        </div>
+      <div class="reback">
+        	<form>
+                <textarea cols="60" class="ping">发表评论...</textarea>
+                <input class="tosubmit" type="submit" value="提交" />
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

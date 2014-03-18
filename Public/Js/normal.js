@@ -10,10 +10,6 @@ $(function(){
 	$(".tab").each(function(){
 		$(this).mousedown(function(){
 			$(this).addClass("sel").siblings().removeClass("sel");
-			type_select=!type_select;
-			if(type_select == true)
-				article_type='talk';
-			else article_type='idea';
 		});
 	});
 	$(".clk").each(function(){
@@ -25,6 +21,16 @@ $(function(){
 		$(this).find(".upImgWindow").toggle();
 	});
 	$(".msgBox dt").mouseover(function(){
+		$(this).find(".userConWindow").show();
+	}).mouseout(function(){
+		$(this).find(".userConWindow").hide();
+	});
+	$(".policyBox dt").mouseover(function(){
+		$(this).find(".userConWindow").show();
+	}).mouseout(function(){
+		$(this).find(".userConWindow").hide();
+	});
+	$(".pinh dt").mouseover(function(){
 		$(this).find(".userConWindow").show();
 	}).mouseout(function(){
 		$(this).find(".userConWindow").hide();
