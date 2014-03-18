@@ -74,7 +74,7 @@ a{ text-decoration:none;}
 .msgBox dl em{ float:right; color:#BBB; line-height:18px;}
 .msgBox dl h3{ float:left; color:#196790; font-size:16px; line-height:18px; clear:both;}
 .msgBox dl font{ float:left; color:#BBB; line-height:18px; clear:both;}
-.msgBox dl p{ float:left; margin:10px 0px 0px 0px; color:#777; line-height:22px;}
+.msgBox dl p { float:left; margin:10px 0px 0px 0px; color:#777; line-height:22px;}
 .msgBox dl strong{ color:#196790; padding:0px 10px;}
 .msgBox dl ul{ float:left; overflow:hidden; margin:20px 0px 0px 0px;}
 .msgBox dl li{ float:left; margin:0px 15px 0px 0px; padding:0px 0px 0px 15px; background-image:url(../img/msgIcon.png); background-repeat:no-repeat; background-color:#aaa; color:#aaa; cursor:pointer;}
@@ -86,6 +86,30 @@ a{ text-decoration:none;}
 .msgBox dl li.msgIcon_4{ background-position:0px -47px;}
 .msgBox dl li.msgIcon_5{ background-position:0px -59px;}
 .msgBox dl li.msgIcon_6{ background-position:0px -71px;}
+.msgBox dl div{float: left;background:#fafafa;margin-top: 5px}
+
+.panel { display:none;overflow:hidden; }
+.panel dl{ overflow:hidden; margin:0px 0px 0px 5px; padding:10px 10px; border-bottom:solid 1px #BBB;}
+.panel dt{ float:left; width:50px; padding:0px; position:relative; z-index:100;}
+.panel dt img{width:40px;height:50px;}
+.panel dd{ float:right; width:405px;}
+.panel dl i{ float:left; color:#BBB; line-height:18px;}
+.panel dl em{ float:right; color:#BBB; line-height:18px;}
+.panel dl h3{ float:left; color:#196790; font-size:16px; line-height:18px; clear:both;}
+.panel dl font{ float:left; color:#BBB; line-height:18px; clear:both;}
+.panel dl p { float:left; margin:10px 0px 0px 0px; color:#777; line-height:22px;}
+.panel dl strong{ color:#196790; padding:0px 10px;}
+.panel dl ul{ float:left; overflow:hidden; margin:20px 0px 0px 0px;}
+.panel dl li{ float:left; margin:0px 15px 0px 0px; padding:0px 0px 0px 15px; background-image:url(../img/msgIcon.png); background-repeat:no-repeat; background-color:#aaa; color:#aaa; cursor:pointer;}
+.panel dl li.over{ background-color:#48c9b0; color:#48c9b0;}
+.panel dl li.sel{ background-color:#196790; color:#196790;}
+.panel dl li.msgIcon_1{ background-position:0px -11px;}
+.panel dl li.msgIcon_2{ background-position:0px -23px;}
+.panel dl li.msgIcon_3{ background-position:0px -35px;}
+.panel dl li.msgIcon_4{ background-position:0px -47px;}
+.panel dl li.msgIcon_5{ background-position:0px -59px;}
+.panel dl li.msgIcon_6{ background-position:0px -71px;}
+
 
 .mainConRight dl{ overflow:hidden; padding:10px 0px; border-bottom:solid 1px #BBB;}
 .mainConRight dt{ line-height:30px; color:#196790; font-size:14px; font-weight:bold; padding:0px 0px 10px 0px;}

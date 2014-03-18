@@ -5,6 +5,7 @@
 <title>先生汇 - 首页</title>
 <link href="__ROOT__/Public/CSS/normal.css" type="text/css" rel="stylesheet" />
 <script type="text/javascript" src="__ROOT__/Public/Js/jquery-1.10.2.js"><!-- 替换成其他版本可能会有问题 --></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 <script type="text/javascript" src=".__ROOT__/Public/Js/normal.js"></script>
 <script type="text/javascript" src="__ROOT__/Public/Js/common.js"></script>
 <script type="text/javascript">
@@ -13,6 +14,23 @@ $(function(){
 });
 	var article_type="idea";
 	var submit_url ='{:U("/Home/Base/submit")}';
+</script>
+<script type="text/javascript"> 
+	$(document).ready(function(){
+	$(".flip").click(function(){
+    $(".panel").slideToggle("slow");
+  });
+ 	$("button").click(function(){
+ 	//var title=$("input").eq(0).val();
+  	var title=$('textarea[name=title]');
+/*  	var con="W3School</br>"+title.val();*/
+alert('yes');
+
+  	var con='<dl><dt><img src="__ROOT__/Public/Img/msgUserImg_1.png" /></dt><dd><p> <a href="">匿名用户：</a>'+title.val()+'</p><ul><li class="msgIcon_3 mo clk">赞(142)</li><li class="msgIcon_4 mo clk">踩(657)</li><li class="msgIcon_5 mo clk">回复(6841)</li></ul></dd></dl>';
+  	$(".discussCon").prepend(con);
+  	/*$(".discussCon dl").eq(0).css({"opacity":"0","height":"0"}).animate({"opacity":"1","height":"100"});*/
+  });
+});
 </script>
 <style>
 
@@ -98,10 +116,69 @@ $(function(){
 							<li class="msgIcon_2 mo clk">收藏</li>
 							<li class="msgIcon_3 mo clk">赞(142)</li>
 							<li class="msgIcon_4 mo clk">踩(657)</li>
-							<li class="msgIcon_5 mo clk">评论(6841)</li>
+							<li class="msgIcon_5 mo clk flip">评论(6841)</li>
 							<li class="msgIcon_6 mo clk">分享</li>
 						</ul>
+
+						<!--这里是评论下拉列表-->
+						<div class="panel">
+							<textarea  name="title"></textarea>
+							<button class="submit">评论</button>
+							<!--同样采用dl、dd、dt划分层次-->
+							<div class="discussCon"><!--评论列表-->
+							<dl class="con">
+								<dt>
+									<img src="__ROOT__/Public/Img/msgUserImg_1.png" />
+									<div class="userConWindow rn ss">
+										<div class="userConWindowBox">
+											<img class="userConImg" src="__ROOT__/Public/Img/msgUserImg_1.png" />
+											<span><b class="rs">加好友</b><b class="rs">关注</b><b class="rs">私信</b></span>
+											<p>
+											<a class="userConWindowUserName" href="###">十一的眼泪</a>
+											<br /><a href="###">关注（465）</a><strong>|</strong><a href="###">粉丝（374）</a>
+											</p>
+											<font><a href="###">个人主页</a><strong>|</strong><a href="###">个人资料</a><strong>|</strong><a href="###">项目主页</a></font>
+										</div>
+									</div>
+								</dt>
+								<dd>
+									<p> <a href="">匿名用户：</a>确实，国外的遗产税很高，美国征收的遗产税最高税率达55%。问题是，在要求高税率的同时，也提供了足够的税收策划空间，导致很多富人有规避的空间。之前看过相关资料，这里顺便将材料内容整理一下吧。以下所述内容均以美国为例。一、财产规划传承工具 在美…</p>
+									<ul>
+										<li class="msgIcon_3 mo clk">赞(142)</li>
+										<li class="msgIcon_4 mo clk">踩(657)</li>
+										<li class="msgIcon_5 mo clk">回复(6841)</li>
+									</ul>
+								</dd>
+							</dl>
+
+							<dl>
+								<dt>
+									<img src="__ROOT__/Public/Img/msgUserImg_1.png" />
+									<div class="userConWindow rn ss">
+										<div class="userConWindowBox">
+											<img class="userConImg" src="__ROOT__/Public/Img/msgUserImg_1.png" />
+											<span><b class="rs">加好友</b><b class="rs">关注</b><b class="rs">私信</b></span>
+											<p>
+											<a class="userConWindowUserName" href="###">十一的眼泪</a>
+											<br /><a href="###">关注（465）</a><strong>|</strong><a href="###">粉丝（374）</a>
+											</p>
+											<font><a href="###">个人主页</a><strong>|</strong><a href="###">个人资料</a><strong>|</strong><a href="###">项目主页</a></font>
+										</div>
+									</div>
+								</dt>
+								<dd>
+									<p> <a href="">匿名用户：</a>确实，国外的遗产税很高，美国征收的遗产税最高税率达55%。问题是，在要求高税率的同时，也提供了足够的税收策划空间，导致很多富人有规避的空间。之前看过相关资料，这里顺便将材料内容整理一下吧。以下所述内容均以美国为例。一、财产规划传承工具 在美…</p>
+									<ul>
+										<li class="msgIcon_3 mo clk">赞(142)</li>
+										<li class="msgIcon_4 mo clk">踩(657)</li>
+										<li class="msgIcon_5 mo clk">回复(6841)</li>
+									</ul>
+								</dd>
+							</dl>
+							</div><!--评论列表结束-->
+						</div>
 					</dd>
+					
 				</dl>
 				<dl>
 					<dt>
