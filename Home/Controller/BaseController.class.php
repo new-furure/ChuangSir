@@ -959,8 +959,42 @@ class BaseController extends Controller {
 		$data['comment_content'] = I( 'post.comment_content' );
 		$aid=I( 'post.article_id' );
 		$comment_type=I( 'post.comment_type' );
+		//如果是首页，根据文章id判断评论类型
+		if($comment_type=='all'){
+			$article=M('article')
+			->where("article_id=$aid")
+			->find();
+			switch ($article['article_type']) {
+				case C('PROJECT_TYPE'):
+					$data['comment_type']=C( 'PROJECT_COMMENT' );
+					break;
+				case C('POLICY_TYPE'):
+					$data['comment_type']=C( 'POLICY_COMMENT' );
+					break;
+				case C('QUESTION_TYPE'):
+					$data['comment_type']=C( 'QUESTION_COMMENT' );				
+					break;
+				case C('IDEA_TYPE'):
+					$data['comment_type']=C( 'IDEA_COMMENT' );				
+					break;
+				case C('TALK_TYPE'):
+					$data['comment_type']=C( 'TALK_COMMENT' );
+					break;
+				case C('POST_TYPE'):
+					$data['comment_type']=C( 'POST_COMMENT' );
+					break;
+				case C('VC_TYPE'):
+					$data['comment_type']=C( 'VC_COMMENT' );
+					break;
+				case C('INCUBATOR_TYPE'):
+					$data['comment_type']=C( 'INCUBATOR_COMMENT' );
+					break;
+				default:
+					break;
+			}
+		}
 
-
+		else{
 		switch ( $comment_type ) {
 		case 'circle_post_comment':
 			$data['comment_type']=C( 'CIRCLE_POST_COMMENT' );
@@ -992,7 +1026,7 @@ class BaseController extends Controller {
 			break;
 		default:
 			break;
-		}
+		}}
 		$result=M( 'comment' )
 		->data( $data )
 		-> add();

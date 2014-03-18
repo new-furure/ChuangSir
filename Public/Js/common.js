@@ -393,14 +393,14 @@ function formatTime(time){
 	$(document).ready(function(){
 	//点击“文章列表评论按钮”
 	$(".flip").click(function(){
-		    $(".panel").slideToggle("slow");
+    $(".panel").slideToggle("slow");
 	var newDigi = document.getElementById("withdrawComment"); 
  	//传回文章id——用于提取评论
-    var article_id=newDigi.getAttribute("aid");
+    var article_id = newDigi.getAttribute("aid");
 	//先将内容post回controller
 	$.post(withdrawUrl,{article_id:article_id,article_type:article_type},function(data){
           if(data.type==0){
-          	var alerthtml="评论加载失败，请重试";
+          	var alerthtml = "评论加载失败，请重试";
           	$('.discussCon').html(alerthtml);
           }
           else{
@@ -426,7 +426,7 @@ function formatTime(time){
     //传回评论类型——用户评论后在表中插入信息
     var comment_type=newDigi.getAttribute("ctype");
     //评论内容
-    var commentContent=$('textarea[name=commentContent]');
+/*    var commentContent=$('textarea[name=commentContent]');*/
     if (commentContent.val()!= "") {
 
         var a=$.post(handleUrl,{comment_content:commentContent.val(),article_id:article_id,comment_type:comment_type},function(data){
