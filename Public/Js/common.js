@@ -388,7 +388,6 @@ function formatTime(time){
     }
 }
 
-<<<<<<< HEAD
 //@作者：李建男
 //评论加载和评论提交
 	$(document).ready(function(){
@@ -445,7 +444,7 @@ function formatTime(time){
       }
   });
 });
-=======
+
 //加载更多
 function listMore (maxArticleId) {
 	//var maxArticleId=;
@@ -472,4 +471,4 @@ function listMore (maxArticleId) {
       }
   	});
 }
->>>>>>> 40edebe84adcec6ff78a803e22ff140a95085b06
+
