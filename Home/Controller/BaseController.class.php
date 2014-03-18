@@ -790,8 +790,12 @@ class BaseController extends Controller {
 	}
 
 	public function withdraw_comment( $aid=null, $article_type=null ) {
-		$aid = I('post.aid');
-		$article_type = I('post.article_type');
+		if(IS_AJAX){
+			$aid=I('post.article_id');
+			$article_type = I('post.article_type');
+
+		}
+		
 		// 导入分页类
 		import( 'ORG.Util.Page' );
 		// 找到文章评论数
@@ -886,13 +890,29 @@ class BaseController extends Controller {
 			->select();
 			break;
 		default:
+			$user_comment=M( 'comment' )
+			->join( "user ON comment.user_id=user.user_id" )
+			//->join("second_comment ON second_comment.comment_id=comment.comment_id",'left')
+			->where( "comment.article_id=$aid" )
+			->field( 'user_nickname,user_avatar_url,comment_time,user.user_id,comment_content,comment_id as id,comment_id' )
+			->limit( $Page->firstRow.','.$Page->listRows )
+			->order( "comment_time desc" )
+			->select();
 			break;
 		}
 		//修改历史2014-3-6 增加article_comment_number
 		$this->assign( 'article_comment_number', $article_comment_number );
 		$this->assign( 'user_comment', $user_comment );
 		$this->assign( 'page', $show );// 赋值分页输出
-
+		if($user_comment){
+			$data['user_comment'] = $user_comment;
+			$data['type'] = 1;
+			$this->ajaxReturn($data,'json');
+	    }
+	    else{
+	    	$data['type']=0;
+	    	$this->ajaxReturn($data,'json');
+	    }
 
 		//提取二级评论
 		foreach ( $user_comment as $n=> $val ) {
@@ -923,11 +943,7 @@ class BaseController extends Controller {
 
 		$this->assign( 'user_comment', $user_comment );
 
-		if(IS_AJAX){
-			$data['user_comment'] = $user_comment;
-			$data['type'] = 1;
-			$this->ajaxReturn($data,'json');
-	    }
+
 		$this->assign( 'article_id', $aid );
 	}
 
@@ -961,6 +977,18 @@ class BaseController extends Controller {
 			break;
 		case 'project_comment':
 			$data['comment_type']=C( 'PROJECT_COMMENT' );
+			break;
+		case 'idea_comment':
+			$data['comment_type'] = C('IDEA_COMMENT');
+			break;
+		case 'talk_comment':
+			$data['comment_type'] = C('TALK_COMMENT');
+			break;
+		case 'vc_comment':
+			$data['comment_type'] = C('VC_COMMENT');
+			break;
+		case 'incubator_comment':
+			$data['comment_type'] = C('INCUBATOR_COMMENT');
 			break;
 		default:
 			break;

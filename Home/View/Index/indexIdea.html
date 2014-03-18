@@ -22,67 +22,9 @@ var path = '';
 var pic_url='';
 </script>
 <script type="text/javascript"> 
+	//两个url分别是评论提取函数的地址和评论提交函数的地址
 	var withdrawUrl='{:U("/Home/Base/withdraw_comment")}';
 	var handleUrl='{:U("/Home/Base/base_reply_to_article")}';
-	$(document).ready(function(){
-	//点击“文章列表评论按钮”
-	$(".flip").click(function(){
-	var newDigi = document.getElementById("withdrawComment"); 
- 	//传回文章id——用于提取评论
-    var article_id=newDigi.getAttribute("aid");
-	//先将内容post回controller
-	$.post(withdrawUrl,{article_id:article_id,article_type:atype},function(data){
-          if(data.type==0){
-          	var alerthtml="评论加载失败，请重试";
-          	$(.discussCon).html(alerthtml);
-          }
-          else{
-          	var html;
-          	$.each(data.user_comment,function(idx,item)
-			{
-          		html.="item.comment_content";
-          	});     
-          }       
-     },'json');
-	$.ajax(withdrawUrl,{comment_content:content.val(),article_id:article_id,comment_type:comment_type,circle_id:circle_id},function(data){
-          if(data.type==0)
-          	var html;
-          	$.each(function(id,item){
-          		html.='<dl><dt><img src="__ROOT__/Public/Img/msgUserImg_1.png" /></dt><dd><p> <a href="">匿名用户：</a>'+item.comment_content+'</p><ul><li class="msgIcon_3 mo clk">赞(142)</li><li class="msgIcon_4 mo clk">踩(657)</li><li class="msgIcon_5 mo clk">回复(6841)</li></ul></dd></dl>';
-          	});            
-        },'json');
-	$(".panel").html(html);
-    $(".panel").slideToggle("slow");
-
-
-  });
-	//点击发表评论
- 	$(".submitComment").click(function(){
- 	//获取标签的自定义属性
- 	var newDigi = document.getElementById("submitComment"); 
- 	//传回文章id——用于提取评论
-    var article_id=newDigi.getAttribute("aid");
-    //传回评论类型——用户评论后在表中插入信息
-    var comment_type=newDigi.getAttribute("ctype");
-    //
-    var commentContent=$('textarea[name=commentContent]');
-    if (commentContent!= "") {
-
-        var a=$.post(handleUrl,{comment_content:content.val(),article_id:article_id,comment_type:comment_type,circle_id:circle_id},function(data){
-          if(data.type==0)
-            alert('评论失败，请重试');
-          else{
-            window.location.href=redirectUrl+"/"+circle_id+"/aid/"+article_id+".html";
-          }
-        },'json');
-        a.error(function(){alert('fail')});
-      }
-
-  	var con='<dl><dt><img src="__ROOT__/Public/Img/msgUserImg_1.png" /></dt><dd><p> <a href="">匿名用户：</a>'+title.val()+'</p><ul><li class="msgIcon_3 mo clk">赞(142)</li><li class="msgIcon_4 mo clk">踩(657)</li><li class="msgIcon_5 mo clk">回复(6841)</li></ul></dd></dl>';
-  	$(".discussCon").prepend(con);
-  	/*$(".discussCon dl").eq(0).css({"opacity":"0","height":"0"}).animate({"opacity":"1","height":"100"});*/
-  });
-});
 </script>
 <style>
 
