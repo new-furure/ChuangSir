@@ -490,6 +490,7 @@ class BaseController extends Controller {
 		}
 		$user_id = get_id( false );
 		$article_type=I( 'post.article_type' );
+		$data['article_title']=I('post.title');
 		switch ( $article_type ) {
 			//时光机
 		case 'talk':
@@ -527,7 +528,6 @@ class BaseController extends Controller {
 			break;
 		}
 		$data['user_id'] = $user_id;
-		$data['article_title']=I( 'post.title' );
 		$data['article_content']=I( 'post.content' );
 		$data['article_picture_url']=I('post.pic_url');
 		$article = D( 'Article' );
