@@ -52,7 +52,7 @@ class UserModel extends Model
 				dump( $passwd );
 				dump( $_POST );
 			}
-			E( '空密码！' );
+			E( '密码不能为空！' );
 		}else{
 			return;
 		}
