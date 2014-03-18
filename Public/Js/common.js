@@ -335,3 +335,35 @@ function showimg(obj){
         document.getElementById( "img" ).style.height = "150px"; 
         
 }
+
+
+//时间字符串转换为unix时间戳
+function strtotime(strings){
+    var arr = strings.split(" ");
+    var arr1 = arr[0].split("-");
+    var arr2 = arr[1].split(":");
+    var year = arr1[0];
+    var month = arr1[1]-1;
+    var day = arr1[2];
+    var hour = arr2[0];
+    var mon = arr2[1];
+    var timestamp = new Date(year,month,day,hour,mon).getTime()/1000; 
+    return timestamp;
+}
+//时间输出格式化
+function formatTime(time){
+    var timestamp=strtotime(time);
+    var curTimestamp=new Date().getTime()/1000;
+    var interval=curTimestamp-timestamp;
+    var pastMin=Math.floor(interval/60);
+    if(pastMin>0 && pastMin<60){
+        return pastMin+"分钟前";
+    }else if(pastMin>=60){
+        var pastHour=Math.floor(interval/3600);
+        if(pastHour<=24){
+            return pastHour+"小时前";
+        }else{
+            return time.substr(5,11);
+        }
+    }
+}
