@@ -346,7 +346,7 @@ class BaseController extends Controller {
 	//@作者
 	//建议写在公用库函数
 	public function reply_to_article( $article_id ) {
-		//$user_id = get_id();
+		$user_id = get_id();
 		//$curr_user_id = get_id();
 		$curr_user_id = $_SESSION['user_id'];
 		$data['user_id'] = $curr_user_id;
