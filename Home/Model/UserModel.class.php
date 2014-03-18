@@ -27,8 +27,12 @@ class UserModel extends Model
 		//密码加密
 		array( 'user_passwd', "encodePasswd", 3, 'callback' ),
 		//w为空时不处理
-		array( 'user_password', '', 2, 'ignore' ),
-		//
+		array( 'user_passwd', '', 2, 'ignore' ),
+
+		//密码修改时的填充
+		array('oldpasswd','',3,'ignore') ,
+		array( 'oldpasswd', "encodeOldPasswd", 2, 'callback' ),
+
 	);
 
 	/**
@@ -36,24 +40,50 @@ class UserModel extends Model
 	 * 对密码加密
 	 *
 	 * @author Future
-	 * @param string  $password
+	 * @param string  passwd
 	 * @return string 加密后的结果
 	 */
-	public function encodePasswd() {
-		$passwd=I( 'post.user_passwd' );
+	protected function encodePasswd( $passwd) {
+		if(!$passwd)
+			$passwd= I( 'post.user_passwd' );
 		if ( !$passwd ) {
-			return;
+			if ( APP_DEBUG ) {
+				dump($isnew);
+				dump( $passwd );
+				dump( $_POST );
+			}
+			E( '空密码！' );
 		}
 
 		//前端是否已经MD5加密
-		$isMd5=I( 'post.is_md5' );
-		$email=I( 'post.user_email' );
-
-		if ( !$isMd5 ) {
-			//前端为加密进行md5处理
+		if ( !I( 'post.is_md5' ) ) {
+			//前端未加密进行md5处理
 			$passwd=md5( $passwd );
 		}
 
+		//获取邮箱
+		$email=I( 'post.user_email' );
+		if ( empty( $email ) ) {
+
+			$id=get_id( false );
+			if ( !$id ) {
+				$id=session( "user_id_for_change" );
+			}
+			if ( $id ) {
+				$email=M( 'User' )->getFieldByUserId( $id, 'user_email' );
+			}
+		}
+
+		if ( empty( $email ) ) {
+			E( '查找用户失败' );
+		}
+
 		return encryption( $passwd, $email );
+	}
+
+	protected function encodeOldPasswd() {
+		$oldpasswd=I( 'post.oldpasswd' );
+		if($oldpasswd)
+		return $this->encodePasswd( $oldpasswd );
 	}
 }

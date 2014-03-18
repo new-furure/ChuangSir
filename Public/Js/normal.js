@@ -10,6 +10,16 @@ $(function(){
 	$(".tab").each(function(){
 		$(this).mousedown(function(){
 			$(this).addClass("sel").siblings().removeClass("sel");
+			type_select=!type_select;
+			if(type_select == true){
+				article_type='talk';
+				article_cat = "时光机";
+			}
+				
+			else {
+				article_type='idea';
+				article_cat = "创意汇";
+			}
 		});
 	});
 	$(".clk").each(function(){

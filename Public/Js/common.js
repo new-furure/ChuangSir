@@ -147,11 +147,12 @@ function edit(){
 }
 //提交的处理函数。根据不同的文章类型先判断输入的合法性。异步提交并返回一定的信息。
 function submit(){ 
-	alert(article_type);
+	$(".upImgWindow").hide();
+	document.getElementById("imgPreview").innerHTML="<img id='img1' src='/ChuangSir/Public/Img/error.jpg' width='110' height='140' onclick='openBrowse()'/>";
+	//alert(article_type);
 	var layer=document.createElement("div");
 	layer.id="layer";
 	var top_num =  document.documentElement.scrollTop -480 +"px";
-	var pic_name="";
 	var profile;
 	var title=$('input[name=article_title]');
 	if(title.val()==''){
@@ -192,7 +193,7 @@ function submit(){
 		return;
 	}
 	$.post(submit_url,{article_type:article_type,title:title.val(),content:content.val(),
-		profile:profile,pic_name:pic_name},
+		profile:profile,pic_url:pic_url},
 		function(data){
 			switch(data.type){
 				case 1:
@@ -200,10 +201,14 @@ function submit(){
 					layout(layer,top_num);	
 					break;
 				case 2:
-					layer.innerHTML = "发布成功";
-					layout(layer,top_num);
-					alert(data.article_id);
-					//window.location.href = article_url+"/"+data.article_id;
+					var time=new Date();
+					if(data.article_picture_url){
+						var Content = "<dl><dt><img src='/mrchuang/Public/Img/msgUserImg_2.png' /><div class='userConWindow rn ss'><div class='userConWindowBox'><img class='userConImg' src='/mrchuang/Public/Img/msgUserImg_2.png' /><span><b class='rs'>加好友</b><b class='rs'>关注</b><b class='rs'>私信</b></span><p><a class='userConWindowUserName' href='###'>十一的眼泪</a><br /><a href='###'>关注（0）</a><strong>|</strong><a href='###'>粉丝（0）</a></p><font><a href='###'>个人主页</a><strong>|</strong><a href='###'>个人资料</a><strong>|</strong><a href='###'>项目主页</a></font></div></div></dt><dd><i>"+data.user_name+"在"+article_cat+"有了新动态</i><em>刚刚</em><h3>"+data.article_title+"</h3><font>我是动感超人</font><p>"+data.article_content+"<strong>显示更多</strong></p>"+"<div><img id='img1' width='110px' height='140px' src='"+data.article_picture_url+"'/></div>"+"<ul><li class='msgIcon_1 mo clk'>关注问题</li><li class='msgIcon_2 mo clk'>收藏</li><li class='msgIcon_3 mo clk'>赞(0)</li><li class='msgIcon_4 mo clk'>踩(0)</li><li class='msgIcon_5 mo clk'>评论(0)</li><li class='msgIcon_6 mo clk'>分享</li></ul></dd></dl>";
+					}else{
+						var Content = "<dl><dt><img src='/mrchuang/Public/Img/msgUserImg_2.png' /><div class='userConWindow rn ss'><div class='userConWindowBox'><img class='userConImg' src='/mrchuang/Public/Img/msgUserImg_2.png' /><span><b class='rs'>加好友</b><b class='rs'>关注</b><b class='rs'>私信</b></span><p><a class='userConWindowUserName' href='###'>十一的眼泪</a><br /><a href='###'>关注（0）</a><strong>|</strong><a href='###'>粉丝（0）</a></p><font><a href='###'>个人主页</a><strong>|</strong><a href='###'>个人资料</a><strong>|</strong><a href='###'>项目主页</a></font></div></div></dt><dd><i>"+data.user_name+"在"+article_cat+"有了新动态</i><em>刚刚</em><h3>"+data.article_title+"</h3><font>我是动感超人</font><p>"+data.article_content+"<strong>显示更多</strong></p><ul><li class='msgIcon_1 mo clk'>关注问题</li><li class='msgIcon_2 mo clk'>收藏</li><li class='msgIcon_3 mo clk'>赞(0)</li><li class='msgIcon_4 mo clk'>踩(0)</li><li class='msgIcon_5 mo clk'>评论(0)</li><li class='msgIcon_6 mo clk'>分享</li></ul></dd></dl>";
+					}
+					
+					$(".msgBox").prepend(Content);
 					break;
 				default:
 					layer.innerHTML = "发布失败！"+data;
@@ -315,7 +320,7 @@ function join(){
 		content.focus();
 		return;
 	}
-	alert(aid);
+	//alert(aid);
     $.post(join_url,{aid:aid,content:content.val()},function(data){
     	switch(data.type){
     		case 0:

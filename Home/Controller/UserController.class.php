@@ -326,29 +326,28 @@ class UserController extends Controller{
     //邮箱找回修改
     $id=session( "user_id_for_change" );
     $User=D( 'User' );
+
+    if ( !$User->field( 'user_passwd,re_password,oldpasswd' )->create( $_POST, 2 ) ) {
+      return false;
+    }
     if ( $id< 1 ) {
-      //普通修改
+      //普通修改,先验证密码
       $id=get_id();
-
-      $oldPasswd=I( 'post.oldpasswd' );
-      $old_info=$User->where( "user_id=".$id )->find();
-
-      if ( $old_info["user_passwd"]!=$oldPasswd ) {
-        $this->error( "密码错误！" );
+      $passwd=M( 'User' )->getFieldByUserId( $id, 'user_passwd' );
+      if ($User->oldpasswd!=$passwd) {
+        $this->error( $User->oldpasswd."原密码错误！".$passwd );
         return false;
       }
     }
 
-    if ( $User->field( 'user_passwd,re_password' )->create( $_POST, 2 ) ) {
-      $User->user_id=$id;
-      if ( $User->save() ) {
-        session( "user_id_for_change", null );
-        $this->success( "修改成功，正在注销重新登陆", U( 'User/logout' ) , 0.5 );
-        return true;
-      }
+    $User->user_id=$id;
+    if ( $User->save() ) {
+      session( "user_id_for_change", null );
+      $this->success( "修改成功，正在注销重新登陆", U( 'User/logout' ) , 0.5 );
+      return true;
     }
-    $this->error( "密码修改失败!" );
-  }
+  $this->error( "密码修改失败!" );
+}
 
   /**
    * 重新激活邮箱

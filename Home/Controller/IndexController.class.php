@@ -27,7 +27,7 @@ class IndexController extends Controller {
         $fieldSql='article.*,user.user_nickname as user_name,user.user_id,user.user_avatar_url,user.user_focus_number';
         $joinSql=array();//user join sql
         $joinSql[0]="left join __USER__ as user on user.user_id=article.user_id";
-        $article_type=I('get.article_type');//不同模块
+        $article_type=I('get.type');//不同模块
         
         if($article_type){
             $typeSql=' and article.article_type='.$article_type;
@@ -74,7 +74,32 @@ class IndexController extends Controller {
             $this->assign('list', $articleList);
             $this->assign('page', $show);
         }
-        $this->display();
+        $goto='indexAll';
+        switch ($article_type) {
+            case C("IDEA_TYPE"):
+                $goto='indexIdea';
+                break;
+            case C("QUESTION_TYPE"):
+                $goto='indexQuestion';
+                break;
+            case C("PROJECT_TYPE"):
+                $goto='indexProject';
+                break;
+            case C("TALK_TYPE"):
+                $goto='indexTalk';
+                break;
+            case C("POLICY_TYPE"):
+                $goto='indexPolicy';
+                break;
+            case C("VC_TYPE"):
+                $goto='indexVc';
+                break;
+            case C("INCUBATOR_TYPE"):
+                $goto='indexIncubator';
+                break;            
+
+        }
+        $this->display($goto);
     }
 
     //几个搜索方面的方法

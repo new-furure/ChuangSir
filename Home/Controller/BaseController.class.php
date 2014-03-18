@@ -526,20 +526,10 @@ class BaseController extends Controller {
 			$data['article_type'] = C( 'POST_TYPE' );
 			break;
 		}
-		//$data['user_id'] = $user_id;
-		$data['user_id'] = 134217735;
+		$data['user_id'] = $user_id;
 		$data['article_title']=I( 'post.title' );
 		$data['article_content']=I( 'post.content' );
-		$pic_url;
-		if ( $pic_url != '' )
-			$data['article_picture_url']=$this->$pic_url;
-		//$pic_name = I('post.pic_name');
-		//判断是否有传图片
-		/*if($pic_name){
-    		$sava_name=time();
-    		$url=upload_file( $savePath, $sava_name,"picture");
-    		$data['article_picture_url'] = $url;
-    	}*/
+		$data['article_picture_url']=I('post.pic_url');
 		$article = D( 'Article' );
 		$result = $article->create( $data );
 		if ( !$result ) {
@@ -605,6 +595,9 @@ class BaseController extends Controller {
 			return;
 		}else {
 			$data['article_id']=$article_id;
+			$name=M('user')->where("user_id = $user_id")->find();
+			$data['user_name'] = $name['user_nickname'];
+			$data['time'] = time();
 			$data['type']=2;
 			$this->ajaxReturn( $data, 'json' );
 		}
@@ -1041,13 +1034,13 @@ class BaseController extends Controller {
 		dump( $file );
 		if ( $pic_url==null ) {
 			// 上传错误
-			$this->error( "图片上传失败！" );
+			echo "<script >alert('图片不合要求')</script>";
 			//return;
 		}else {
-			echo $pic_url;
+			//echo $pic_url;
 			//$this->submit($pic_url);
 			//$this->success( "修改成功！" );
-			echo "<script >alert('上传成功')</script>";
+			echo "<script >parent.stopSend('".$pic_url."');</script>";
 			return;
 		}
 	}
