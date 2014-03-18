@@ -789,7 +789,9 @@ class BaseController extends Controller {
 		}
 	}
 
-	public function withdraw_comment( $aid, $article_type ) {
+	public function withdraw_comment( $aid=null, $article_type=null ) {
+		$aid = I('post.aid');
+		$article_type = I('post.article_type');
 		// 导入分页类
 		import( 'ORG.Util.Page' );
 		// 找到文章评论数
@@ -801,7 +803,7 @@ class BaseController extends Controller {
 		$show = $Page
 		->show();// 分页显示输出
 
-
+		//project既要提取comment还要提取improve
 		$project_comment=C( 'PROJECT_COMMENT' );
 		$this->assign( 'project_comment', $project_comment );
 		$project_improve=C( 'PROJECT_IMPROVE' );
@@ -920,6 +922,12 @@ class BaseController extends Controller {
 		}
 
 		$this->assign( 'user_comment', $user_comment );
+
+		if(IS_AJAX){
+			$data['user_comment'] = $user_comment;
+			$data['type'] = 1;
+			$this->ajaxReturn($data,'json');
+	    }
 		$this->assign( 'article_id', $aid );
 	}
 
