@@ -73,6 +73,10 @@
                 <img src="__ROOT__/Public/Img/Index/alert-sign.png" style="width:30px"/>
                 密码未填写
               </p>
+               <p id="alert-error" >
+                <img src="__ROOT__/Public/Img/Index/alert-sign.png" style="width:30px"/>
+                <span id="error-msg">注册失败</span>
+              </p>
             </div>
             <button class="btn btn-block index__log-reg-button" id="register-button">注册闯先生</button>
           </div>
@@ -165,6 +169,7 @@
         $("#alert-name").css("display","none");
         $("#alert-email").css("display","none");
         $("#alert-password").css("display","none");
+        $("#alert-error").css("display","none");
 
     }
     function toggleRegToLog()
@@ -177,6 +182,7 @@
         $("#alert-name").css("display","none");
         $("#alert-email").css("display","none");
         $("#alert-password").css("display","none");
+        $("#alert-error").css("display","none");
     }
 
     $(document).ready(function(){
@@ -217,6 +223,7 @@
     });
     //
     $("#register-button").click(function(){
+       $("#alert-error").css("display","none");
       var s_name=$("#input-reg-name").val();
       var s_email=$("#input-reg-email").val();
       var  password=$("#input-reg-password").val() ;
@@ -268,7 +275,7 @@
       //////////////////////////////////
       if(count==0)
       {
-        var url='/User/register';
+        var url="{:U('User/register')}";
         $.post(url,
         {
           user_nickname:s_name,
@@ -280,19 +287,21 @@
           if(status){
             if(data.status){
               //注册成功
-
+ $("#alert-error").css("display","none");
          $("#congratulation-model").css("display","block");
         document.getElementById("congratulation_username").innerHTML=s_name;
         $("strong").text(data.info);
         $(".index__btn-tiyan").attr('href',data.url);
             }else{
               //注册失败
-
+        $("#alert-error").css("display","block");
+        $("#error-msg").text(data.info);
             }
 
           }else{
             //连接失败
-
+ $("#alert-error").css("display","block");
+  $("#error-msg").text("连接失败");
           }
         });
 
