@@ -6,6 +6,7 @@
 <!--<link href="css/bootstrap.min.css" rel="stylesheet">-->
 <script type="text/javascript" src="__ROOT__/Public/Js/jquery-1.10.2.js"></script>
 <script type="text/javascript" src="__ROOT__/Public/Js/normal.js"></script>
+<script type="text/javascript" src="__ROOT__/Public/Js/common.js"></script>
 <link type="text/css" rel="stylesheet" href="__ROOT__/Public/Css/normal.css" />
 <style type="text/css">
 div, a { color:#a7a9ac;}
@@ -33,7 +34,7 @@ span, center { color: #777;}
 
 #contenter .reback { float: right; clear: both; width: 715px;}
 #contenter .reback form .ping { margin: 20px 0px 10px 0px; float: right; width: 689px; height: 100px; border: 3px #7cbef5 solid; border-radius: 8px; background-color:#efefef; padding: 10px; color: #999;}
-#contenter .reback form .tosubmit { float:right; width: 80px; height: 40px; background-color:#7cbef5; color:#fff; text-decoration: none; border: 1px #aad5f9 solid; border-radius: 8px;}
+#contenter .reback  .tosubmit { float:right; width: 80px; height: 40px; background-color:#7cbef5; color:#fff; text-decoration: none; border: 1px #aad5f9 solid; border-radius: 8px;}
 </style>
 </head>
 <body>
@@ -158,11 +159,16 @@ span, center { color: #777;}
         </div>
       <div class="reback">
         	<form>
-                <textarea cols="60" class="ping">发表评论...</textarea>
-                <input class="tosubmit" type="submit" value="提交" />
+                <textarea cols="60" class="ping" name="commentContent">发表评论...</textarea>
             </form>
+             <input class="tosubmit" id="comment_submit" type="submit" value="提交" aid="{$article_id}" onclick="post_submit()"/> 
+             <!-- <input id="comment_submit"  class="tosubmit" aid="{$article_id}" type="button" value="提交"  onclick="post_submit()")/> -->
         </div>
     </div>
 </div>
+<script type="text/javascript">
+    var handleUrl='{:U("/Home/Base/base_reply_to_article")}';
+    var comment_type='policy_comment';
+</script>
 </body>
 </html>

@@ -268,7 +268,7 @@ function submit(){
 							break;
 						default:
 						if(data.article_picture_url){
-						var Content = "<dl><dt><img src='/mrchuang/Public/Img/msgUserImg_2.png' /><div class='userConWindow rn ss'><div class='userConWindowBox'><img class='userConImg' src='/mrchuang/Public/Img/msgUserImg_2.png' /><span><b class='rs'>加好友</b><b class='rs'>关注</b><b class='rs'>私信</b></span><p><a class='userConWindowUserName' href='###'>十一的眼泪</a><br /><a href='###'>关注（0）</a><strong>|</strong><a href='###'>粉丝（0）</a></p><font><a href='###'>个人主页</a><strong>|</strong><a href='###'>个人资料</a><strong>|</strong><a href='###'>项目主页</a></font></div></div></dt><dd><i>"+data.user_name+"在"+article_cat+"有了新动态</i><em>"+time+"</em><h3>"+data.article_title+"</h3><p>"+data.article_content+"<strong>显示更多</strong></p>"+"<div><img id='img1' width='110px' height='140px' src='"+data.article_picture_url+"'/></div>"+"<ul><li class='msgIcon_1 mo clk'>关注问题</li><li class='msgIcon_2 mo clk'>收藏</li><li class='msgIcon_3 mo clk'>赞(0)</li><li class='msgIcon_4 mo clk'>踩(0)</li><li class='msgIcon_5 mo clk flip'>评论(0)</li><li class='msgIcon_6 mo clk'>分享</li></ul></dd></dl>";
+						var Content = "<dl><dt><img src='/mrchuang/Public/Img/msgUserImg_2.png' /><div class='userConWindow rn ss'><div class='userConWindowBox'><img class='userConImg' src='/mrchuang/Public/Img/msgUserImg_2.png' /><span><b class='rs'>加好友</b><b class='rs'>关注</b><b class='rs'>私信</b></span><p><a class='userConWindowUserName' href='###'>十一的眼泪</a><br /><a href='###'>关注（0）</a><strong>|</strong><a href='###'>粉丝（0）</a></p><font><a href='###'>个人主页</a><strong>|</strong><a href='###'>个人资料</a><strong>|</strong><a href='###'>项目主页</a></font></div></div></dt><dd><i>"+data.user_name+"在"+article_cat+"有了新动态</i><em>刚刚</em><h3>"+data.article_title+"</h3><p>"+data.article_content+"<strong>显示更多</strong></p>"+"<div><img id='img1' width='110px' height='140px' src='"+data.article_picture_url+"'/></div>"+"<ul><li class='msgIcon_1 mo clk'>关注问题</li><li class='msgIcon_2 mo clk'>收藏</li><li class='msgIcon_3 mo clk'>赞(0)</li><li class='msgIcon_4 mo clk'>踩(0)</li><li class='msgIcon_5 mo clk flip'>评论(0)</li><li class='msgIcon_6 mo clk'>分享</li></ul></dd></dl>";
 						}else{
 							var Content = "<dl><dt><img src='/mrchuang/Public/Img/msgUserImg_2.png' /><div class='userConWindow rn ss'><div class='userConWindowBox'><img class='userConImg' src='/mrchuang/Public/Img/msgUserImg_2.png' /><span><b class='rs'>加好友</b><b class='rs'>关注</b><b class='rs'>私信</b></span><p><a class='userConWindowUserName' href='###'>十一的眼泪</a><br /><a href='###'>关注（0）</a><strong>|</strong><a href='###'>粉丝（0）</a></p><font><a href='###'>个人主页</a><strong>|</strong><a href='###'>个人资料</a><strong>|</strong><a href='###'>项目主页</a></font></div></div></dt><dd><i>"+data.user_name+"在"+article_cat+"有了新动态</i><em>刚刚</em><h3>"+data.article_title+"</h3><p>"+data.article_content+"<strong>显示更多</strong></p><ul><li class='msgIcon_1 mo clk'>关注问题</li><li class='msgIcon_2 mo clk'>收藏</li><li class='msgIcon_3 mo clk'>赞(0)</li><li class='msgIcon_4 mo clk'>踩(0)</li><li class='msgIcon_5 mo clk flip'>评论(0)</li><li class='msgIcon_6 mo clk'>分享</li></ul></dd></dl>";
 						}
@@ -501,7 +501,7 @@ function formatTime(time){
  }
 //发布评论
 function reply(obj){
-	alert('gegge');
+/*	alert('gegge');*/
     var oComment=obj.parentNode.parentNode;//这里是关键。找到当前留言对象。留言对象属性在ul中
     //传回文章id——用于提取评论
     var article_id=oComment.getAttribute("aid");
@@ -575,5 +575,31 @@ function listMore (maxArticleId) {
         }                
       }
   	});
+}
+
+//评论的提交
+function post_submit(){
+
+  var newDigi = document.getElementById("comment_submit"); 
+  var article_id=newDigi.getAttribute("aid");
+
+  var content=$('textarea[name=commentContent]');
+      if (content.val()!= "") {
+
+        var a=$.post(handleUrl,{comment_content:content.val(),article_id:article_id,comment_type:comment_type},function(data){
+          if(data.type==0){
+          	var htmlalert='评论失败，请重试</p>';
+   			$(".reback").prepend(htmlalert);
+   			/*$(".discussCon i").eq(0).css({"textAlign":"center","height":"0"});  */       	
+          }
+          else{
+            var con='<dl><dt><img src="__ROOT__/Public/Img/msgUserImg_1.png" /></dt><dd><p> <a href="">匿名用户：</a>'+commentContent.val()+'</p><ul><li class="msgIcon_3 mo clk">赞(142)</li><li class="msgIcon_4 mo clk">踩(657)</li><li class="msgIcon_5 mo clk">回复(6841)</li></ul></dd></dl>';
+  			$(".pinh").prepend(con);
+  			$(".ping").val("");
+          }
+        },'json');
+        a.error(function(){alert('fail')});
+
+      }
 }
 

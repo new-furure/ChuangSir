@@ -1,7 +1,7 @@
 <?php
 /*
 +------------------------------------------------
-+				项目模块
++				孵化器模块
 + 初稿 ：NewFuture
 + 完善 ：建男 茜茜
 +可能需要其他函数，自行添加，
@@ -12,7 +12,7 @@
 namespace Home\Controller;
 use Think\Controller;
 
-class ProjectController extends BaseController {
+class IncubatorController extends BaseController {
 	
 /*-----------------分割线---------------------------
 		
@@ -26,7 +26,7 @@ class ProjectController extends BaseController {
 		$project = M('project');
 		$condition['article_effective'] = 1;
 		$condition['article_draft'] = 0;
-		$condition['article_type'] = C('PROJECT_TYPE');
+		$condition['article_type'] = C('INCUBATOR_TYPE');
 		$count = $project
 		->join('article ON article.article_id = project.article_id')
 		->where($condition)
@@ -79,9 +79,9 @@ class ProjectController extends BaseController {
 
 //单个项目查看页
 //@作者 
-	public function detail()
+	public function detail($aid)
 	{
-		/*$article = M('article');
+		$article = M('article');
 		$comment = M('comment');
 		$article_id = $aid;
 		//查找项目标签
@@ -96,18 +96,18 @@ class ProjectController extends BaseController {
 		->join('user ON user.user_id = article.user_id')
 		->where("article.article_id = $article_id and article_effective=1 and article_draft=0")
 		->find();
-		*/
+		//查找到关注文章的人的列表
 		/*$focus_list = M('focus_on_article')
 		->join('user ON user.user_id=focus_on_article.user_id')
 		->where("article_id = $article_id and user_type")
 		->select();*/
 
 		//$this->withdraw_comment($aid,$article_item['article_type']);
-/*		$this->assign('article_id',$article_id);
+		$this->assign('article_id',$article_id);
 		
 		if($article_item) {
 			//点击次数更新
-			$article->where("article_id =$article_id")->setInc('article_hits');
+			//$article->where("article_id =$article_id")->setInc('article_hits');
 			$curr_user_id = get_id(false);
 			$this->assign('data',$article_item);
 			$this->assign('curr_user_id',$curr_user_id);
@@ -115,7 +115,7 @@ class ProjectController extends BaseController {
 		}else{
 			$this->error('您查看的文章不存在');
 			return;
-		}	*/
+		}	
 		$this->display();
 	}
 	
@@ -131,17 +131,14 @@ class ProjectController extends BaseController {
 	public function publish()
 	{
 		$user_id=get_id();
-		$cond['user_id'] = $user_id;
-		$user =  M('belong_to_organization')
+		/*$user =  M('belong_to_organization')
 				->where($cond)
 				->find();
-		$org_user_id = $user['organization_user_id'];
-		/*echo $user_id;
-		echo $org_user_id;*/
+		$org_user_id = $user['organization_user_id'];*/
 		$tag = M('tag')->limit(10)->select();
 		$this->assign('tag_list',$tag);
 		$this->assign('user_id',$user_id);
-		$this->assign('org_user_id',$org_user_id);
+		//$this->assign('org_user_id',$org_user_id);
 		$this->display();
 
 	}
@@ -192,14 +189,6 @@ class ProjectController extends BaseController {
 		/*}*/
 		$data['type']=1;
 		$this->ajaxReturn($data,'json');
-	}
-//项目发布的注册组织步骤。
-	public function publish_step1(){
-
-		//A('User')->reg(U('Project/publish'),ture);
-		$this->isorg = true;
-		$this->goto = U('Project/publish');
-		$this->display();
 	}
 //回复文章
 	public function reply_to_article(){
