@@ -1716,6 +1716,6 @@ class UserController extends Controller{
   public function test( $id=0 ) {
     //
     // dump(I('uid'));
-   $this->show( $this->userCard( get_id() );
+  
   }
 }
