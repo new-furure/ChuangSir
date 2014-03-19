@@ -46,16 +46,16 @@ class UserModel extends Model
 	protected function encodePasswd( $passwd) {
 		if(!$passwd)
 			$passwd= I( 'post.user_passwd' );
-		if ( !$passwd ) {
-			if ( APP_DEBUG ) {
-				dump($isnew);
-				dump( $passwd );
-				dump( $_POST );
-			}
-			E( '空密码！' );
-		}else{
-			return;
-		}
+		// if ( !$passwd ) {
+		// 	if ( APP_DEBUG ) {
+		// 		dump($isnew);
+		// 		dump( $passwd );
+		// 		dump( $_POST );
+		// 	}
+		// 	E( '密码不能为空！' );
+		// }else{
+		// 	return;
+		// }
 
 		//前端是否已经MD5加密
 		if ( !I( 'post.is_md5' ) ) {

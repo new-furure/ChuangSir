@@ -63,7 +63,7 @@ class UserController extends Controller{
    *
    * @author NewFuture
    *
-   * @param string $goto注册成功后跳转页面
+   * @param string  $goto注册成功后跳转页面
    * @return error或者success
    * //支持异步
    */
@@ -179,9 +179,9 @@ class UserController extends Controller{
               $url="http://".I( 'server.HTTP_HOST' ).U( "/User/validate", "id=$id&key=$key&type=".C( "ACTIVE_MAIL" ) );
               send_mail( I( "post.user_email" ), C( 'ACTIVE_MAIL' ), '<a href="'.$url.'">'.$url.'</a>' );
               $this->success( '注册成功！查看邮箱激活账号！', $goto );
-            }elseif(IS_AJAX){
-              $this->success($id-C("MIN_USER_ID")+1,$goto);
-            }else{
+            }elseif ( IS_AJAX ) {
+              $this->success( $id-C( "MIN_USER_ID" )+1, $goto );
+            }else {
               $this->success( '注册成功！请登录！', $goto, 2 );
             }
 
@@ -227,11 +227,11 @@ class UserController extends Controller{
     $log_info= $User->create( $_POST, 2 ) ;
     if ( $log_info ) {
 
-      $user_info=M('User')->getByUserEmail($log_info['user_email']);
+      $user_info=M( 'User' )->getByUserEmail( $log_info['user_email'] );
 
       if ( $user_info ) {
         //邮箱存在
-      
+
         if ( $user_info["user_passwd"]===$log_info['user_passwd'] ) {
           //密码一致
 
@@ -334,7 +334,7 @@ class UserController extends Controller{
       //普通修改,先验证密码
       $id=get_id();
       $passwd=M( 'User' )->getFieldByUserId( $id, 'user_passwd' );
-      if ($User->oldpasswd!=$passwd) {
+      if ( $User->oldpasswd!=$passwd ) {
         $this->error( $User->oldpasswd."原密码错误！".$passwd );
         return false;
       }
@@ -346,8 +346,8 @@ class UserController extends Controller{
       $this->success( "修改成功，正在注销重新登陆", U( 'User/logout' ) , 0.5 );
       return true;
     }
-  $this->error( "密码修改失败!" );
-}
+    $this->error( "密码修改失败!" );
+  }
 
   /**
    * 重新激活邮箱
@@ -685,6 +685,26 @@ class UserController extends Controller{
       return $this->fetch( "User/infocard" );
     }
     $this->display( "User/infocard" );
+  }
+
+  /**
+   * 用户资料卡，精简版的card
+   *
+   * @author Future
+   * @param unknown $uid 用户id 支持post get等方式
+   * @return string 渲染后的html字符串
+   * @exception $uid 不合法,error
+   */
+  public function userCard( $uid ) {
+    if ( !isset( $uid ) ) {
+      $uid=I( 'uid' );
+    }
+    if ( $uid<=0 ) {
+      $this->error( '用户不存在' );
+    }else {
+      $this->assign( 'uid', $uid );
+      return $this->fetch( 'User/usercard' );
+    }
   }
 
   //用户信息
@@ -1694,6 +1714,8 @@ class UserController extends Controller{
 
 
   public function test( $id=0 ) {
-echo C("IS_SAE")?1:0;
+    //
+    // dump(I('uid'));
+   $this->show( $this->userCard( get_id() ));
   }
 }

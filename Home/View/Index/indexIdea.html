@@ -22,67 +22,10 @@ var path = '';
 var pic_url='';
 </script>
 <script type="text/javascript"> 
+	//两个url分别是评论提取函数的地址和评论提交函数的地址
 	var withdrawUrl='{:U("/Home/Base/withdraw_comment")}';
 	var handleUrl='{:U("/Home/Base/base_reply_to_article")}';
-	$(document).ready(function(){
-	//点击“文章列表评论按钮”
-	$(".flip").click(function(){
-	var newDigi = document.getElementById("withdrawComment"); 
- 	//传回文章id——用于提取评论
-    var article_id=newDigi.getAttribute("aid");
-	//先将内容post回controller
-	$.post(withdrawUrl,{article_id:article_id,article_type:atype},function(data){
-          if(data.type==0){
-          	var alerthtml="评论加载失败，请重试";
-          	$(.discussCon).html(alerthtml);
-          }
-          else{
-          	var html;
-          	$.each(data.user_comment,function(idx,item)
-			{
-          		html.="item.comment_content";
-          	});     
-          }       
-     },'json');
-	$.ajax(withdrawUrl,{comment_content:content.val(),article_id:article_id,comment_type:comment_type,circle_id:circle_id},function(data){
-          if(data.type==0)
-          	var html;
-          	$.each(function(id,item){
-          		html.='<dl><dt><img src="__ROOT__/Public/Img/msgUserImg_1.png" /></dt><dd><p> <a href="">匿名用户：</a>'+item.comment_content+'</p><ul><li class="msgIcon_3 mo clk">赞(142)</li><li class="msgIcon_4 mo clk">踩(657)</li><li class="msgIcon_5 mo clk">回复(6841)</li></ul></dd></dl>';
-          	});            
-        },'json');
-	$(".panel").html(html);
-    $(".panel").slideToggle("slow");
-
-
-  });
-	//点击发表评论
- 	$(".submitComment").click(function(){
- 	//获取标签的自定义属性
- 	var newDigi = document.getElementById("submitComment"); 
- 	//传回文章id——用于提取评论
-    var article_id=newDigi.getAttribute("aid");
-    //传回评论类型——用户评论后在表中插入信息
-    var comment_type=newDigi.getAttribute("ctype");
-    //
-    var commentContent=$('textarea[name=commentContent]');
-    if (commentContent!= "") {
-
-        var a=$.post(handleUrl,{comment_content:content.val(),article_id:article_id,comment_type:comment_type,circle_id:circle_id},function(data){
-          if(data.type==0)
-            alert('评论失败，请重试');
-          else{
-            window.location.href=redirectUrl+"/"+circle_id+"/aid/"+article_id+".html";
-          }
-        },'json');
-        a.error(function(){alert('fail')});
-      }
-
-  	var con='<dl><dt><img src="__ROOT__/Public/Img/msgUserImg_1.png" /></dt><dd><p> <a href="">匿名用户：</a>'+title.val()+'</p><ul><li class="msgIcon_3 mo clk">赞(142)</li><li class="msgIcon_4 mo clk">踩(657)</li><li class="msgIcon_5 mo clk">回复(6841)</li></ul></dd></dl>';
-  	$(".discussCon").prepend(con);
-  	/*$(".discussCon dl").eq(0).css({"opacity":"0","height":"0"}).animate({"opacity":"1","height":"100"});*/
-  });
-});
+	var comment_type='idea_comment';
 </script>
 <style>
 
@@ -177,67 +120,11 @@ var pic_url='';
 							<li class="msgIcon_2 mo clk">收藏</li>
 							<li class="msgIcon_3 mo clk">赞(142)</li>
 							<li class="msgIcon_4 mo clk">踩(657)</li>
-							<li class="msgIcon_5 mo clk flip">评论(6841)</li>
+							<li class="msgIcon_5 mo clk flip" >评论(6841)</li>
 							<li class="msgIcon_6 mo clk">分享</li>
 						</ul>
 
-						<!--这里是评论下拉列表-->
-						<div class="panel">
-							<textarea  name="commentContent"></textarea>
-							<button class="submitComment" id="submitComment">评论</button>
-							<!--同样采用dl、dd、dt划分层次-->
-							<div class="discussCon"><!--评论列表-->
-							<dl class="con">
-								<dt>
-									<img src="__ROOT__/Public/Img/msgUserImg_1.png" />
-									<div class="userConWindow rn ss">
-										<div class="userConWindowBox">
-											<img class="userConImg" src="__ROOT__/Public/Img/msgUserImg_1.png" />
-											<span><b class="rs">加好友</b><b class="rs">关注</b><b class="rs">私信</b></span>
-											<p>
-											<a class="userConWindowUserName" href="###">十一的眼泪</a>
-											<br /><a href="###">关注（465）</a><strong>|</strong><a href="###">粉丝（374）</a>
-											</p>
-											<font><a href="###">个人主页</a><strong>|</strong><a href="###">个人资料</a><strong>|</strong><a href="###">项目主页</a></font>
-										</div>
-									</div>
-								</dt>
-								<dd>
-									<p> <a href="">匿名用户：</a>确实，国外的遗产税很高，美国征收的遗产税最高税率达55%。问题是，在要求高税率的同时，也提供了足够的税收策划空间，导致很多富人有规避的空间。之前看过相关资料，这里顺便将材料内容整理一下吧。以下所述内容均以美国为例。一、财产规划传承工具 在美…</p>
-									<ul>
-										<li class="msgIcon_3 mo clk">赞(142)</li>
-										<li class="msgIcon_4 mo clk">踩(657)</li>
-										<li class="msgIcon_5 mo clk">回复(6841)</li>
-									</ul>
-								</dd>
-							</dl>
-
-							<dl>
-								<dt>
-									<img src="__ROOT__/Public/Img/msgUserImg_1.png" />
-									<div class="userConWindow rn ss">
-										<div class="userConWindowBox">
-											<img class="userConImg" src="__ROOT__/Public/Img/msgUserImg_1.png" />
-											<span><b class="rs">加好友</b><b class="rs">关注</b><b class="rs">私信</b></span>
-											<p>
-											<a class="userConWindowUserName" href="###">十一的眼泪</a>
-											<br /><a href="###">关注（465）</a><strong>|</strong><a href="###">粉丝（374）</a>
-											</p>
-											<font><a href="###">个人主页</a><strong>|</strong><a href="###">个人资料</a><strong>|</strong><a href="###">项目主页</a></font>
-										</div>
-									</div>
-								</dt>
-								<dd>
-									<p> <a href="">匿名用户：</a>确实，国外的遗产税很高，美国征收的遗产税最高税率达55%。问题是，在要求高税率的同时，也提供了足够的税收策划空间，导致很多富人有规避的空间。之前看过相关资料，这里顺便将材料内容整理一下吧。以下所述内容均以美国为例。一、财产规划传承工具 在美…</p>
-									<ul>
-										<li class="msgIcon_3 mo clk">赞(142)</li>
-										<li class="msgIcon_4 mo clk">踩(657)</li>
-										<li class="msgIcon_5 mo clk">回复(6841)</li>
-									</ul>
-								</dd>
-							</dl>
-							</div><!--评论列表结束-->
-						</div>
+						<include file="Home/Public/commentList.html"/>
 					</dd>
 					
 				</dl>
@@ -271,9 +158,42 @@ var pic_url='';
 						</ul>
 					</dd>
 				</dl>
+				<volist name="list" id="vo">
+				<dl>
+					<dt>
+						<img src="{$vo.user_avatar_url}" />
+						<div class="userConWindow rn ss">
+							<div class="userConWindowBox">
+								<img class="userConImg" src="__ROOT__/Public/Img/msgUserImg_2.png" />
+								<span><b class="rs">加好友</b><b class="rs">关注</b><b class="rs">私信</b></span>
+								<p>
+									<a class="userConWindowUserName" href="###">十一的眼泪</a>
+									<br /><a href="###">关注（{$vo.user_focus_number}）</a><strong>|</strong><a href="###">粉丝（{$vo.user_focus_number}）</a>
+								</p>
+								<font><a href="###">个人主页</a><strong>|</strong><a href="###">个人资料</a><strong>|</strong><a href="###">项目主页</a></font>
+							</div>
+						</div>
+					</dt>
+					<dd>
+						<i>{$vo.user_name}发布了</i><em>{$vo.article_time|time_format}</em>
+						<h3>{$vo.article_title}</h3>
+						<font>我是动感超人</font>
+						<p>{$vo.article_content}<strong>显示更多</strong></p>
+						<ul>
+							<li class="msgIcon_1 mo clk">关注问题</li>
+							<li class="msgIcon_2 mo clk">收藏</li>
+							<li class="msgIcon_3 mo clk">赞({$vo.article_up_number})</li>
+							<li class="msgIcon_4 mo clk">踩({$vo.article_down_number})</li>
+							<li class="msgIcon_5 mo clk flip">评论({$vo.article_comment_number})</li>
+							<li class="msgIcon_6 mo clk">分享</li>
+						</ul>
+					</dd>
+				</dl>
+				</volist>
 			</div>
 			<div class="space"></div><div class="space"></div>
-			<div class="newMsgBtn rs"><div class="mo">更 多</div></div>
+			<div class="newMsgBtn rs" id="loadMore"><div class="mo"><a href="javascript:void(0)" onclick="listMore({$maxArticleId})">加载更多</a></div></div>
+			<div><em>{$page}</em></div>
 		</div>
 		<div class="mainConRight">
 			<dl class="recommendUser">
