@@ -20,8 +20,8 @@ div, a { color:#a7a9ac;}
 		<span class="searchInput rs"><input type="text" value="搜索话题、问题或人..." /></span>
 		<input class="searchButton rs" type="button" value="提问" />
 		<ul>
-			<li><a href="indexAll.html">先生汇</a></li><li>|</li><li><a href="###">爱创圈</a></li><li>|</li>
-			<li><a href="###">政策</a></li><li>|</li><li><a href="###">消息</a></li>
+			<li><a href="{:U('Index/indexAll')}">先生汇</a></li><li>|</li><li><a href="###">爱创圈</a></li><li>|</li>
+			<li><a href="{:U('Policy/index')}">政策</a></li><li>|</li><li><a href="###">消息</a></li>
 		</ul>
 		<a class="userImg"><img src="__ROOT__/Public/Img/userImg.gif" /></a>
 	</div>
@@ -61,7 +61,7 @@ div, a { color:#a7a9ac;}
 						<img src="{$vo.user_avatar_url}" />
 						<div class="userConWindow rn ss">
 							<div class="userConWindowBox">
-								<img class="userConImg" src="__ROOT__/Public/Img/msgUserImg_2.png" />
+								<img class="userConImg" src="{$vo.user_avatar_url}" />
 								<span><b class="rs">加好友</b><b class="rs">关注</b><b class="rs">私信</b></span>
 								<p>
 									<a class="userConWindowUserName" href="###">十一的眼泪</a>
@@ -73,7 +73,7 @@ div, a { color:#a7a9ac;}
 					</dt>
 					<dd>
 						<font>{$vo.user_name}<i>V</i></font>
-						<h3>{$vo.article_title}</h3>
+						<h3><a href="">{$vo.article_title}</a></h3>
 						<p>{$vo.article_content}<strong>显示更多</strong></p>
 						<i>发布了</i><em>{$vo.article_time|time_format}</em>
 						<ul>

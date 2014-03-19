@@ -155,14 +155,24 @@ function submit(){
 	var profile;
 	var title;
 	var policy_url;
+	var content;
 	if(article_type == 'talk' ||article_type == 'idea' || article_type == 'question')
 	{
 		$(".upImgWindow").hide();
 		document.getElementById('send_state').innerHTML = '';//图片发送状态。
 		document.getElementById("imgPreview").innerHTML="<img id='img1' src='/ChuangSir/Public/Img/error.jpg' width='110' height='140' onclick='openBrowse()'/>";
 	}
+
+
+	// content_area=$('textarea[name=content]');
+	// if(content_area.val()==''){
+	// 	content_area.focus();
+	// 	return;
+	// }
+	//content=content_area.val();
 	switch(article_type){
 	case 'policy':
+		content=UE.getEditor('editor').getContent();
 		title=$('input[name=article_title]');
 		if(title.val()==''){
 			title.focus();
@@ -174,15 +184,17 @@ function submit(){
 		profile.focus();
 		return;
 		}
-		profile=profile.val();
+		
 		policy_url=$('input[name=policy_url]');
 		if(profile.val()==''){
 		profile.focus();
 		return;
 		}
+		profile=profile.val();
 		policy_url = policy_url.val();
 		break;
 	case 'project':
+		content=UE.getEditor('editor').getContent();
 		title=$('input[name=article_title]');
 		if(title.val()==''){
 			title.focus();
@@ -205,25 +217,39 @@ function submit(){
 		title=title.val();
 		profile ='';
 		new_question+=1;
+		content=$('textarea[name=content]');
+		if(content.val()==''){
+			content.focus();
+			return;
+		}
+		content=content.val();
 		break;
 	case 'talk':
 		new_talk+=1;
+		content=$('textarea[name=content]');
+		if(content.val()==''){
+			content.focus();
+			return;
+		}
+		content=content.val();
 		break;
 	case 'idea':
 		new_idea += 1;
+		content=$('textarea[name=content]');
+		if(content.val()==''){
+			content.focus();
+			return;
+		}
+		content=content.val();
 		break;
 	default:
 		profile ='';
 		break;
 	}
-	//var content=UE.getEditor('editor').getContent();array:array,
-	var content=$('textarea[name=content]');
-	if(content.val()==''){
-		content.focus();
-		return;
-	}
+	
+	
 	//alert(pic_url);
-	$.post(submit_url,{article_type:article_type,title:title,content:content.val(),
+	$.post(submit_url,{article_type:article_type,title:title,content:content,
 		profile:profile,pic_url:pic_url,policy_url:policy_url},
 		function(data){
 			switch(data.type){
