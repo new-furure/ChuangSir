@@ -907,12 +907,18 @@ class BaseController extends Controller {
 		if($user_comment){
 			$data['user_comment'] = $user_comment;
 			$data['type'] = 1;
-			$this->ajaxReturn($data,'json');
+			
 	    }
 	    else{
-	    	$data['type']=0;
-	    	$this->ajaxReturn($data,'json');
+	    	if($article_comment_number==0){
+	    		$data['type'] = 2;
+
+	    	}
+	    	else{
+	    		$data['type'] = 0;
+	    	} 
 	    }
+	    $this->ajaxReturn($data,'json');
 
 		//提取二级评论
 		foreach ( $user_comment as $n=> $val ) {

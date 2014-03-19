@@ -390,63 +390,97 @@ function formatTime(time){
 
 //@作者：李建男
 //评论加载和评论提交
-	$(document).ready(function(){
-	//点击“文章列表评论按钮”
-	$(".flip").click(function(){
-	var oComment=obj.parentNode;//这里是关键。找到当前留言对象。
-    oComment.appendChild(getid("response_second"));
-    getid("response_second").style.display="block";
-    $(".panel").slideToggle("slow");
-	var newDigi = document.getElementById("withdrawComment"); 
+ 
+ function getid(el){return document.getElementById(el);}
+ var toggle=1;
+
+  function response(obj){
+  		
+ 	 //alert('hi');
+ 	// if(getid("panel").style.display!="block"){
+ 		var oComment=obj.parentNode.parentNode;//这里是关键。找到当前留言对象。
+ 		var article_id = oComment.getAttribute("aid");
+ 		//alert(oComment.nodeName);
+ 		var domPanel=getid("panel"+article_id);
+ 		//alert(oComment);
+ 		if(toggle==1){
+	    	//oComment.appendChild(domPanel);
+	    	
+	    	domPanel.style.display="block";
+	    	toggle=0;
+	    }else{
+	    	//oComment.removeChild(domPanel);
+	    	domPanel.style.display="none";
+	    	toggle=1;
+	    }
+ 	//}
+
+    /*$(".panel").slideToggle("slow");*/
+/*	var newDigi = document.getElementById("withdrawComment"); */
  	//传回文章id——用于提取评论
-    var article_id = newDigi.getAttribute("aid");
+    
+    //alert(article_id);
+    var article_type = oComment.getAttribute("atype");
+    var id = $('.discussCon').attr("id");
+    //alert(id);
 	//先将内容post回controller
 	$.post(withdrawUrl,{article_id:article_id,article_type:article_type},function(data){
-          if(data.type==0){
-          	var alerthtml = "评论加载失败，请重试";
-          	$('.discussCon').html(alerthtml);
-          }
-          else{
-          	var html;
-          	$.each(data.user_comment,function(idx,item)
-			{
-          		html+='<dl><dt><img src="__ROOT__/Public/Img/msgUserImg_1.png" /></dt><dd><p> <a href="">匿名用户：</a>'+item.comment_content+'</p><ul><li class="msgIcon_3 mo clk">赞(142)</li><li class="msgIcon_4 mo clk">踩(657)</li><li class="msgIcon_5 mo clk">回复(6841)</li></ul></dd></dl>';
-          		$('.discussCon').html(alerthtml);
+		switch(data.type){
+			case 0:
+				var alerthtml = "评论加载失败，请重试";
+          		getid("dis"+article_id).innerHTML=alerthtml;
+          		break;
+          	case 1:
+          		var html="";
+          		$.each(data.user_comment,function(idx,item)
+				{	/*alert('haha');*/
+          		html+='<dl><dt><img src="__ROOT__/Public/Img/msgUserImg_1.png" /></dt><dd><p> <a href="">'+item.user_nickname+'</a>'+item.comment_content+'</p><ul><li class="msgIcon_3 mo clk">赞(142)</li><li class="msgIcon_4 mo clk">踩(657)</li><li class="msgIcon_5 mo clk">回复(6841)</li></ul></dd></dl>';
+          		$('.discussCon').html(html);
           
-          	});     
-          }       
+          		}); 
+          		break;
+          	case 2: 
+          		var alerthtml = "暂无评论";
+          		getid("dis"+article_id).innerHTML=alerthtml;
+          		break;
+          	default:
+          		break;
+
+		}
+                 
      },'json');
- 
-
-
-  });
-	//点击"评论"发表评论
- 	$(".submitComment").click(function(){
+ }
+//发布评论
+function reply(obj){
+	alert('gegge');
+    var oComment=obj.parentNode.parentNode;//这里是关键。找到当前留言对象。留言对象属性在ul中
+    //传回文章id——用于提取评论
+    var article_id=oComment.getAttribute("aid");
  	//获取标签的自定义属性
- 	var newDigi = document.getElementById("submitComment"); 
- 	//传回文章id——用于提取评论
-    var article_id=newDigi.getAttribute("aid");
     //传回评论类型——用户评论后在表中插入信息
-    var comment_type=newDigi.getAttribute("ctype");
+
     //评论内容
-/*    var commentContent=$('textarea[name=commentContent]');*/
+
+    var commentContent=$('#text'+article_id);
     if (commentContent.val()!= "") {
 
         var a=$.post(handleUrl,{comment_content:commentContent.val(),article_id:article_id,comment_type:comment_type},function(data){
           if(data.type==0){
           	var htmlalert='评论失败，请重试</p>';
-   			$(".discussCon").prepend(htmlalert);
+   			$(".discussCon").html(htmlalert);
    			/*$(".discussCon i").eq(0).css({"textAlign":"center","height":"0"});  */       	
           }
           else{
             var con='<dl><dt><img src="__ROOT__/Public/Img/msgUserImg_1.png" /></dt><dd><p> <a href="">匿名用户：</a>'+commentContent.val()+'</p><ul><li class="msgIcon_3 mo clk">赞(142)</li><li class="msgIcon_4 mo clk">踩(657)</li><li class="msgIcon_5 mo clk">回复(6841)</li></ul></dd></dl>';
   			$(".discussCon").prepend(con);
+  			$('#text'+article_id).val("");
           }
         },'json');
         a.error(function(){alert('fail')});
+
       }
-  });
-});
+
+  }
 
 //加载更多
 function listMore (maxArticleId) {
