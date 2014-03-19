@@ -175,6 +175,25 @@ class IndexController extends Controller {
         }
         $this->display($goto);
     }
+
+    //发布孵化器、vc
+    public function publish()
+    {
+        $user_id=get_id();
+        $tag = M('tag')->limit(10)->select();
+        $this->assign('tag_list',$tag);
+        $this->assign('user_id',$user_id);
+
+        $type=I('get.type');
+        if($type=='incubator'){
+            $this->display('Incubator:publish');
+        }else{
+            $this->display('Vc:publish');
+        }
+        
+
+    }
+
     //几个搜索方面的方法
     //@author:牛亮
     //调用的函数来自于search.php

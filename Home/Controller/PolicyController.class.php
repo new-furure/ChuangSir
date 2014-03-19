@@ -77,8 +77,8 @@ class PolicyController extends BaseController {
 		//$this->assign('my_focus', $my_focus);
 		$this->assign('count', $total_count);
 		$this->assign('tag',$tag_list);*/
-		dump($articleList);
-		//$this->display();
+		//dump($articleList);
+		$this->display();
 	}
 
 //单个政策查看页
