@@ -1,0 +1,35 @@
+<div class="top">
+	<div class="topBox">
+		<a class="logo" href="/">
+			<img src="__ROOT__/Public/Img/logo.gif" />
+		</a>
+		<span class="searchInput rs">
+			<input type="text" value="搜索话题、问题或人..." />
+		</span>
+		<input class="searchButton rs" type="button" value="提问" />
+		<ul>
+			<li>
+				<a href="{:U('Index/indexAll')}">先生汇</a>
+			</li>
+			<li>|</li>
+			<li>
+				<a href="{:U('Circle/index')}">爱创圈</a>
+			</li>
+			<li>|</li>
+			<li>
+				<a href="{:U('Policy/index')}">政策</a>
+			</li>
+			<li>|</li>
+			<li>
+				<a href="{:U('Message/index')}">消息</a>
+			</li>
+		</ul>
+		<?php
+		$user_id=get_id();
+		$user_img_url=M('User')->getFieldByUserId($user_id,'user_avatar_url');
+		?>
+		<a class="userImg" href="{:get_url_by_id($user_id)}">
+			<img src="{$user_img_url|default='__ROOT__/Public/Img/userImg.gif'}" />
+		</a>
+	</div>
+</div>
