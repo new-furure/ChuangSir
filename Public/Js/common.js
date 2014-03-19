@@ -508,7 +508,7 @@ function listMore (maxArticleId) {
 	//var maxArticleId=;
 	$.ajax({
       type:"post",	      
-      url:"indexGoto",
+      url:"indexData",
       data:{maxArticleId:maxArticleId},
       success: function(data, textStatus, xhr) {
         if(data.status==1){
