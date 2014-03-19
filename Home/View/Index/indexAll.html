@@ -36,7 +36,7 @@ var pic_url='';
 		<span class="searchInput rs"><input type="text" value="搜索话题、问题或人..." /></span>
 		<input class="searchButton rs" type="button" value="提问" />
 		<ul>
-			<li><a href="{:U('Index/indexAll')}">先生汇</a></li><li>|</li><li><a href="###">爱创圈</a></li><li>|</li>
+			<li><a href="{:U('Index/indexAll')}">先生汇</a></li><li>|</li><li><a href="###">爱闯圈</a></li><li>|</li>
 			<li><a href="{:U('Policy/index')}">政策</a></li><li>|</li><li><a href="###">消息</a></li>
 		</ul>
 		<a class="userImg"><img src="__ROOT__/Public/Img/userImg.gif" /></a>
@@ -47,11 +47,11 @@ var pic_url='';
 		<ul>
 			<li><a class="mlmIcon_1" href="{:U('Index/idea')}">创意汇</a></li>
 			<li><a class="mlmIcon_2" href="{:U('Index/talk')}">时光机</a></li>
+			<li><a class="mlmIcon_6" href="{:U('Index/question')}">问答</a></li>
+			<li><a class="mlmIcon_7" href="###">专栏</a></li>
 			<li><a class="mlmIcon_3" href="{:U('Index/project')}">项目库</a></li>
 			<li><a class="mlmIcon_4" href="{:U('Index/vc')}">投资人库</a></li>
 			<li><a class="mlmIcon_5" href="{:U('Index/incubator')}">孵化器库</a></li>
-			<li><a class="mlmIcon_6" href="{:U('Index/question')}">问答</a></li>
-			<li><a class="mlmIcon_7" href="###">专栏</a></li>
 			<li><a class="mlmIcon_8" href="###">我的关注</a></li>
 			<li><a class="mlmIcon_9" href="###">我的收藏</a></li>
 		</ul>
@@ -115,8 +115,9 @@ var pic_url='';
 					<dd id="withdrawComment" aid="{$vo.article_id}"  atype="{$vo.article_type}">
 						<i>{$vo.user_name}发布了</i><em>{$vo.article_time|time_format}</em>
 						<h3>{$vo.article_title}</h3>
-						<font>我是动感超人</font>
+						<!-- <font>我是动感超人</font> -->
 						<p>{$vo.article_content}<strong>显示更多</strong></p>
+
 						<ul >
 							<li class="msgIcon_1 mo clk">关注问题</li>
 							<li class="msgIcon_2 mo clk">收藏</li>
@@ -136,7 +137,7 @@ var pic_url='';
 		</div>
 		<div class="mainConRight">
 			<dl class="recommendUser">
-				<dt>用户推荐</dt>
+				<dt>用户推荐<span style="float:right">换一批</span></dt>
 				<dd>
 					<a href="###"><img src="__ROOT__/Public/Img/testUserImg_1.png" /></a>
 					<a href="###"><img src="__ROOT__/Public/Img/testUserImg_2.png" /></a>
@@ -147,7 +148,7 @@ var pic_url='';
 				</dd>
 			</dl>
 			<dl class="hotActivity">
-				<dt>热门活动</dt>
+				<dt>热门活动<span style="float:right">换一批</span></dt>
 				<dd>
 					<span>
 						<img src="__ROOT__/Public/Img/testActivity_1.gif" />
@@ -156,7 +157,7 @@ var pic_url='';
 				</dd>
 			</dl>
 			<dl class="findOut">
-				<dt>发现之旅</dt>
+				<dt>发现之旅<span style="float:right">换一批</span></dt>
 				<dd>
 					<a href="###" class="type_1">控股</a>
 					<a href="###">创新</a>
