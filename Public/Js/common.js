@@ -209,6 +209,7 @@ function submit(){
 		content.focus();
 		return;
 	}
+	//alert(pic_url);
 	$.post(submit_url,{article_type:article_type,title:title,content:content.val(),
 		profile:profile,pic_url:pic_url},
 		function(data){

@@ -11,7 +11,10 @@ class PolicyController extends BaseController {
 	//政策浏览页。
 	public function index()
 	{
-		$policy = M('policy');
+
+		//$this->redirect('Index/policy');
+		A('Index')->indexData(C('POLICY_TYPE'));
+		/*$policy = M('policy');
 		$tag  = M('article_have_tag');
 		$condition['article_draft'] = 0;
 		$condition['article_effective'] = 1;
@@ -53,7 +56,7 @@ class PolicyController extends BaseController {
 		$this->verify = $verify;
 		$tag_list = $tag
 		->join('tag ON article_have_tag.tag_id = tag.tag_id')
-		->select();
+		->select();*/
 		/*$user_id = $_SESSION['user_id'];//我关注的政策
 		if ($user_id != '')
 		{
@@ -70,10 +73,10 @@ class PolicyController extends BaseController {
 					$my_focus[] = $v['policy_id'];
 				}
 			}
-		}	*/
+		}	
 		//$this->assign('my_focus', $my_focus);
 		$this->assign('count', $total_count);
-		$this->assign('tag',$tag_list);
+		$this->assign('tag',$tag_list);*/
 		$this->display();
 	}
 

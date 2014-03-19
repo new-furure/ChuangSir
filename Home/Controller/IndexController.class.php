@@ -123,7 +123,7 @@ class IndexController extends Controller {
                 $goto='indexTalk';
                 break;
             case C("POLICY_TYPE"):
-                $goto='indexPolicy';
+                $goto='policyIndex';
                 break;
             case C("VC_TYPE"):
                 $goto='indexVc';

@@ -1098,7 +1098,7 @@ class BaseController extends Controller {
 	public function uploadPicture() {
 		$saveName .= time();
 		//$saveName = string();
-		$savePath  = 'Img/Article/project/';
+		$savePath  = 'Img/Article/';
 		$pic_url=upload_file( $savePath, $saveName, "photo" );
 		$file = $_FILES["photo"];
 		dump( $file );
