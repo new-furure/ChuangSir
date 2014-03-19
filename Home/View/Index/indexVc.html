@@ -78,7 +78,17 @@ $(function(){
 					<p>给予产品的创业投资，理财顾问方面的创业企业。为客户打造全方位的理财顾问，精心呵护投资人您的金钱。</p>
 					<i>好友数量：165<br />粉丝数量：353</i>
 				</li>
+
+				<volist name="list" id="vo">
+					<li>
+						<img width="70" height="90" src="{$vo.user_avatar_url}" />
+						<a href="###">{$vo.article_title}</a>
+						<p>{$vo.article_profile}</p>
+						<i>好友数量：{$vo.user_focus_number}<br />粉丝数量：{$vo.user_focus_number}</i>
+					</li>
+				</volist>				
 			</ul>
+			<p>{$page}</p>
 		</div>
 		<div class="mainConRight">
 			<dl class="recommendUser">
