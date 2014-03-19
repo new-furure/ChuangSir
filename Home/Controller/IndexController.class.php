@@ -58,7 +58,7 @@ class IndexController extends Controller {
 
     public function indexGoto($article_type=null){
         $this->indexData($article_type);
-        $this->goTo();
+        $this->goPage();
     }
     public function indexData($article_type=null){
         $user_id=get_id();
@@ -123,8 +123,7 @@ class IndexController extends Controller {
         }
     }
 
-    //goto
-    public function goTo(){
+    public function goPage(){
         $goto='indexAll';
         switch ($article_type) {
             case C("IDEA_TYPE"):
