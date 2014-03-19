@@ -7,7 +7,7 @@ namespace Home\Controller;
 use Think\Controller;
 
 class BaseController extends Controller {
-	public $pic_url;  // 公用变量，上传图片后赋值，提交文章的时候需要用到。
+	//public $pic_url;  // 公用变量，上传图片后赋值，提交文章的时候需要用到。
 	//赞文章
 	public function up_article() {
 		if ( !IS_AJAX ) {
@@ -543,7 +543,7 @@ class BaseController extends Controller {
 			$data1['article_id']=$article_id;
 			switch ( $article_type ) {
 			case 'project':
-				$pic_name = I( 'post.pic_name' );
+				/*$pic_name = I( 'post.pic_name' );
 				if ( $pic_name != "" )
 					//$data1['project_avatar_url']=__ROOT__.'/Uploads/Img/article/project/'.$pic_name.'.png';
 					$data1['project_avatar_url'] = $pic_name;
@@ -556,11 +556,11 @@ class BaseController extends Controller {
 					->find();
 					$org_user_id = $user['organization_user_id'];
 					$data1['user_id'] = $org_user_id;
-				}
+				}*/
 				$result = M( 'project' )->add( $data1 );
 				break;
 			case 'policy':
-				if ( ac_by_id( $user_id, 2 ) ) {
+				/*if ( ac_by_id( $user_id, 2 ) ) {
 					$data1['user_id']=$user_id;
 				}
 
@@ -569,7 +569,7 @@ class BaseController extends Controller {
 					->where( "user_id = $user_id" )
 					->find();
 					$data1['user_id']=$user['organization_user_id'];
-				}
+				}*/
 				$result = M( 'policy' )->add( $data1 );
 				break;
 			case 'question':
@@ -1104,7 +1104,7 @@ class BaseController extends Controller {
 	public function uploadPicture() {
 		$saveName .= time();
 		//$saveName = string();
-		$savePath  = 'Img/Article/project/';
+		$savePath  = 'Img/Article/';
 		$pic_url=upload_file( $savePath, $saveName, "photo" );
 		$file = $_FILES["photo"];
 		dump( $file );

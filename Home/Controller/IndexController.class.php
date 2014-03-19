@@ -53,8 +53,14 @@ class IndexController extends Controller {
         $this->indexGoto(C("QUESTION_TYPE"));
     }
 
+
     //先生汇不同页面数据
+
     public function indexGoto($article_type=null){
+        $this->indexData($article_type);
+        $this->goPage();
+    }
+    public function indexData($article_type=null){
         $user_id=get_id();
         $Article=M('article');
         $fieldSql='article.*,user.user_nickname as user_name,user.user_id,user.user_avatar_url,user.user_focus_number';
@@ -110,12 +116,15 @@ class IndexController extends Controller {
             ->select();
             //下次操作（加载更多）的最大articleId
             $maxArticleId=$articleList[0]['article_id'];
-
+            echo $article_type;
+            dump($articleList);
             $this->assign('maxArticleId',$maxArticleId);
             $this->assign('list', $articleList);
             $this->assign('page', $show);
         }
+    }
 
+    public function goPage(){
         $goto='indexAll';
         switch ($article_type) {
             case C("IDEA_TYPE"):
@@ -131,7 +140,7 @@ class IndexController extends Controller {
                 $goto='indexTalk';
                 break;
             case C("POLICY_TYPE"):
-                $goto='indexPolicy';
+                $goto='policyIndex';
                 break;
             case C("VC_TYPE"):
                 $goto='indexVc';

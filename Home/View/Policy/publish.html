@@ -17,6 +17,7 @@
     var log_url = '{:U("/Home/User/log")}';
     var article_url = '{:U("/Home/Policy/detail/aid/","","")}';
     var home_url = '{:U("/Home/Policy")}';
+    var pic_url = '';
     </script>
     
     <style type="text/css">
@@ -48,9 +49,10 @@
         <h2 class="public__myblue">政策简介</h2>
         <div id="div_profile" style="color:red"></div>
         <textarea name="profile" class="form-control" rows="3" placeholder="政策简介" onblur="CheckProfile(this.value)" maxLength="200"></textarea><br/>
+         <h2 class="public__myblue">政策链接</h2>
+         <input name="policy_url" type="text" class="form-control" placeholder="政策标题" onblur="CheckTitle(this.value)" maxLength="64"/><br/>
         <h2 class="public__myblue">政策内容填写</h2>
         <div id="div_content" style="color:red"></div>
-        
         <div>
           <script id="editor" name="content" type="text/plain" style="height:600px">
             政策内容[请在内容末尾标明政策适用地区]

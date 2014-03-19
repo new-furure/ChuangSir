@@ -93,16 +93,16 @@ class ProjectController extends BaseController {
 		//查找到项目	
 		$article_item = $article
 		->join('project ON project.article_id = article.article_id')
-		->join('user ON user.user_id = project.user_id')
+		->join('user ON user.user_id = article.user_id')
 		->where("article.article_id = $article_id and article_effective=1 and article_draft=0")
 		->find();
 		
-		$focus_list = M('focus_on_article')
+		/*$focus_list = M('focus_on_article')
 		->join('user ON user.user_id=focus_on_article.user_id')
 		->where("article_id = $article_id and user_type")
-		->select();
+		->select();*/
 
-		$this->withdraw_comment($aid,$article_item['article_type']);
+		//$this->withdraw_comment($aid,$article_item['article_type']);
 		$this->assign('article_id',$article_id);
 		
 		if($article_item) {

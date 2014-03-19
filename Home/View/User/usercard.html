@@ -1,9 +1,9 @@
 <div class="userConWindow rn ss">
 
 	<php>$user=M('User')->getByUserId($uid);</php>
-	<img class="userConImg" src="{$user.user_avatar_url}" />
+	<img class="userConImg" src="{$user.user_avatar_url|default=random_img('user')}" />
 	<div class="userConWindowBox">
-		<img class="userConImg" src="{$user.user_avatar_url}" />
+		<img class="userConImg" src="{$user.user_avatar_url|default=random_img('user')}" />
 		<span> <b class="rs add_friend">加好友</b> <b class="rs focus_user" to="{:U('User/focus','id='.$user['user_id'])}"><php>echo is_focus_on($user['user_id'])?"取消关注" : "关注TA"</php></b> 
 			<b class="rs">私信</b>
 		</span>

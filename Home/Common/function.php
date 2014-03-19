@@ -494,3 +494,25 @@ function edit_verify( $article_id ) {
 		break;
 	}
 }
+
+/**
+*生成随机图像
+*@author Future
+*@param string $type 类别分类单词小写 'user' ,'circle'...
+*@return string url
+*/
+function random_img($type='user'){
+	$url=null;
+	switch ($type) {
+		case 'user':
+			$url=__ROOT__."/Public/Img/testUserImg_".rand(1,6).".png";
+			break;
+		case 'circle':
+			$url=__ROOT__."/Public/Img/circle_logo.png";
+			break;
+		default:
+			# code...
+			break;
+	}
+	return $url;
+}

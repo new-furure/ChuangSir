@@ -154,6 +154,13 @@ function submit(){
 	var top_num =  document.documentElement.scrollTop -480 +"px";
 	var profile;
 	var title;
+	var policy_url;
+	if(article_type == 'talk' ||article_type == 'idea' || article_type == 'question')
+	{
+		$(".upImgWindow").hide();
+		document.getElementById('send_state').innerHTML = '';//图片发送状态。
+		document.getElementById("imgPreview").innerHTML="<img id='img1' src='/ChuangSir/Public/Img/error.jpg' width='110' height='140' onclick='openBrowse()'/>";
+	}
 	switch(article_type){
 	case 'policy':
 		title=$('input[name=article_title]');
@@ -168,6 +175,12 @@ function submit(){
 		return;
 		}
 		profile=profile.val();
+		policy_url=$('input[name=policy_url]');
+		if(profile.val()==''){
+		profile.focus();
+		return;
+		}
+		policy_url = policy_url.val();
 		break;
 	case 'project':
 		title=$('input[name=article_title]');
@@ -209,8 +222,9 @@ function submit(){
 		content.focus();
 		return;
 	}
+	//alert(pic_url);
 	$.post(submit_url,{article_type:article_type,title:title,content:content.val(),
-		profile:profile,pic_url:pic_url},
+		profile:profile,pic_url:pic_url,policy_url:policy_url},
 		function(data){
 			switch(data.type){
 				case 1:
@@ -219,14 +233,24 @@ function submit(){
 					break;
 				case 2:
 					var time=new Date();
-					if(data.article_picture_url){
+					switch(article_type){
+						case 'project':
+							window.location.href = article_url+'/'+data.article_id;	
+							break;
+						case 'policy':
+							window.location.href = article_url+'/'+data.article_id;	
+							break;
+						default:
+						if(data.article_picture_url){
 						var Content = "<dl><dt><img src='/mrchuang/Public/Img/msgUserImg_2.png' /><div class='userConWindow rn ss'><div class='userConWindowBox'><img class='userConImg' src='/mrchuang/Public/Img/msgUserImg_2.png' /><span><b class='rs'>加好友</b><b class='rs'>关注</b><b class='rs'>私信</b></span><p><a class='userConWindowUserName' href='###'>十一的眼泪</a><br /><a href='###'>关注（0）</a><strong>|</strong><a href='###'>粉丝（0）</a></p><font><a href='###'>个人主页</a><strong>|</strong><a href='###'>个人资料</a><strong>|</strong><a href='###'>项目主页</a></font></div></div></dt><dd><i>"+data.user_name+"在"+article_cat+"有了新动态</i><em>"+time+"</em><h3>"+data.article_title+"</h3><p>"+data.article_content+"<strong>显示更多</strong></p>"+"<div><img id='img1' width='110px' height='140px' src='"+data.article_picture_url+"'/></div>"+"<ul><li class='msgIcon_1 mo clk'>关注问题</li><li class='msgIcon_2 mo clk'>收藏</li><li class='msgIcon_3 mo clk'>赞(0)</li><li class='msgIcon_4 mo clk'>踩(0)</li><li class='msgIcon_5 mo clk flip'>评论(0)</li><li class='msgIcon_6 mo clk'>分享</li></ul></dd></dl>";
-					}else{
-						var Content = "<dl><dt><img src='/mrchuang/Public/Img/msgUserImg_2.png' /><div class='userConWindow rn ss'><div class='userConWindowBox'><img class='userConImg' src='/mrchuang/Public/Img/msgUserImg_2.png' /><span><b class='rs'>加好友</b><b class='rs'>关注</b><b class='rs'>私信</b></span><p><a class='userConWindowUserName' href='###'>十一的眼泪</a><br /><a href='###'>关注（0）</a><strong>|</strong><a href='###'>粉丝（0）</a></p><font><a href='###'>个人主页</a><strong>|</strong><a href='###'>个人资料</a><strong>|</strong><a href='###'>项目主页</a></font></div></div></dt><dd><i>"+data.user_name+"在"+article_cat+"有了新动态</i><em>刚刚</em><h3>"+data.article_title+"</h3><p>"+data.article_content+"<strong>显示更多</strong></p><ul><li class='msgIcon_1 mo clk'>关注问题</li><li class='msgIcon_2 mo clk'>收藏</li><li class='msgIcon_3 mo clk'>赞(0)</li><li class='msgIcon_4 mo clk'>踩(0)</li><li class='msgIcon_5 mo clk flip'>评论(0)</li><li class='msgIcon_6 mo clk'>分享</li></ul></dd></dl>";
-					}
+						}else{
+							var Content = "<dl><dt><img src='/mrchuang/Public/Img/msgUserImg_2.png' /><div class='userConWindow rn ss'><div class='userConWindowBox'><img class='userConImg' src='/mrchuang/Public/Img/msgUserImg_2.png' /><span><b class='rs'>加好友</b><b class='rs'>关注</b><b class='rs'>私信</b></span><p><a class='userConWindowUserName' href='###'>十一的眼泪</a><br /><a href='###'>关注（0）</a><strong>|</strong><a href='###'>粉丝（0）</a></p><font><a href='###'>个人主页</a><strong>|</strong><a href='###'>个人资料</a><strong>|</strong><a href='###'>项目主页</a></font></div></div></dt><dd><i>"+data.user_name+"在"+article_cat+"有了新动态</i><em>刚刚</em><h3>"+data.article_title+"</h3><p>"+data.article_content+"<strong>显示更多</strong></p><ul><li class='msgIcon_1 mo clk'>关注问题</li><li class='msgIcon_2 mo clk'>收藏</li><li class='msgIcon_3 mo clk'>赞(0)</li><li class='msgIcon_4 mo clk'>踩(0)</li><li class='msgIcon_5 mo clk flip'>评论(0)</li><li class='msgIcon_6 mo clk'>分享</li></ul></dd></dl>";
+						}
 					
-					$(".msgBox").prepend(Content);
-					break;
+						$(".msgBox").prepend(Content);
+						break;
+
+					}
 				default:
 					layer.innerHTML = "发布失败！"+data;
 					layout(layer,top_num);	
@@ -234,9 +258,6 @@ function submit(){
 			}
 		}
 		,'json');
-	$(".upImgWindow").hide();
-	document.getElementById('send_state').innerHTML = '';//图片发送状态。
-	document.getElementById("imgPreview").innerHTML="<img id='img1' src='/ChuangSir/Public/Img/error.jpg' width='110' height='140' onclick='openBrowse()'/>";
 }
 //存草稿函数，根据不同的文章类型异步传值，并返回状态信息。
 function save_draft(){
