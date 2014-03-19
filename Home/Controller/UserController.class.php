@@ -247,7 +247,7 @@ class UserController extends Controller{
             cookie( "uid",  $user_id, C( "COOKIE_TIME" ) );
             cookie( "upasswd", I( "post.user_passwd" ), C( "COOKIE_TIME" ) );
 
-            $this->success( '登录成功,进入您的首页！', U( 'User/index' ), 1 );
+            $this->success( '登录成功,进入您的首页！', U( 'Index/indexAll' ), 1 );
             return true;
           }
         }

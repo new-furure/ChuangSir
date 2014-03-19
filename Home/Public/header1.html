@@ -28,8 +28,8 @@
 		$user_id=get_id();
 		$user_img_url=M('User')->getFieldByUserId($user_id,'user_avatar_url');
 		?>
-		<a class="userImg" href="{:get_url_by_id($user_id)}">
-			<img src="{$user_img_url|default='__ROOT__/Public/Img/userImg.gif'}" />
+		<a class="userImg" href="{:U('User/info')}">
+			<img width='36' hight='36' src="{$user_img_url|default=random_img('user')}" />
 		</a>
 	</div>
 </div>
