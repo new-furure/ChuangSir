@@ -129,7 +129,6 @@ class UserController extends Controller{
               send_mail( I( 'post.user_email' ), C( "CREATE_ORG_MAIL" ) );
               send_mail( $p_user['user_email'], C( "CREATE_ORG_MAIL" ) );
 
-
               $this->success( "组织创建成功", $goto );
 
             }else {
@@ -154,7 +153,7 @@ class UserController extends Controller{
 
           set_user_type( $t_user_type, 1, 0, C( "STARTUP" ) );
           $User->user_type=$t_user_type;
-
+          $User->user_avatar_url=random_img('user');
         }
         $id=$User->add();
         if ( $id>0 ) {
@@ -172,7 +171,7 @@ class UserController extends Controller{
               //成功跳转默认为登陆页
               $goto=U( 'User/Log' );
             }
-
+ 
             if ( C( 'IS_EMAIL_VALIDATE_ON' )==true ) {
               //开启邮箱验证
               $key=validate( $id );
@@ -247,7 +246,7 @@ class UserController extends Controller{
             cookie( "uid",  $user_id, C( "COOKIE_TIME" ) );
             cookie( "upasswd", I( "post.user_passwd" ), C( "COOKIE_TIME" ) );
 
-            $this->success( '登录成功,进入您的首页！', U( 'User/index' ), 1 );
+            $this->success( '登录成功,进入您的首页！', U( 'Index/indexAll' ), 1 );
             return true;
           }
         }
@@ -1716,6 +1715,6 @@ class UserController extends Controller{
   public function test( $id=0 ) {
     //
     // dump(I('uid'));
-   $this->show( $this->userCard( get_id() ));
+  
   }
 }

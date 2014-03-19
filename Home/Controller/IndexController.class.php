@@ -56,10 +56,13 @@ class IndexController extends Controller {
 
     //先生汇不同页面数据
 
-    public function indexGoto($article_type=null){
+    public function indexGoto($article_type){
         $this->indexData($article_type);
-        $this->goPage();
+        $this->goPage($article_type);
     }
+
+    //Home/Project/index
+
     public function indexData($article_type=null){
         $user_id=get_id();
         $Article=M('article');
@@ -76,13 +79,33 @@ class IndexController extends Controller {
                 $joinSql[1]="left join __POLICY__ as policy on article.article_id=policy.article_id";
             }          
         }
+        $rows=12;
+        $listRows=6;
+        //不同页的查询limit不同
+        switch ($article_type) {
+            case C("VC_TYPE"):
+                $rows=16;
+                $listRows=16;
+                break;
+            case C("INCUBATOR_TYPE"):            
+                $rows=8;
+                $listRows=8;
+                break;
+            case C("PROJECT_TYPE"):
+                $rows=8;
+                $listRows=8;
+                break;
+            default:
+                # code...
+                break;
+        }
         //条件先忽略，后期去掉注释
         //$condition='article_effective=1 and user.user_id in (select user_id_focused from focus_on_user where user_id='.$user_id.')'.$typeSql;
         $count=$Article->where($condition)->count();
         import('ORG.Util.Page');
-        $Page=new \Think\Page($count,12);
+        $Page=new \Think\Page($count,$rows);
         $show=$Page->show();
-        
+
         //ajax请求
         if(IS_AJAX){
             //unset($articleList);
@@ -112,19 +135,19 @@ class IndexController extends Controller {
             ->where($condition)
             ->field($fieldSql)
             ->order('article_id desc')
-            ->limit($Page->firstRow, $Page->listRows/2)
+            ->limit($Page->firstRow,$listRows)
             ->select();
             //下次操作（加载更多）的最大articleId
             $maxArticleId=$articleList[0]['article_id'];
-            echo $article_type;
-            dump($articleList);
+            //echo $article_type;
+            /*dump($articleList);*/
             $this->assign('maxArticleId',$maxArticleId);
             $this->assign('list', $articleList);
             $this->assign('page', $show);
         }
     }
 
-    public function goPage(){
+    public function goPage($article_type){
         $goto='indexAll';
         switch ($article_type) {
             case C("IDEA_TYPE"):
@@ -152,6 +175,25 @@ class IndexController extends Controller {
         }
         $this->display($goto);
     }
+
+    //发布孵化器、vc
+    public function publish()
+    {
+        $user_id=get_id();
+        $tag = M('tag')->limit(10)->select();
+        $this->assign('tag_list',$tag);
+        $this->assign('user_id',$user_id);
+
+        $type=I('get.type');
+        if($type=='incubator'){
+            $this->display('Incubator:publish');
+        }else{
+            $this->display('Vc:publish');
+        }
+        
+
+    }
+
     //几个搜索方面的方法
     //@author:牛亮
     //调用的函数来自于search.php

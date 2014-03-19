@@ -22,8 +22,8 @@ $(function(){
 		<span class="searchInput rs"><input type="text" value="搜索话题、问题或人..." /></span>
 		<input class="searchButton rs" type="button" value="提问" />
 		<ul>
-			<li><a href="###">先升汇</a></li><li>|</li><li><a href="###">爱创圈</a></li><li>|</li>
-			<li><a href="###">政策</a></li><li>|</li><li><a href="###">消息</a></li>
+			<li><a href="{:U('Index/indexAll')}">先生汇</a></li><li>|</li><li><a href="###">爱创圈</a></li><li>|</li>
+			<li><a href="{:U('Policy/index')}">政策</a></li><li>|</li><li><a href="###">消息</a></li>
 		</ul>
 		<a class="userImg"><img src="__ROOT__/Public/Img/userImg.gif" /></a>
 	</div>
@@ -75,75 +75,22 @@ $(function(){
 			<dt class="tab"><a href="###">最热</a></dt>
 			<dd>|</dd>
 			<dt class="tab"><a href="###">高级搜索</a></dt>
-			<dt class="rightBtn"><a class=" rs ss" href="###">发布新项目</a></dt>
+			<dt class="rightBtn"><a class=" rs ss" href="{:U('Project/publish')}">发布新项目</a></dt>
 		</dl>
 		<div class="projectCon">
 			<ul>
+				<volist name="list" id="vo">
 				<li class="rn ss mo">
 					<table>
-						<tr><th colspan="4"><img src="__ROOT__/Public/Img/project_1.jpg" /></th></tr>
-						<tr><td colspan="4"><h3>流动儿童基金</h3></td></tr>
-						<tr><td colspan="4"><p>流动儿童戏剧之旅，请你来看一场独一无二的演出！</p></td></tr>
-						<tr><td><a href="###">赞(5)</a></td><td><a href="###">踩(4)</a></td><td><a href="###">收藏(14)</a></td><td><a href="###">关注(7)</a></td></tr>
+						<tr><th colspan="4"><img src="{$vo.user_avatar_url}" /></th></tr>
+						<tr><td colspan="4"><h3><a href="{$vo.article_id|get_url_by_id}">{$vo.article_title}</a></h3></td></tr>
+						<tr><td colspan="4"><p>{$vo.article_profile}</p></td></tr>
+						<tr><td><a href="###">赞({$vo.article_up_number})</a></td><td><a href="###">踩({$vo.article_down_number})</a></td><td><a href="###">收藏({$vo.article_collect_number})</a></td><td><a href="###">关注({$vo.article_focus_number})</a></td></tr>
 					</table>
 				</li>
-				<li class="rn ss mo">
-					<table>
-						<tr><th colspan="4"><img src="__ROOT__/Public/Img/project_2.jpg" /></th></tr>
-						<tr><td colspan="4"><h3>深度新闻真实故事</h3></td></tr>
-						<tr><td colspan="4"><p>深度新闻网周年纪念典藏本一一《深度故事》</p></td></tr>
-						<tr><td><a href="###">赞(5)</a></td><td><a href="###">踩(4)</a></td><td><a href="###">收藏(14)</a></td><td><a href="###">关注(7)</a></td></tr>
-					</table>
-				</li>
-				<li class="rn ss mo">
-					<table>
-						<tr><th colspan="4"><img src="__ROOT__/Public/Img/project_3.jpg" /></th></tr>
-						<tr><td colspan="4"><h3>梦想同行者一起前行</h3></td></tr>
-						<tr><td colspan="4"><p>‘’真心有种‘’一一兮谷“跟·本计划”招募321位梦想同行者!</p></td></tr>
-						<tr><td><a href="###">赞(5)</a></td><td><a href="###">踩(4)</a></td><td><a href="###">收藏(14)</a></td><td><a href="###">关注(7)</a></td></tr>
-					</table>
-				</li>
-				<li class="rn ss mo">
-					<table>
-						<tr><th colspan="4"><img src="__ROOT__/Public/Img/project_4.jpg" /></th></tr>
-						<tr><td colspan="4"><h3>梦想同行者一起前行</h3></td></tr>
-						<tr><td colspan="4"><p>‘’真心有种‘’一一兮谷“跟·本计划”招募321位梦想同行者!</p></td></tr>
-						<tr><td><a href="###">赞(5)</a></td><td><a href="###">踩(4)</a></td><td><a href="###">收藏(14)</a></td><td><a href="###">关注(7)</a></td></tr>
-					</table>
-				</li>
-				<li class="rn ss mo">
-					<table>
-						<tr><th colspan="4"><img src="__ROOT__/Public/Img/project_5.jpg" /></th></tr>
-						<tr><td colspan="4"><h3>老艺人的创奇故事</h3></td></tr>
-						<tr><td colspan="4"><p>为什么老艺人的眼里MA满泪水?因为他们对娃娃哨爱的深沉。</p></td></tr>
-						<tr><td><a href="###">赞(5)</a></td><td><a href="###">踩(4)</a></td><td><a href="###">收藏(14)</a></td><td><a href="###">关注(7)</a></td></tr>
-					</table>
-				</li>
-				<li class="rn ss mo">
-					<table>
-						<tr><th colspan="4"><img src="__ROOT__/Public/Img/project_6.jpg" /></th></tr>
-						<tr><td colspan="4"><h3>流动儿童基金</h3></td></tr>
-						<tr><td colspan="4"><p>流动儿童戏剧之旅，请你来看一场独一无二的演出！</p></td></tr>
-						<tr><td><a href="###">赞(5)</a></td><td><a href="###">踩(4)</a></td><td><a href="###">收藏(14)</a></td><td><a href="###">关注(7)</a></td></tr>
-					</table>
-				</li>
-				<li class="rn ss mo">
-					<table>
-						<tr><th colspan="4"><img src="__ROOT__/Public/Img/project_7.jpg" /></th></tr>
-						<tr><td colspan="4"><h3>流动儿童基金</h3></td></tr>
-						<tr><td colspan="4"><p>流动儿童戏剧之旅，请你来看一场独一无二的演出！</p></td></tr>
-						<tr><td><a href="###">赞(5)</a></td><td><a href="###">踩(4)</a></td><td><a href="###">收藏(14)</a></td><td><a href="###">关注(7)</a></td></tr>
-					</table>
-				</li>
-				<li class="rn ss mo">
-					<table>
-						<tr><th colspan="4"><img src="__ROOT__/Public/Img/project_8.jpg" /></th></tr>
-						<tr><td colspan="4"><h3>流动儿童基金</h3></td></tr>
-						<tr><td colspan="4"><p>流动儿童戏剧之旅，请你来看一场独一无二的演出！</p></td></tr>
-						<tr><td><a href="###">赞(5)</a></td><td><a href="###">踩(4)</a></td><td><a href="###">收藏(14)</a></td><td><a href="###">关注(7)</a></td></tr>
-					</table>
-				</li>
+				</volist>
 			</ul>
+			<span>{$page}</span>
 		</div>
 	</div>
 </div>
