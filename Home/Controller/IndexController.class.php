@@ -79,20 +79,28 @@ class IndexController extends Controller {
         
         //ajax请求
         if(IS_AJAX){
+            //unset($articleList);
+            //unset($maxArticleId);
             $maxArticleId=I('post.maxArticleId');//新页最大article id
             $articleList=$Article
             ->join($joinSql)
             ->where('article_id<='.$maxArticleId)
             ->field($fieldSql)
             ->order('article_id desc')
-            ->limit($Page->firstRow+$Page->listRows/2,$Page->listRows/2)//加载更多
+            ->limit($Page->listRows/2,$Page->listRows/2)//加载更多
             ->select();
             if($articleList){
                 $data['status']=1;
                 $data['articleList']=$articleList;
                 $this->ajaxReturn($data,'json');
+            }else{
+                $data['status']=0;
+                $data['firstRow']=$Page->firstRow;
+                $data['listRows']=$Page->listRows;
+                $this->ajaxReturn($data,'json');
             }
         }else{
+            //unset($articleList);
             $articleList=$Article
             ->join($joinSql)
             ->where($condition)
