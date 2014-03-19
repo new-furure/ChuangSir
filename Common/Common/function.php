@@ -135,10 +135,8 @@ function get_url_by_id( $id ) {
 
   case 'article':
     //文章.
-    $Article=M( "artcile" );
-
+    $Article=M( "article" );
     $type=$Article->getFieldByArticle_Id( $id, "article_type" );
-
     switch ( $type ) {
     case C( "PROJECT_TYPE" ):
       //项目
