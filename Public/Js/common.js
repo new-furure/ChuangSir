@@ -393,6 +393,9 @@ function formatTime(time){
 	$(document).ready(function(){
 	//点击“文章列表评论按钮”
 	$(".flip").click(function(){
+	var oComment=obj.parentNode;//这里是关键。找到当前留言对象。
+    oComment.appendChild(getid("response_second"));
+    getid("response_second").style.display="block";
     $(".panel").slideToggle("slow");
 	var newDigi = document.getElementById("withdrawComment"); 
  	//传回文章id——用于提取评论
