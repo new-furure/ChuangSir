@@ -672,7 +672,9 @@ function time_format($time){
   $now_time=NOW_TIME;
   $interval=$now_time-strtotime($time);
   $pastMin=intval($interval/60);
-  if($pastMin>0 and $pastMin<60){
+  if($pastMin==0){
+    return "刚刚";
+  }else if($pastMin>0 and $pastMin<60){
     return $pastMin."分钟前";
   }else if($pastMin>=60){
     $pastHour=intval($interval/3600);
@@ -682,4 +684,32 @@ function time_format($time){
       return substr($time, 5,11);
     }
   }
+}
+
+//文章类型名称
+function type_name($type){
+  switch ($type) {
+    case C("IDEA_TYPE"):
+        $typeName='创意汇';
+        break;
+    case C("QUESTION_TYPE"):
+        $typeName='问答';
+        break;
+    case C("PROJECT_TYPE"):
+        $typeName='项目库';
+        break;
+    case C("TALK_TYPE"):
+        $typeName='时光机';
+        break;
+    case C("POLICY_TYPE"):
+        $typeName='政策通';
+        break;
+    case C("VC_TYPE"):
+        $typeName='投资人';
+        break;
+    case C("INCUBATOR_TYPE"):
+        $typeName='孵化器';
+        break;            
+  }
+  return $typeName;
 }

@@ -423,7 +423,9 @@ function formatTime(time){
     var curTimestamp=new Date().getTime()/1000;
     var interval=curTimestamp-timestamp;
     var pastMin=Math.floor(interval/60);
-    if(pastMin>0 && pastMin<60){
+    if(pastMin==0){
+    	return "刚刚";
+    }else if(pastMin>0 && pastMin<60){
         return pastMin+"分钟前";
     }else if(pastMin>=60){
         var pastHour=Math.floor(interval/3600);
@@ -543,7 +545,26 @@ function listMore (maxArticleId) {
         	}else{
 	           $.each(data.articleList,function(idx,item){
 	           	var time=formatTime(item.article_time);
-	          	var txt="<dl><dt><img src='"+item.user_avatar_url+"' /><div class='userConWindow rn ss'><div class='userConWindowBox'><img class='userConImg' src='"+item.user_avatar_url+"' /><span><b class='rs'>加好友</b><b class='rs'>关注</b><b class='rs'>私信</b></span><p><a class='userConWindowUserName' href='###'>十一的眼泪</a><br /><a href='###'>关注（"+item.user_focus_number+"）</a><strong>|</strong><a href='###'>粉丝（"+item.user_focus_number+"）</a></p><font><a href='###'>个人主页</a><strong>|</strong><a href='###'>个人资料</a><strong>|</strong><a href='###'>项目主页</a></font></div></div></dt><dd><i>"+item.user_name+"发布了</i><em>"+time+"</em><h3>"+item.article_title+"</h3><p>"+item.article_content+"<strong>显示更多</strong></p><ul><li class='msgIcon_1 mo clk'>关注问题</li><li class='msgIcon_2 mo clk'>收藏</li><li class='msgIcon_3 mo clk'>赞("+item.article_up_number+")</li><li class='msgIcon_4 mo clk'>踩("+item.article_down_number+")</li><li class='msgIcon_5 mo clk'>评论("+item.article_comment_number+")</li><li class='msgIcon_6 mo clk'>分享</li></ul></dd></dl>";
+	           	var image="";
+	           	var type;
+	           	if(item.article_picture_url){
+	           		image="<div><img id='img1' width='110px' height='140px' src='"+item.article_picture_url+"'/></div>";
+	           	}
+	           	switch(item.article_type){
+	           		case "4":
+	           			type="创意汇";
+	           			break;
+	           		case "5":
+	           			type="时光机";
+	           			break;
+	           		case "3":
+	           			type="问答";
+	           			break;
+	           		default:
+	           			type="";
+	           			break;
+	           	}
+	          	var txt="<dl><dt><img src='"+item.user_avatar_url+"' /><div class='userConWindow rn ss'><div class='userConWindowBox'><img class='userConImg' src='"+item.user_avatar_url+"' /><span><b class='rs'>加好友</b><b class='rs'>关注</b><b class='rs'>私信</b></span><p><a class='userConWindowUserName' href='###'>十一的眼泪</a><br /><a href='###'>关注（"+item.user_focus_number+"）</a><strong>|</strong><a href='###'>粉丝（"+item.user_focus_number+"）</a></p><font><a href='###'>个人主页</a><strong>|</strong><a href='###'>个人资料</a><strong>|</strong><a href='###'>项目主页</a></font></div></div></dt><dd><i>"+item.user_name+"在"+type+"上有了新动态</i><em>"+time+"</em><h3>"+item.article_title+"</h3><p>"+item.article_content+"<strong>显示更多</strong></p>"+image+"<ul><li class='msgIcon_1 mo clk'>关注问题</li><li class='msgIcon_2 mo clk'>收藏</li><li class='msgIcon_3 mo clk'>赞("+item.article_up_number+")</li><li class='msgIcon_4 mo clk'>踩("+item.article_down_number+")</li><li class='msgIcon_5 mo clk'>评论("+item.article_comment_number+")</li><li class='msgIcon_6 mo clk'>分享</li></ul></dd></dl>";
 				txt=$.trim(txt);
 	          	$('.msgBox').append(txt);
 	          	$('#loadMore').hide();
