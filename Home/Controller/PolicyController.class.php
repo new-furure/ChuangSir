@@ -77,7 +77,8 @@ class PolicyController extends BaseController {
 		//$this->assign('my_focus', $my_focus);
 		$this->assign('count', $total_count);
 		$this->assign('tag',$tag_list);*/
-		$this->display();
+		dump($articleList);
+		//$this->display();
 	}
 
 //单个政策查看页
@@ -94,7 +95,7 @@ class PolicyController extends BaseController {
 		and article_effective=1")//查找到该项
 		->find();
 		//dump($policy);
-		$tag=M('tag')
+		/*$tag=M('tag')
 		->join('article_have_tag A ON A.tag_id = tag.tag_id')
 		->where("article_id = $article_id")
 		->select();
@@ -113,20 +114,20 @@ class PolicyController extends BaseController {
 				
 		} 
 		$this->focus_sec_list = $focus_sec_list;
-		$this->focus_list = $focus_list;
+		$this->focus_list = $focus_list;*/
 		if($policy) {
 			$this->assign('data',$policy);
 			$user_id = get_id(false);
 			//$user_id = 2;
 			$this->assign('curr_user_id',$user_id);
-			$article->where("article_id = $article_id")->setInc('article_hits');//点击次数更新
+			//$article->where("article_id = $article_id")->setInc('article_hits');//点击次数更新
 		}else{
 			$this->error('您查看的文章不存在');
 			return;
 		}
-		echo $aid;
-		echo $policy['article_type'];	
-		$this->withdraw_comment($aid,$policy['article_type']);
+		//echo $aid;
+		//echo $policy['article_type'];	
+		//$this->withdraw_comment($aid,$policy['article_type']);
 		$this->display();
 	}
 
@@ -135,13 +136,13 @@ class PolicyController extends BaseController {
 	public function publish()
 	{
 		$user_id = get_id();
-		if($user_id){
+		/*if($user_id){
 			$user_type=ac_by_id($user_id);
 			if($user_type != C('GOVERNMENT')){
 				$this->error('您没有发布政策的权限');
 				return;
 			}
-		}
+		}*/
 		$tag=M('tag');
 		$this->tag=$tag->order('tag_hits DESC')->select();//标签按照热度倒排
 		$this->display();

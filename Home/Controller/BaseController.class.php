@@ -7,7 +7,7 @@ namespace Home\Controller;
 use Think\Controller;
 
 class BaseController extends Controller {
-	public $pic_url;  // 公用变量，上传图片后赋值，提交文章的时候需要用到。
+	//public $pic_url;  // 公用变量，上传图片后赋值，提交文章的时候需要用到。
 	//赞文章
 	public function up_article() {
 		if ( !IS_AJAX ) {
@@ -560,7 +560,7 @@ class BaseController extends Controller {
 				$result = M( 'project' )->add( $data1 );
 				break;
 			case 'policy':
-				if ( ac_by_id( $user_id, 2 ) ) {
+				/*if ( ac_by_id( $user_id, 2 ) ) {
 					$data1['user_id']=$user_id;
 				}
 
@@ -569,7 +569,7 @@ class BaseController extends Controller {
 					->where( "user_id = $user_id" )
 					->find();
 					$data1['user_id']=$user['organization_user_id'];
-				}
+				}*/
 				$result = M( 'policy' )->add( $data1 );
 				break;
 			case 'question':

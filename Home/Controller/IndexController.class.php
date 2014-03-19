@@ -116,7 +116,8 @@ class IndexController extends Controller {
             ->select();
             //下次操作（加载更多）的最大articleId
             $maxArticleId=$articleList[0]['article_id'];
-
+            echo $article_type;
+            dump($articleList);
             $this->assign('maxArticleId',$maxArticleId);
             $this->assign('list', $articleList);
             $this->assign('page', $show);
