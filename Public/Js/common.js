@@ -473,7 +473,7 @@ function formatTime(time){
  }
 //发布评论
 function reply(obj){
-	alert('gegge');
+/*	alert('gegge');*/
     var oComment=obj.parentNode.parentNode;//这里是关键。找到当前留言对象。留言对象属性在ul中
     //传回文章id——用于提取评论
     var article_id=oComment.getAttribute("aid");
@@ -528,5 +528,31 @@ function listMore (maxArticleId) {
         }                
       }
   	});
+}
+
+//评论的提交
+function post_submit(){
+
+  var newDigi = document.getElementById("comment_submit"); 
+  var article_id=newDigi.getAttribute("aid");
+
+  var content=$('textarea[name=commentContent]');
+      if (content.val()!= "") {
+
+        var a=$.post(handleUrl,{comment_content:content.val(),article_id:article_id,comment_type:comment_type},function(data){
+          if(data.type==0){
+          	var htmlalert='评论失败，请重试</p>';
+   			$(".reback").prepend(htmlalert);
+   			/*$(".discussCon i").eq(0).css({"textAlign":"center","height":"0"});  */       	
+          }
+          else{
+            var con='<dl><dt><img src="__ROOT__/Public/Img/msgUserImg_1.png" /></dt><dd><p> <a href="">匿名用户：</a>'+commentContent.val()+'</p><ul><li class="msgIcon_3 mo clk">赞(142)</li><li class="msgIcon_4 mo clk">踩(657)</li><li class="msgIcon_5 mo clk">回复(6841)</li></ul></dd></dl>';
+  			$(".pinh").prepend(con);
+  			$(".ping").val("");
+          }
+        },'json');
+        a.error(function(){alert('fail')});
+
+      }
 }
 
