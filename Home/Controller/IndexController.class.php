@@ -53,8 +53,14 @@ class IndexController extends Controller {
         $this->indexGoto(C("QUESTION_TYPE"));
     }
 
+
     //先生汇不同页面数据
+
     public function indexGoto($article_type=null){
+        $this->indexData($article_type);
+        $this->goTo();
+    }
+    public function indexData($article_type=null){
         $user_id=get_id();
         $Article=M('article');
         $fieldSql='article.*,user.user_nickname as user_name,user.user_id,user.user_avatar_url,user.user_focus_number';
@@ -115,7 +121,10 @@ class IndexController extends Controller {
             $this->assign('list', $articleList);
             $this->assign('page', $show);
         }
+    }
 
+    //goto
+    public function goTo(){
         $goto='indexAll';
         switch ($article_type) {
             case C("IDEA_TYPE"):
