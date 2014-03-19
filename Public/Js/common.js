@@ -154,6 +154,7 @@ function submit(){
 	var top_num =  document.documentElement.scrollTop -480 +"px";
 	var profile;
 	var title;
+	var policy_url;
 	if(article_type == 'talk' ||article_type == 'idea' || article_type == 'question')
 	{
 		$(".upImgWindow").hide();
@@ -174,6 +175,12 @@ function submit(){
 		return;
 		}
 		profile=profile.val();
+		policy_url=$('input[name=policy_url]');
+		if(profile.val()==''){
+		profile.focus();
+		return;
+		}
+		policy_url = policy_url.val();
 		break;
 	case 'project':
 		title=$('input[name=article_title]');
@@ -217,7 +224,7 @@ function submit(){
 	}
 	//alert(pic_url);
 	$.post(submit_url,{article_type:article_type,title:title,content:content.val(),
-		profile:profile,pic_url:pic_url},
+		profile:profile,pic_url:pic_url,policy_url:policy_url},
 		function(data){
 			switch(data.type){
 				case 1:
@@ -228,7 +235,7 @@ function submit(){
 					var time=new Date();
 					switch(article_type){
 						case 'project':
-							window.location.href = article_url;	
+							window.location.href = article_url+'/'+data.article_id;	
 							break;
 						case 'policy':
 							window.location.href = article_url+'/'+data.article_id;	

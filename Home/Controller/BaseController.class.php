@@ -543,7 +543,7 @@ class BaseController extends Controller {
 			$data1['article_id']=$article_id;
 			switch ( $article_type ) {
 			case 'project':
-				$pic_name = I( 'post.pic_name' );
+				/*$pic_name = I( 'post.pic_name' );
 				if ( $pic_name != "" )
 					//$data1['project_avatar_url']=__ROOT__.'/Uploads/Img/article/project/'.$pic_name.'.png';
 					$data1['project_avatar_url'] = $pic_name;
@@ -556,7 +556,7 @@ class BaseController extends Controller {
 					->find();
 					$org_user_id = $user['organization_user_id'];
 					$data1['user_id'] = $org_user_id;
-				}
+				}*/
 				$result = M( 'project' )->add( $data1 );
 				break;
 			case 'policy':
