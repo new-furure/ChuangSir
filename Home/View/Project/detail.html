@@ -124,10 +124,13 @@ $(function(){
                 <span class="investSlideLeft" onclick="runSlide($(this));">&lt;</span>
                 <span class="investSlideRight" onclick="runSlide($(this));">&gt;</span>
               </dt>
-              <dd onclick="runSlide($(this));" class="sel"><img src="__ROOT__/Public/Img/investSlide_1.gif" /></dd>
+              <!-- <dd onclick="runSlide($(this));" class="sel"><img src="__ROOT__/Public/Img/investSlide_1.gif" /></dd>
               <dd onclick="runSlide($(this));"><img src="__ROOT__/Public/Img/investSlide_2.gif" /></dd>
               <dd onclick="runSlide($(this));"><img src="__ROOT__/Public/Img/investSlide_3.gif" /></dd>
-              <dd onclick="runSlide($(this));"><img src="__ROOT__/Public/Img/investSlide_4.gif" /></dd>
+              <dd onclick="runSlide($(this));"><img src="__ROOT__/Public/Img/investSlide_4.gif" /></dd> -->
+              <volist name="article_picture" id="vo">
+              <dd onclick="runSlide($(this));"><img src="{$vo.piture_url}" /></dd>
+              </volist>
             </dl>
           </div>
           <h2 class="title">产品视频/图片</h2>

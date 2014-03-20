@@ -49,6 +49,9 @@ class VcController extends BaseController {
 		->where("article.article_id = $article_id and article_effective=1 and article_draft=0")
 		->find();
 		
+		$article_picture=M('article_picture')
+		->where("article_id = $article_id")
+		->select();
 		/*$focus_list = M('focus_on_article')
 		->join('user ON user.user_id=focus_on_article.user_id')
 		->where("article_id = $article_id and user_type")
@@ -56,7 +59,7 @@ class VcController extends BaseController {
 
 		//$this->withdraw_comment($aid,$article_item['article_type']);
 		$this->assign('article_id',$article_id);
-		
+		$this->assign('article_picture',$article_picture);
 		if($article_item) {
 			//点击次数更新
 			$article->where("article_id =$article_id")->setInc('article_hits');
