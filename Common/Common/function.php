@@ -154,6 +154,14 @@ function get_url_by_id( $id ) {
       //问题
       $url=U( "Question/detail", "aid=$id" );
       break;
+    case C( "INCUBATOR_TYPE" ):
+      //孵化器
+      $url=U( "Incubator/detail", "aid=$id" );
+      break;
+    case C( "VC_TYPE" ):
+      //投资人
+      $url=U( "Vc/detail", "aid=$id" );
+      break;
 
     case C( "POST_TYPE" ):
       //圈子post
