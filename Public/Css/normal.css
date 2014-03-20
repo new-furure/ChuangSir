@@ -17,7 +17,7 @@ a{ text-decoration:none;}
 .top .topBox{ width:960px; height:28px; padding:9px 0px; margin:auto;;}
 .top .logo{ float:left; overflow:hidden;}
 .top .logo img{ margin:0px;}
-.top .searchInput{ display:block; overflow:hidden; float:left; background:url(../img/iconSearch.gif) right center no-repeat #DDD; border:solid 2px #7abdf5; width:320px; height:24px; margin:0px 10px 0px 0px;}
+.top .searchInput{ display:block; overflow:hidden; float:left; background:url(/Public/Img/iconSearch.gif) right center no-repeat #DDD; border:solid 2px #7abdf5; width:320px; height:24px; margin:0px 10px 0px 0px;}
 .top .searchInput input{ border:none; background:transparent; margin:4px 0px 0px 0px; color:#999; font-size:14px; line-height:14px; padding:0px 10px; width:90%;}
 .top .searchButton{ float:left; background:#48c9b0; color:#FFF; font-weight:bold; width:64px; border:none; height:28px; margin:0px 20px 0px 0px; cursor:pointer;}
 .top ul{ float:left; overflow:hidden;}
@@ -30,7 +30,7 @@ a{ text-decoration:none;}
 .mainListMenu{ width:110px; float:left; overflow:hidden;}
 .mainListMenu ul{ margin:0px 0px 0px 5px;}
 .mainListMenu li{ line-height:30px;}
-.mainListMenu li a{ display:block; line-height:30px; color:#196790; background-image:url(../img/mainListMenuIcon.png); background-color:#196790; background-repeat:no-repeat; padding:0px 0px 0px 25px;}
+.mainListMenu li a{ display:block; line-height:30px; color:#196790; background-image:url(/Public/Img/mainListMenuIcon.png); background-color:#196790; background-repeat:no-repeat; padding:0px 0px 0px 25px;}
 .mainListMenu li a.mlmIcon_1{ background-position:0px -30px;}
 .mainListMenu li a.mlmIcon_2{ background-position:0px -60px;}
 .mainListMenu li a.mlmIcon_3{ background-position:0px -90px;}
@@ -49,17 +49,17 @@ a{ text-decoration:none;}
 .sender{ position:relative; z-index:100; margin:0px 0px 0px 20px;}
 .sender span{ display:block; width:474px; height:95px; border:solid 3px #7abdf5; overflow:hidden; background:#EEE;}
 .sender span textarea{ width:460px; height:85px; font-size:12px; line-height:22px; padding:5px 10px; color:#BBB; background:transparent;}
-.sender em{ position:absolute; z-index:110; display:block; width:14px; height:22px; top:40px; left:477px; background:url(../img/senderRight.gif);}
-.sender b{ position:absolute; z-index:110; display:block; width:60px; height:60px; top:10px; left:500px; background-image:url(../img/senderButton.png); background-color:#48c9b0; color:#FFF; text-align:center; font-size:14px; font-weight:bold; line-height:60px; padding:10px 0px 0px 0px; cursor:pointer;}
+.sender em{ position:absolute; z-index:110; display:block; width:14px; height:22px; top:40px; left:477px; background:url(/Public/Img/senderRight.gif);}
+.sender b{ position:absolute; z-index:110; display:block; width:60px; height:60px; top:10px; left:500px; background-image:url(/Public/Img/senderButton.png); background-color:#48c9b0; color:#FFF; text-align:center; font-size:14px; font-weight:bold; line-height:60px; padding:10px 0px 0px 0px; cursor:pointer;}
 .sender b.over{ background-color:#7abdf5;}
 .sender dl{ display:block; width:480px; height:20px; padding:5px 0px;}
-.sender dt{ display:block; height:20px; line-height:20px; float:left; background-image:url(../img/senderIcon.png); background-repeat:no-repeat; background-color:#196790; color:#196790; padding:0px 0px 0px 25px; margin:0px 20px 0px 0px; font-size:14px; font-weight:bold; cursor:pointer;}
+.sender dt{ display:block; height:20px; line-height:20px; float:left; background-image:url(/Public/Img/senderIcon.png); background-repeat:no-repeat; background-color:#196790; color:#196790; padding:0px 0px 0px 25px; margin:0px 20px 0px 0px; font-size:14px; font-weight:bold; cursor:pointer;}
 .sender dt.over{ background-color:#7abdf5; color:#7abdf5;}
 .sender dt.senderIcon_1{ background-position:0px 0px;}
 .sender dt.senderIcon_2{ background-position:0px -20px;}
 .sender dt.senderIcon_3{ background-position:0px -40px;}
-.sender dd{ display:block; height:20px; line-height:20px; float:right; background:url(../img/senderRadioButton.png) 0px 0px no-repeat; color:#196790; padding:0px 0px 0px 20px; font-size:14px; font-weight:bold; margin:0px 0px 0px 20px; cursor:pointer;}
-.sender dd.sel{ background:url(../img/senderRadioButton.png) 0px -20px no-repeat;}
+.sender dd{ display:block; height:20px; line-height:20px; float:right; background:url(/Public/Img/senderRadioButton.png) 0px 0px no-repeat; color:#196790; padding:0px 0px 0px 20px; font-size:14px; font-weight:bold; margin:0px 0px 0px 20px; cursor:pointer;}
+.sender dd.sel{ background:url(/Public/Img/senderRadioButton.png) 0px -20px no-repeat;}
 
 .newMsgBtn{ display:block; border:solid 3px #e5e6e8; margin:0px 0px 0px 20px; }
 .newMsgBtn div{ background:#f1f2f2; font-size:12px; line-height:24px; color:#CCC; font-weight:bold; text-align:center; cursor:pointer;}
@@ -72,12 +72,12 @@ a{ text-decoration:none;}
 .msgBox dd{ float:right; width:485px;}
 .msgBox dl i{ float:left; color:#BBB; line-height:18px;}
 .msgBox dl em{ float:right; color:#BBB; line-height:18px;}
-.msgBox dl h3{ float:left; color:#196790; font-size:16px; line-height:18px; clear:both;}
-.msgBox dl font{ float:left; color:#BBB; line-height:18px; clear:both;}
-.msgBox dl p { float:left; margin:10px 0px 0px 0px; color:#777; line-height:22px;}
-.msgBox dl strong{ color:#196790; padding:0px 10px;}
-.msgBox dl ul{ float:left; overflow:hidden; margin:20px 0px 0px 0px;}
-.msgBox dl li{ float:left; margin:0px 15px 0px 0px; padding:0px 0px 0px 15px; background-image:url(../img/msgIcon.png); background-repeat:no-repeat; background-color:#aaa; color:#aaa; cursor:pointer;}
+.msgBox dl h3{ float:left; color:#196790; font-size:16px; line-height:18px; clear:both; width:100%;}
+.msgBox dl font{ float:left; color:#BBB; line-height:18px; clear:both; width:100%;}
+.msgBox dl p { float:left; margin:10px 0px 0px 0px; color:#777; line-height:22px; width:100%;}
+.msgBox dl strong{ color:#196790; padding:0px 10px; width:100%;}
+.msgBox dl ul{ float:left; overflow:hidden; margin:20px 0px 0px 0px; width:100%;}
+.msgBox dl li{ float:left; margin:0px 15px 0px 0px; padding:0px 0px 0px 15px; background-image:url(/Public/Img/msgIcon.png); background-repeat:no-repeat; background-color:#aaa; color:#aaa; cursor:pointer;}
 .msgBox dl li.over{ background-color:#48c9b0; color:#48c9b0;}
 .msgBox dl li.sel{ background-color:#196790; color:#196790;}
 .msgBox dl li.msgIcon_1{ background-position:0px -11px;}
@@ -100,7 +100,7 @@ a{ text-decoration:none;}
 .panel dl p { float:left; margin:10px 0px 0px 0px; color:#777; line-height:22px;}
 .panel dl strong{ color:#196790; padding:0px 10px;}
 .panel dl ul{ float:left; overflow:hidden; margin:20px 0px 0px 0px;}
-.panel dl li{ float:left; margin:0px 15px 0px 0px; padding:0px 0px 0px 15px; background-image:url(../img/msgIcon.png); background-repeat:no-repeat; background-color:#aaa; color:#aaa; cursor:pointer;}
+.panel dl li{ float:left; margin:0px 15px 0px 0px; padding:0px 0px 0px 15px; background-image:url(/Public/Img/msgIcon.png); background-repeat:no-repeat; background-color:#aaa; color:#aaa; cursor:pointer;}
 .panel dl li.over{ background-color:#48c9b0; color:#48c9b0;}
 .panel dl li.sel{ background-color:#196790; color:#196790;}
 .panel dl li.msgIcon_1{ background-position:0px -11px;}
@@ -116,12 +116,16 @@ a{ text-decoration:none;}
 .mainConRight dd{ overflow:hidden;}
 
 .recommendUser a{ overflow:hidden;}
-.hotActivity span{ display:block; position:relative; z-index:100;}
-.hotActivity img{ display:block; position:absolute; top:5px; left:0px; z-index:110;}
+.hotActivity li{ display:block; position:relative; z-index:100; padding:10px 0px;}
+.hotActivity img{ display:block; position:absolute; top:15px; left:0px; z-index:110;}
 .hotActivity p{ display:block; line-height:14px; color:#777; padding:0px 0px 10px 70px;}
 .hotActivity b{ display:block; padding:0px 0px 5px 0px; font-size:14px; color:#777; line-height:22px}
+.hotActivitySlidePrev{ height:15px; text-align:center; cursor:pointer; position:absolute; z-index:120; top:0px; left:0px; width:100%; background:url(/Public/Img/hotActivitySlidePrev.gif) center center no-repeat #EEE;}
+.hotActivitySlideNext{ height:15px; text-align:center; cursor:pointer; position:absolute; z-index:120; bottom:0px; left:0px; width:100%; background:url(/Public/Img/hotActivitySlideNext.gif) center center no-repeat #EEE; }
+.hotActivitySlide{ overflow:hidden; position:relative; z-index:100;}
+.hotActivitySlide ul{ display:block; overflow:hidden; position:absolute; z-index:110; top:0px; left:0px; width:100%;}
 
-.findOut a{ display:block; width:40px; height:50px; background-image:url(../img/findOut.png); background-repeat:no-repeat; background-color:#BBB; color:#FFF; text-align:center; overflow:hidden; line-height:55px; float:left; margin:2px 3px;}
+.findOut a{ display:block; width:40px; height:50px; background-image:url(/Public/Img/findOut.png); background-repeat:no-repeat; background-color:#BBB; color:#FFF; text-align:center; overflow:hidden; line-height:55px; float:left; margin:2px 3px;}
 .findOut a.type_0{ margin:0px 0px 0px 20px;}
 .findOut a.type_1{ background-color:#196790;}
 .findOut a.type_2{ background-color:#48c9b0;}
@@ -131,7 +135,7 @@ a{ text-decoration:none;}
 .upImgWindow table{ border-collapse:collapse; width:100%;}
 .upImgWindow td{ font-size:12px; background:#FFF; text-align:center; border:solid 1px #999;}
 .upImgWindow font{ display:block; font-size:14px; line-height:35px; background:#EEE; text-align:left; padding:0px 20px; color:#222; position:relative; z-index:230; font-weight:bold;}
-.upImgWindow font i{ display:block; position:absolute; z-index:240; top:-8px; left:50px; width:10px; height:8px; background:url(../img/upImgArrow.png);}
+.upImgWindow font i{ display:block; position:absolute; z-index:240; top:-8px; left:50px; width:10px; height:8px; background:url(/Public/Img/upImgArrow.png);}
 .upImgWindow a{ display:block; line-height:35px; color:#333;}
 .upImgWindow a:hover{ background:#f5f5f5; font-weight:bold;}
 
@@ -143,7 +147,7 @@ a{ text-decoration:none;}
 .userConWindow .userConWindowBox p{ display:block; overflow:hidden; width:270px; float:right; text-align:left; margin:0px 10px; padding:10px 0px; border-top:solid 1px #BBB;}
 .userConWindow p a{ color:#777; line-height:40px;}
 .userConWindow p strong{ color:#48c9b0; padding:0px 10px; line-height:40px;}
-.userConWindow .userConWindowUserName{ font-size:14px; font-weight:bold; background:url(../img/userConWindowSex.gif) left center no-repeat; line-height:15px; padding:0px 0px 0px 20px;}
+.userConWindow .userConWindowUserName{ font-size:14px; font-weight:bold; background:url(/Public/Img/userConWindowSex.gif) left center no-repeat; line-height:15px; padding:0px 0px 0px 20px;}
 .userConWindow .userConWindowBox font{ display:block; overflow:hidden; width:270px; float:right; text-align:left; margin:0px 10px;}
 .userConWindow font a{ color:#777; font-size:14px;}
 .userConWindow font strong{ font-size:14px; color:#48c9b0; padding:0px 10px; line-height:35px;}
@@ -177,7 +181,7 @@ a{ text-decoration:none;}
 .policyBox dl p{ float:left; margin:10px 0px 10px 0px; color:#777; line-height:22px;}
 .policyBox dl strong{ color:#196790; padding:0px 10px;}
 .policyBox dl ul{ float:right; overflow:hidden; margin:5px 0px 0px 0px;}
-.policyBox dl li{ float:left; margin:0px 0px 0px 15px; padding:0px 0px 0px 15px; background-image: url(../Img/msgIcon.png); background-repeat:no-repeat; background-color:#aaa; color:#aaa; cursor:pointer;}
+.policyBox dl li{ float:left; margin:0px 0px 0px 15px; padding:0px 0px 0px 15px; background-image: url(/Public/Img/msgIcon.png); background-repeat:no-repeat; background-color:#aaa; color:#aaa; cursor:pointer;}
 .policyBox dl li.over{ background-color:#48c9b0; color:#48c9b0;}
 .policyBox dl li.sel{ background-color:#196790; color:#196790;}
 .policyBox dl li.msgIcon_1{ background-position:0px -11px;}
@@ -194,7 +198,7 @@ a{ text-decoration:none;}
 
 #contenter .seeon { clear: both; float: right; margin: 20px 0px;}
 #contenter .seeon ul { float:right; overflow:hidden; margin:5px 0px 0px 0px;}
-#contenter .seeon li{ float:left; margin:0px 0px 0px 15px; padding:0px 0px 0px 15px; background-image: url(../Img/msgIcon.png); background-repeat:no-repeat; background-color:#aaa; color:#aaa; cursor:pointer;}
+#contenter .seeon li{ float:left; margin:0px 0px 0px 15px; padding:0px 0px 0px 15px; background-image: url(/Public/Img/msgIcon.png); background-repeat:no-repeat; background-color:#aaa; color:#aaa; cursor:pointer;}
 #contenter .seeon li.over{ background-color:#48c9b0; color:#48c9b0;}
 #contenter .seeon li.sel{ background-color:#196790; color:#196790;}
 #contenter .seeon li.msgIcon_1{ background-position:0px -11px;}
@@ -216,7 +220,7 @@ a{ text-decoration:none;}
 .pinh dl p{ float:left; margin:10px 0px 0px 0px; color:#777; line-height:22px;}
 .pinh dl strong{ color:#196790; padding:0px 10px;}
 .pinh dl ul{ float:right; overflow:hidden; margin:20px 0px 0px 0px;}
-.pinh dl li{ float:left; margin:0px 15px 0px 0px; padding:0px 0px 0px 15px; background-image:url(../img/msgIcon.png); background-repeat:no-repeat; background-color:#aaa; color:#aaa; cursor:pointer;}
+.pinh dl li{ float:left; margin:0px 15px 0px 0px; padding:0px 0px 0px 15px; background-image:url(/Public/Img/msgIcon.png); background-repeat:no-repeat; background-color:#aaa; color:#aaa; cursor:pointer;}
 .pinh dl li.over{ background-color:#48c9b0; color:#48c9b0;}
 .pinh dl li.sel{ background-color:#196790; color:#196790;}
 .pinh dl li.msgIcon_1{ background-position:0px -11px;}
@@ -225,3 +229,9 @@ a{ text-decoration:none;}
 .pinh dl li.msgIcon_4{ background-position:0px -47px;}
 .pinh dl li.msgIcon_5{ background-position:0px -59px;}
 .pinh dl li.msgIcon_6{ background-position:0px -71px;}
+
+.discussContent{ border:solid 2px #BBB; background:#FFF; width:400px; padding:10px; display:none;}
+.discussContent .discussCon{ width:400px;}
+.discussContent .discussCon dd{ width:300px;}
+.discussContent .commentContent{ border:solid 2px #48c9b0; display:block; width:400px;}
+.discussContent .submitComment{ background:#48c9b0; line-height:30px; border:none; width:100px; text-align:center; margin:10px 0px 0px 300px; color:#FFF; font-size:14px; font-weight:bold; cursor:pointer;}

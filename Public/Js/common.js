@@ -603,3 +603,51 @@ function post_submit(){
       }
 }
 
+
+//首页轮播js
+var hotActivitySlideTimer;
+$(function(){
+	$(".hotActivitySlide").css({"height":$(".hotActivitySlide li").eq(0).outerHeight()+$(".hotActivitySlidePrev").outerHeight()+$(".hotActivitySlideNext").outerHeight()});
+	$(".hotActivitySlide ul").css({"top":$(".hotActivitySlidePrev").outerHeight()})
+	$(".hotActivitySlide li").eq(0).addClass("sel");
+	$(".hotActivitySlide ul").addClass("ready");
+	hotActivitySlideTimer = setInterval(  runHotActivitySlideAuto, 5000);
+	$(".hotActivitySlide").mouseover(function(){
+		clearInterval(hotActivitySlideTimer);
+	}).mouseout(function(){
+		hotActivitySlideTimer = setInterval(  runHotActivitySlideAuto, 5000);
+	});
+});
+function runHotActivitySlide(t){
+	if($(".hotActivitySlide ul").is(".ready")){
+		$(".hotActivitySlide ul").removeClass("ready");
+		var nowTop = parseInt($(".hotActivitySlide ul").css("top").split("px")[0]);
+		var tarTop = parseInt(0);
+		if(t.is(".hotActivitySlideNext")){
+			if($(".hotActivitySlide .sel").next().is("li")){
+				tarTop = nowTop-$(".hotActivitySlide .sel").outerHeight();
+				$(".hotActivitySlide .sel").next().addClass("sel").siblings().removeClass("sel");
+			}else{
+				tarTop = $(".hotActivitySlidePrev").outerHeight();
+				$(".hotActivitySlide li").removeClass("sel").eq(0).addClass("sel");
+			}
+		}else{
+			if($(".hotActivitySlide .sel").prev().is("li")){
+				tarTop = nowTop+$(".hotActivitySlide .sel").prev().outerHeight();
+				$(".hotActivitySlide .sel").prev().addClass("sel").siblings().removeClass("sel");
+			}else{
+				tarTop = $(".hotActivitySlide li").last().outerHeight()-$(".hotActivitySlide ul").outerHeight()+$(".hotActivitySlidePrev").outerHeight();
+				$(".hotActivitySlide li").removeClass("sel").last().addClass("sel");
+			}
+		}
+		$(".hotActivitySlide ul").animate({"top":tarTop},500);
+		$(".hotActivitySlide").animate({"height":$(".hotActivitySlide .sel").outerHeight()+$(".hotActivitySlidePrev").outerHeight()+$(".hotActivitySlideNext").outerHeight()},500,function(){
+			$(".hotActivitySlide ul").addClass("ready");
+		});
+	}
+}
+function runHotActivitySlideAuto(){
+	$(".hotActivitySlideNext").trigger("click");
+}
+
+
