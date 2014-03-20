@@ -11,6 +11,19 @@
 <script type="text/javascript">
 $(function(){
 	$(".mainListMenu a").eq(0).addClass("sel");
+	$(".typeSelect").each(function(){
+		$(this).mousedown(function(){
+			type_select=!type_select;
+			if(type_select == true){
+				article_type='talk';
+				article_cat = "时光机";
+			}
+			else {
+				article_type='idea';
+				article_cat = "创意汇";
+			}
+		});
+	});
 });
 var type_select=true;
 var article_type='talk';
@@ -78,8 +91,8 @@ var pic_url='';
 						</div>
 					</dt>
 					<dt class="senderIcon_3 mo">视频</dt>
-					<dd class="tab sel">时光机</dd>
-					<dd class="tab">创意汇</dd>
+					<dd class="tab sel typeSelect">时光机</dd>
+					<dd class="tab typeSelect">创意汇</dd>
 				</dl>
 			</div>
 			<div class="space"></div><div class="space"></div>
