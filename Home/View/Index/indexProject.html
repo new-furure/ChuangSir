@@ -72,7 +72,7 @@ $(function(){
 				<li class="rn ss mo">
 					<table>
 						<tr><th colspan="4"><img src="{$vo['project_avatar_url']|project_avatar_default}" /></th></tr>
-						<tr><td colspan="4"><h3><a href="{$vo.article_id|get_url_by_id}">{$vo.article_title}</a></h3></td></tr>
+						<tr><td colspan="4"><h3><a href="{:get_url_by_id($vo.article_id)}">{$vo.article_title}</a></h3></td></tr>
 						<tr><td colspan="4"><p>{$vo.article_profile}</p></td></tr>
 						<tr><td><a href="###">赞({$vo.article_up_number})</a></td><td><a href="###">踩({$vo.article_down_number})</a></td><td><a href="###">收藏({$vo.article_collect_number})</a></td><td><a href="###">关注({$vo.article_focus_number})</a></td></tr>
 					</table>
