@@ -505,7 +505,7 @@ function random_img($type='user'){
 	$url=null;
 	switch ($type) {
 		case 'user':
-			$url=__ROOT__."Public\Img\Index\avatar\\".rand(1,12).".png";
+			$url=__ROOT__."/Public/Img/Index/avatar/1/".rand(1,12).".png";
 			break;
 		case 'circle':
 			$url=__ROOT__."/Public/Img/circle_logo.png";
