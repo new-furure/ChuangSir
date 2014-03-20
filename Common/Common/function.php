@@ -136,7 +136,9 @@ function get_url_by_id( $id ) {
   case 'article':
     //文章.
     $Article=M( "article" );
-    $type=$Article->getFieldByArticle_Id( $id, "article_type" );
+
+    $article=$Article->where('article_id='.$id)->find();
+    $type=$article['article_type'];
     switch ( $type ) {
     case C( "PROJECT_TYPE" ):
       //项目
@@ -169,21 +171,21 @@ function get_url_by_id( $id ) {
     //回复评论 附加页内定位
     //二级评论
     $comment=M( 'comment' )->getByCommentId( $id );
-    $artcile_id=$comment['artclie_id'] ;
+    $article_id=$comment['artclie_id'] ;
 
     switch ( $comment['commnet_type'] ) {
 
     case C( 'PROJECT_IMPROVE' )://项目改善
     case C( 'PROJECT_COMMENT' )://项目评论
-      $url=U( 'Project/detail', "aid=$id" )."#$artcile_id";
+      $url=U( 'Project/detail', "aid=$id" )."#$article_id";
       break;
 
     case C( 'POLICY_COMMENT' )://政策评论
-      $url=U( 'Policy/detail', "aid=$id" )."#$artcile_id";
+      $url=U( 'Policy/detail', "aid=$id" )."#$article_id";
       break;
 
     case C( 'QUESTION_COMMENT' )://问题评论
-      $url=U( 'Question/detail', "aid=$id" )."#$artcile_id";
+      $url=U( 'Question/detail', "aid=$id" )."#$article_id";
       break;
 
     case C( 'IDEA_COMMENT' )://创意评论
