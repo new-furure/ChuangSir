@@ -44,7 +44,7 @@ class UserController extends Controller{
     $this->isorg=$isorg;
     if ( I( 'session.user_id' , 0 ) &&!$isorg ) {
       //验证是否已经登录
-      $this->error( "您已登录", U( 'User/index' ) );
+      $this->error( "您已登录", U( 'Index/index' ) );
 
     }elseif ( !C( "IS_REG_ON" ) ) {
       $this->error( '当前注册已关闭', U( 'Index/index' ) );
@@ -153,7 +153,7 @@ class UserController extends Controller{
 
           set_user_type( $t_user_type, 1, 0, C( "STARTUP" ) );
           $User->user_type=$t_user_type;
-          $User->user_avatar_url=random_img('user');
+          $User->user_avatar_url=random_img( 'user' );
         }
         $id=$User->add();
         if ( $id>0 ) {
@@ -171,7 +171,7 @@ class UserController extends Controller{
               //成功跳转默认为登陆页
               $goto=U( 'User/Log' );
             }
- 
+
             if ( C( 'IS_EMAIL_VALIDATE_ON' )==true ) {
               //开启邮箱验证
               $key=validate( $id );
@@ -208,7 +208,7 @@ class UserController extends Controller{
       else
         $this-> display( "log" );
     }else {
-      $this->error( "您已经登录", U( 'User/index' ) );
+      $this->error( "您已经登录", U( 'Index/index' ) );
     }
   }
 
@@ -277,7 +277,7 @@ class UserController extends Controller{
     if ( I( 'session.user_id', 0 )< 1 ) {
       $this->display( 'findpassword' );
     }  else {
-      $this->error( "您已登录", U( 'User/index' ) );
+      $this->error( "您已登录", U( 'Index/index' ) );
     }
   }
 
@@ -979,7 +979,7 @@ class UserController extends Controller{
    */
   public function photo( &$user_info=null, $isvisitor=true ) {
     if ( $user_info==null ) {
-      $this->error( "非法操作", U( "User/index" ), 1 );
+      $this->error( "非法操作", U( "Index/index" ), 1 );
     }
     $this->user=$user_info;
     $this->isself=!$isvisitor;
@@ -1708,6 +1708,12 @@ class UserController extends Controller{
     }
   }
 
+  /**
+   * 空操作相当于404
+   */
+  public function _empty() {
+    $this->redirect("Index/index");
+  }
   //--------------------------------测试-------------------------------------
   //测试
 
@@ -1715,6 +1721,6 @@ class UserController extends Controller{
   public function test( $id=0 ) {
     //
     // dump(I('uid'));
-  
+
   }
 }
