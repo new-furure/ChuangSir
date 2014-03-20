@@ -226,12 +226,17 @@ function submit(){
 		profile:profile,pic_url:pic_url,policy_url:policy_url},
 		function(data){
 			if(data.status){//发布成功
+				if(article_type=='policy' || article_type=='project' || article_type=='incubator' ||article_type=='vc')
+					window.location.href = data.url;
+				else
+					$(".msgBox").prepend(data.info);
 				layer.innerHTML = "发布成功";
-				$(".msgBox").prepend(data.info);
+				
 			}else{//发布失败
 					layer.innerHTML = "出错啦！"+data.info;
 			}	
 					layout(layer,top_num);});
+
 		// 	switch(data.type){
 		// 		case 1:
 		// 			layer.innerHTML = "发布失败，请检查输入";

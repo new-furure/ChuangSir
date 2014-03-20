@@ -590,7 +590,7 @@ class BaseController extends Controller {
 					->find();
 					$data1['user_id']=$user['organization_user_id'];
 				}*/
-				$data['policy_url'] = I('post.policy_url');//政策url的添加
+				$data1['policy_url'] = I('post.policy_url');//政策url的添加
 				$result = M( 'policy' )->add( $data1 );
 				break;
 			case 'question':
@@ -621,12 +621,34 @@ class BaseController extends Controller {
 			// return;
 			$this->error('发布失败');
 		}else {
-			//返回渲染之后的html
-			//$data['time'] = time();
-			$this->uid=$user_id;
-			$this->article=M('Article')->getByArticleId($article_id);
-			$html=$this->fetch('Index:articlecard');
-			$this->success($html);
+			if($article_type=='idea' || $article_type=='talk' ||$article_type=='question')
+			{
+				//返回渲染之后的html
+				//$data['time'] = time();
+				$this->uid=$user_id;
+				$this->article=M('Article')->getByArticleId($article_id);
+				$html=$this->fetch('Index:articlecard');
+				$this->success($html);
+			}else{
+				switch ($article_type) {
+					case 'policy':
+						$article_type='Policy';
+						break;
+					case 'project':
+						$article_type='Project';
+						break;
+					case 'vc':
+						$article_type='Vc';
+						break;
+					case 'incubator':
+						$article_type='Incubator';
+						break;
+					default:
+						break;
+				}
+				$this->success('发布成功',U('/'.$article_type.'/detail/aid/'.$article_id));
+			}
+			
 			//$data['type']=2;
 			
 			//$this->ajaxReturn( $data, 'json' );
