@@ -264,7 +264,7 @@ class UserController extends Controller{
     cookie( 'upasswd', null );
     //删除session
     session_destroy();
-    $this->success( '已经成功注销！', U( 'User/Log' ) );
+    $this->success( '已经成功注销！', U( 'Index/index' ) );
   }
 
 
