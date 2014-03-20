@@ -410,6 +410,8 @@ function formatTime(time){
  
  function getid(el){return document.getElementById(el);}
  var toggle=1;
+ var alerthtml = "";
+
 
   function response(obj){
   		
@@ -444,20 +446,19 @@ function formatTime(time){
 	$.post(withdrawUrl,{article_id:article_id,article_type:article_type},function(data){
 		switch(data.type){
 			case 0:
-				var alerthtml = "评论加载失败，请重试";
+				alerthtml = "评论加载失败，请重试";
           		getid("dis"+article_id).innerHTML=alerthtml;
           		break;
           	case 1:
           		var html="";
           		$.each(data.user_comment,function(idx,item)
 				{	/*alert('haha');*/
-          		html+='<dl><dt><img src="__ROOT__/Public/Img/msgUserImg_1.png" /></dt><dd><p> <a href="">'+item.user_nickname+'</a>'+item.comment_content+'</p><ul><li class="msgIcon_3 mo clk">赞(142)</li><li class="msgIcon_4 mo clk">踩(657)</li><li class="msgIcon_5 mo clk">回复(6841)</li></ul></dd></dl>';
-          		$('.discussCon').html(html);
+          		html+='<dl><dt><img src="'+item.user_avatar_url+'" /></dt><dd><p> <a href="">'+item.user_nickname+'</a>'+item.comment_content+'</p><ul><li class="msgIcon_3 mo clk">赞(0)</li><li class="msgIcon_4 mo clk">踩(0)</li><li class="msgIcon_5 mo clk">回复(0)</li></ul></dd></dl>';
           
           		}); 
           		break;
           	case 2: 
-          		var alerthtml = "暂无评论";
+          		alerthtml = "还没有评论，快写下你的评论吧";
           		getid("dis"+article_id).innerHTML=alerthtml;
           		break;
           	default:
@@ -473,6 +474,9 @@ function reply(obj){
     var oComment=obj.parentNode.parentNode;//这里是关键。找到当前留言对象。留言对象属性在ul中
     //传回文章id——用于提取评论
     var article_id=oComment.getAttribute("aid");
+    var user_nickname=oComment.getAttribute("uname");
+    var user_avatar_url=oComment.getAttribute("uau");
+
  	//获取标签的自定义属性
     //传回评论类型——用户评论后在表中插入信息
 
@@ -483,12 +487,12 @@ function reply(obj){
 
         var a=$.post(handleUrl,{comment_content:commentContent.val(),article_id:article_id,comment_type:comment_type},function(data){
           if(data.type==0){
-          	var htmlalert='评论失败，请重试</p>';
+          	htmlalert='评论失败，请重试</p>';
    			$(".discussCon").html(htmlalert);
    			/*$(".discussCon i").eq(0).css({"textAlign":"center","height":"0"});  */       	
           }
           else{
-            var con='<dl><dt><img src="__ROOT__/Public/Img/msgUserImg_1.png" /></dt><dd><p> <a href="">匿名用户：</a>'+commentContent.val()+'</p><ul><li class="msgIcon_3 mo clk">赞(142)</li><li class="msgIcon_4 mo clk">踩(657)</li><li class="msgIcon_5 mo clk">回复(6841)</li></ul></dd></dl>';
+            var con='<dl><dt><img src="'+user_avatar_url+'" /></dt><dd><p> <a href="">'+user_nickname+'</a>'+commentContent.val()+'</p><ul><li class="msgIcon_3 mo clk">赞(0)</li><li class="msgIcon_4 mo clk">踩(0)</li><li class="msgIcon_5 mo clk">回复(0)</li></ul></dd></dl>';
   			$(".discussCon").prepend(con);
   			$('#text'+article_id).val("");
           }
@@ -550,6 +554,9 @@ function post_submit(){
 
   var newDigi = document.getElementById("comment_submit"); 
   var article_id=newDigi.getAttribute("aid");
+  var user_nickname=oComment.getAttribute("uname");
+  var user_avatar_url=oComment.getAttribute("uau");
+
 
   var content=$('textarea[name=commentContent]');
       if (content.val()!= "") {
