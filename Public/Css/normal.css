@@ -113,6 +113,7 @@ a{ text-decoration:none;}
 
 .mainConRight dl{ overflow:hidden; padding:10px 0px; border-bottom:solid 1px #BBB;}
 .mainConRight dt{ line-height:30px; color:#196790; font-size:14px; font-weight:bold; padding:0px 0px 10px 0px;}
+.mainConRight dt span{ color:#777; font-size:12px; font-weight:normal;}
 .mainConRight dd{ overflow:hidden;}
 
 .recommendUser a{ overflow:hidden; display:inline-block; width:35px; overflow:hidden;}

@@ -82,21 +82,26 @@
 
   </script>
 
-  <script defer type="text/javascript" language="javascript">
-    var num=0;
-    var array=[];
-    function addbiaoqian()
-    {
-      array[num]=biaoqian.value;
-      num=num+1;
-      var neirong = document.createTextNode(biaoqian.value);
-      var myspan = document.createElement("span");
-      myspan.appendChild(neirong);
-      myspan.className="label label-primary policy__label";
-      document.getElementById("nonamediv").appendChild(myspan);
-      biaoqian.value="";
-    }
-  </script>
+<style>
+#nonamediv .del{ position:absolute; z-index:110; top:5px; right:5px; display:inline-block; width:15px; height:15px; line-height:14px; font-size:12px; font-weight:bold; font-family:"微软雅黑"; cursor:pointer;}
+#nonamediv .tagCon{ display:inline-block; padding:5px 25px 5px 10px; font-size:12px; font-weight:bold; margin:0px 5px 0px 0px; position:relative; z-index:100;}
+</style>
+ <script defer type="text/javascript" language="javascript">
+var num=0;
+var array=[];
+function addbiaoqian()
+{
+  array[num]=biaoqian.value;
+  num=num+1;
+  var neirong = document.createTextNode(biaoqian.value);
+  var myspan = document.createElement("span");
+  myspan.appendChild(neirong);
+  myspan.className="label label-primary policy__label";
+  
+  document.getElementById("nonamediv").appendChild(myspan);
+  biaoqian.value="";
+}
+</script>
 
  <script type="text/javascript">
     //UEDITOR_HOME_URL、config、all这三个顺序不能改变(绝对路径)
