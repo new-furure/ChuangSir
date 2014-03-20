@@ -70,7 +70,7 @@ div, a { color:#a7a9ac;}
       		<volist name="list" id="vo">
 				<dl>
 					<dt>
-						<img src="{$vo.user_avatar_url|default=''}"  />
+						<img src="{$vo.user_avatar_url|default=random_img()}"  />
 						<div class="userConWindow rn ss">
 							<div class="userConWindowBox">
 								<img class="userConImg" src="{$vo.user_avatar_url}" />
