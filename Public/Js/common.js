@@ -151,6 +151,48 @@ function edit(){
 //提交的处理函数。根据不同的文章类型先判断输入的合法性。异步提交并返回一定的信息。
 function submit(){ 
 	
+
+	//pic_url，submit_url,article_type在发布的页面上传值过来
+	$.post(submit_url,{article_type:article_type,title:title,content:content,
+		profile:profile,pic_url:pic_url,policy_url:policy_url},
+		function(data){
+			if(data.status){//发布成功
+				if(article_type=='policy' || article_type=='project' || article_type=='incubator' ||article_type=='vc')
+					window.location.href = data.url;
+				else
+					$(".msgBox").prepend(data.info);
+				layer.innerHTML = "发布成功";
+				
+			}else{//发布失败
+					layer.innerHTML = "出错啦！"+data.info;
+			}	
+					layout(layer,top_num);});
+
+		// 	switch(data.type){
+		// 		case 1:
+		// 			layer.innerHTML = "发布失败，请检查输入";
+		// 			layout(layer,top_num);	
+		// 			break;
+		// 		case 2:
+		// 		if(article_type=='policy' || article_type=='project' || article_type=='incubator' ||article_type=='vc'){
+		// 			window.location.href = article_url+'/'+data.article_id;	
+		// 		}else{
+		// 				if(data.article_picture_url){
+		// 				var Content = "<dl><dt><img src='/mrchuang/Public/Img/msgUserImg_2.png' /><div class='userConWindow rn ss'><div class='userConWindowBox'><img class='userConImg' src='/mrchuang/Public/Img/msgUserImg_2.png' /><span><b class='rs'>加好友</b><b class='rs'>关注</b><b class='rs'>私信</b></span><p><a class='userConWindowUserName' href='###'>十一的眼泪</a><br /><a href='###'>关注（0）</a><strong>|</strong><a href='###'>粉丝（0）</a></p><font><a href='###'>个人主页</a><strong>|</strong><a href='###'>个人资料</a><strong>|</strong><a href='###'>项目主页</a></font></div></div></dt><dd><i>"+data.user_name+"在"+article_cat+"有了新动态</i><em>刚刚</em><h3>"+data.article_title+"</h3><p>"+data.article_content+"<strong>显示更多</strong></p>"+"<div><img id='img1' width='110px' height='140px' src='"+data.article_picture_url+"'/></div>"+"<ul><li class='msgIcon_1 mo clk'>关注问题</li><li class='msgIcon_2 mo clk'>收藏</li><li class='msgIcon_3 mo clk'>赞(0)</li><li class='msgIcon_4 mo clk'>踩(0)</li><li class='msgIcon_5 mo clk flip'>评论(0)</li><li class='msgIcon_6 mo clk'>分享</li></ul></dd></dl>";
+		// 				}else{
+		// 					var Content = "<dl><dt><img src='/mrchuang/Public/Img/msgUserImg_2.png' /><div class='userConWindow rn ss'><div class='userConWindowBox'><img class='userConImg' src='/mrchuang/Public/Img/msgUserImg_2.png' /><span><b class='rs'>加好友</b><b class='rs'>关注</b><b class='rs'>私信</b></span><p><a class='userConWindowUserName' href='###'>十一的眼泪</a><br /><a href='###'>关注（0）</a><strong>|</strong><a href='###'>粉丝（0）</a></p><font><a href='###'>个人主页</a><strong>|</strong><a href='###'>个人资料</a><strong>|</strong><a href='###'>项目主页</a></font></div></div></dt><dd><i>"+data.user_name+"在"+article_cat+"有了新动态</i><em>刚刚</em><h3>"+data.article_title+"</h3><p>"+data.article_content+"<strong>显示更多</strong></p><ul><li class='msgIcon_1 mo clk'>关注问题</li><li class='msgIcon_2 mo clk'>收藏</li><li class='msgIcon_3 mo clk'>赞(0)</li><li class='msgIcon_4 mo clk'>踩(0)</li><li class='msgIcon_5 mo clk flip'>评论(0)</li><li class='msgIcon_6 mo clk'>分享</li></ul></dd></dl>";
+		// 				}
+		// 				$(".msgBox").prepend(Content);
+		// 		}
+		// 		layer.innerHTML = "发布成功";
+		// 		layout(layer,top_num);	
+		// 		break;
+		// 		default:
+		// 		break;
+		// 	}
+		// }
+		// ,'json');
+
 }
 //存草稿函数，根据不同的文章类型异步传值，并返回状态信息。
 function save_draft(){
@@ -309,7 +351,6 @@ function formatTime(time){
  
  function getid(el){return document.getElementById(el);}
  var toggle=1;
- var alerthtml="";
 
   function response(obj){
   		
@@ -344,23 +385,20 @@ function formatTime(time){
 	$.post(withdrawUrl,{article_id:article_id,article_type:article_type},function(data){
 		switch(data.type){
 			case 0:
-				alerthtml = "评论加载失败，请重试";
+				var alerthtml = "评论加载失败，请重试";
           		getid("dis"+article_id).innerHTML=alerthtml;
           		break;
           	case 1:
           		var html="";
           		$.each(data.user_comment,function(idx,item)
 				{	/*alert('haha');*/
-          		html+='<dl><dt><img src="'+item.user_avatar_url+'" /></dt><dd><p> <a href="">'+item.user_nickname+'</a>'+item.comment_content+'</p><ul><li class="msgIcon_3 mo clk">赞(0)</li><li class="msgIcon_4 mo clk">踩(0)</li><li class="msgIcon_5 mo clk">回复(0)</li></ul></dd></dl>';
+          		html+='<dl><dt><img src="__ROOT__/Public/Img/msgUserImg_1.png" /></dt><dd><p> <a href="">'+item.user_nickname+'</a>'+item.comment_content+'</p><ul><li class="msgIcon_3 mo clk">赞(142)</li><li class="msgIcon_4 mo clk">踩(657)</li><li class="msgIcon_5 mo clk">回复(6841)</li></ul></dd></dl>';
           		$('.discussCon').html(html);
           
           		}); 
-          		if(alerthtml!=""){
-          			alerthtml="";
-          		}
           		break;
           	case 2: 
-          		alerthtml = "还没有评论，快写下你的评论吧";
+          		var alerthtml = "暂无评论";
           		getid("dis"+article_id).innerHTML=alerthtml;
           		break;
           	default:
@@ -376,8 +414,6 @@ function reply(obj){
     var oComment=obj.parentNode.parentNode;//这里是关键。找到当前留言对象。留言对象属性在ul中
     //传回文章id——用于提取评论
     var article_id=oComment.getAttribute("aid");
-    var user_nickname=oComment.getAttribute("uname");
-    var user_avatar_url=oComment.getAttribute("uau");
  	//获取标签的自定义属性
     //传回评论类型——用户评论后在表中插入信息
 
@@ -393,7 +429,7 @@ function reply(obj){
    			/*$(".discussCon i").eq(0).css({"textAlign":"center","height":"0"});  */       	
           }
           else{
-            var con='<dl><dt><img src="'+user_avatar_url+'" /></dt><dd><p> <a href="">'+user_nickname+'</a>'+commentContent.val()+'</p><ul><li class="msgIcon_3 mo clk">赞(0)</li><li class="msgIcon_4 mo clk">踩(0)</li><li class="msgIcon_5 mo clk">回复(0)</li></ul></dd></dl>';
+            var con='<dl><dt><img src="__ROOT__/Public/Img/msgUserImg_1.png" /></dt><dd><p> <a href="">匿名用户：</a>'+commentContent.val()+'</p><ul><li class="msgIcon_3 mo clk">赞(142)</li><li class="msgIcon_4 mo clk">踩(657)</li><li class="msgIcon_5 mo clk">回复(6841)</li></ul></dd></dl>';
   			$(".discussCon").prepend(con);
   			$('#text'+article_id).val("");
           }
@@ -455,8 +491,6 @@ function post_submit(){
 
   var newDigi = document.getElementById("comment_submit"); 
   var article_id=newDigi.getAttribute("aid");
-  var user_nickname=oComment.getAttribute("uname");
-  var user_avatar_url=oComment.getAttribute("uau");
 
   var content=$('textarea[name=commentContent]');
       if (content.val()!= "") {
@@ -468,7 +502,7 @@ function post_submit(){
    			/*$(".discussCon i").eq(0).css({"textAlign":"center","height":"0"});  */       	
           }
           else{
-            var con='<dl><dt><img src="'+user_avatar_url+'" /></dt><dd><p> <a href="">'+user_nickname+'</a>'+commentContent.val()+'</p><ul><li class="msgIcon_3 mo clk">赞(0)</li><li class="msgIcon_4 mo clk">踩(0)</li><li class="msgIcon_5 mo clk">回复(0)</li></ul></dd></dl>';
+            var con='<dl><dt><img src="__ROOT__/Public/Img/msgUserImg_1.png" /></dt><dd><p> <a href="">匿名用户：</a>'+commentContent.val()+'</p><ul><li class="msgIcon_3 mo clk">赞(142)</li><li class="msgIcon_4 mo clk">踩(657)</li><li class="msgIcon_5 mo clk">回复(6841)</li></ul></dd></dl>';
   			$(".pinh").prepend(con);
   			$(".ping").val("");
           }
