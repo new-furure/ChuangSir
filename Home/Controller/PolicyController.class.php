@@ -85,7 +85,7 @@ class PolicyController extends BaseController {
 
 //单个政策查看页
 //@作者 
-	public function detail()
+	public function detail($aid)
 	{
 		$article = M('article');
 		$comment = M('comment');
