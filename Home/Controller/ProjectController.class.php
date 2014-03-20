@@ -79,7 +79,7 @@ class ProjectController extends BaseController {
 
 //单个项目查看页
 //@作者 
-	public function detail()
+	public function detail($aid)
 	{
 		$article = M('article');
 		$comment = M('comment');
