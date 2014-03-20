@@ -160,6 +160,7 @@ a{ text-decoration:none;}
 #localuser { float:right; width: 228px; margin-top: 15px;}
 #localuser .person { border:1px #a7a9ac solid; width: 210px; margin: 0px; border-radius:8px; padding:6px;}
 #localuser .person .userlogo { float:left; width: 61px; height:80px;}
+#localuser .person img{width:60px;height: 80px;}
 #localuser .person .Udetail { float:right; width: 146px; margin-left: 2px; margin-top: 2px;}
 #localuser .person .Udetail span { float:left; font-size: 18px; font-family: "黑体"; font-weight: bold; color:#777; line-height: 24px;}
 #localuser .person .Udetail span img { margin-left:5px; width: 7px; height: 15px;}
@@ -172,7 +173,7 @@ a{ text-decoration:none;}
 .policyBox{ overflow:hidden; width: 714px;}
 .policyBox dl{ overflow:hidden; margin: 15px 0px; padding:30px; border:solid 1px #BBB; border-radius: 8px;}
 .policyBox dt{ float:left; width:70px; padding:0px; position:relative; z-index:100;}
-.policyBox dt img{}
+.policyBox dt img{width:60px;height:60px}
 .policyBox dd{ float:right; width:560px; margin-top: 10px;}
 .policyBox dl em{ float:left; color:#BBB; line-height:24px;}
 .policyBox dl h3{ float:left; color:#196790; font-size:16px; line-height:18px; clear:both;}
@@ -235,3 +236,22 @@ a{ text-decoration:none;}
 .discussContent .discussCon dd{ width:300px;}
 .discussContent .commentContent{ border:solid 2px #48c9b0; display:block; width:400px;}
 .discussContent .submitComment{ background:#48c9b0; line-height:30px; border:none; width:100px; text-align:center; margin:10px 0px 0px 300px; color:#FFF; font-size:14px; font-weight:bold; cursor:pointer;}
+
+.projectTab{ height:40px; padding:20px 15px 20px 25px;}
+.projectTab dt,.projectTab dd{ float:left;}
+.projectTab dd{ color:#48c9b0; font-size:14px; font-weight:bold; margin:0px 20px;}
+.projectTab a{ color:#196790; font-size:14px; font-weight:bold;}
+.projectTab .sel a{ color:#48c9b0;}
+.projectTab .rightBtn{ float:right;}
+.projectTab .rightBtn a{ display:block; width:100px; height:24px; line-height:24px; background:#48c9b0; color:#FFF; text-align:center; font-size:14px; font-weight:bold;}
+		
+.projectCon{ overflow:hidden;}
+.projectCon ul{ overflow:hidden; padding:5px 5px 5px 5px;}
+.projectCon li{ float:left; overflow:hidden; border:solid 2px #196790; margin:5px 5px 25px 20px;}
+.projectCon li.over{ border:solid 2px #48c9b0; margin:0px 5px 30px 20px;}
+.projectCon table{ width:180px; height:300px;}
+.projectCon th{ height:135px; padding:5px 0px 20px 0px; border-bottom:solid 1px #BBB;}
+.projectCon td h3{ display:block; text-align:center; font-size:14px; font-weight:bold; color:#777;}
+.projectCon td p{ display:block; padding:0px 10px; text-align:left; font-size:12px; color:#777;}
+.projectCon td a{ display:block; line-height:20px; text-align:center; color:#BBB;}
+.projectCon td a:hover{ color:#196790;}
