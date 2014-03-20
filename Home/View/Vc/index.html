@@ -1,0 +1,108 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>先生汇 - 孵化器库</title>
+<link href="__ROOT__/Public/Css/normal.css" type="text/css" rel="stylesheet" />
+<script type="text/javascript" src="__ROOT__/Public/Js/jquery-1.10.2.js"><!-- 替换成其他版本可能会有问题 --></script>
+<script type="text/javascript" src="__ROOT__/Public/Js/common.js"></script>
+<script type="text/javascript" src="__ROOT__/Public/Js/normal.js"></script>
+<script type="text/javascript">
+$(function(){
+	$(".mainListMenu a").eq(4).addClass("sel");
+});
+</script>
+<style>
+
+</style>
+</head>
+<body>
+<include file="Home/Public/header.html"/>
+<div class="main">
+	<div class="mainListMenu">
+		<ul>
+			<li><a class="mlmIcon_1" href="{:U('Index/idea')}">创意汇</a></li>
+			<li><a class="mlmIcon_2" href="{:U('Index/talk')}">时光机</a></li>
+			<li><a class="mlmIcon_6" href="{:U('Index/question')}">问答</a></li>
+			<li><a class="mlmIcon_7" href="###">专栏</a></li>
+			<li><a class="mlmIcon_3" href="{:U('Project/index')}">项目库</a></li>
+			<li><a class="mlmIcon_4" href="{:U('Vc/index')}">投资人库</a></li>
+			<li><a class="mlmIcon_5" href="{:U('Incubator/index')}">孵化器库</a></li>
+			<li><a class="mlmIcon_8" href="###">我的关注</a></li>
+			<li><a class="mlmIcon_9" href="###">我的收藏</a></li>
+		</ul>
+	</div>
+	<div class="mainCon">
+		<div class="mainConCenter">
+			<div class="space"></div><div class="space"></div>
+		<dl class="projectTab">
+			<dt class="tab sel"><a href="###">全部</a></dt>
+			<dd>|</dd>
+			<dt class="tab"><a href="###">最新</a></dt>
+			<dd>|</dd>
+			<dt class="tab"><a href="###">最热</a></dt>
+			<dd>|</dd>
+			<dt class="tab"><a href="###">高级搜索</a></dt>
+			<dt class="rightBtn"><a class=" rs ss" href="{:U('Vc/publish')}">发布新投资人</a></dt>
+	    </dl>
+			<style>
+			.hatchList li{ overflow:hidden; position:relative; z-index:100; margin:0px 0px 0px 40px; padding:15px 0px 30px 0px; border-bottom:solid 1px #BBB;}
+			.hatchList img{ position:absolute; z-index:120; top:20px; left:0px;}
+			.hatchList a{ display:block; font-size:14px; font-weight:bold; line-height:20px; padding:10px 0px 10px 90px; color:#196790;}
+			.hatchList a:hover{ color:#48c9b0;}
+			.hatchList p{ color:#777; line-height:22px; padding:0px 130px 0px 90px;}
+			.hatchList i{ display:block; position:absolute; z-index:130; bottom:30px; right:0px; color:#BBB; line-height:18px;}
+			</style>
+			<ul class="hatchList">
+				<volist name="list" id="vo">
+					<li>
+						<img width="70" height="90" src="{$vo.user_avatar_url}" />
+						<a href="###">{$vo.article_title}</a>
+						<p>{$vo.article_profile}</p>
+						<i>好友数量：{$vo.user_focus_number}<br />粉丝数量：{$vo.user_focus_number}</i>
+					</li>
+				</volist>				
+			</ul>
+			<div class="space"></div><div class="space"></div>
+			<p>{$page}</p>
+		</div>
+		<div class="mainConRight">
+			<dl class="recommendUser">
+				<dt>好友</dt>
+				<dd>
+					<a href="###"><img src="__ROOT__/Public/Img/testUserImg_1.png" /></a>
+					<a href="###"><img src="__ROOT__/Public/Img/testUserImg_2.png" /></a>
+					<a href="###"><img src="__ROOT__/Public/Img/testUserImg_3.png" /></a>
+					<a href="###"><img src="__ROOT__/Public/Img/testUserImg_4.png" /></a>
+					<a href="###"><img src="__ROOT__/Public/Img/testUserImg_5.png" /></a>
+					<a href="###"><img src="__ROOT__/Public/Img/testUserImg_6.png" /></a>
+					<a href="###"><img src="__ROOT__/Public/Img/testUserImg_1.png" /></a>
+					<a href="###"><img src="__ROOT__/Public/Img/testUserImg_2.png" /></a>
+					<a href="###"><img src="__ROOT__/Public/Img/testUserImg_3.png" /></a>
+					<a href="###"><img src="__ROOT__/Public/Img/testUserImg_4.png" /></a>
+					<a href="###"><img src="__ROOT__/Public/Img/testUserImg_5.png" /></a>
+					<a href="###"><img src="__ROOT__/Public/Img/testUserImg_6.png" /></a>
+				</dd>
+			</dl>
+			<dl class="recommendUser">
+				<dt>粉丝</dt>
+				<dd>
+					<a href="###"><img src="__ROOT__/Public/Img/testUserImg_1.png" /></a>
+					<a href="###"><img src="__ROOT__/Public/Img/testUserImg_2.png" /></a>
+					<a href="###"><img src="__ROOT__/Public/Img/testUserImg_3.png" /></a>
+					<a href="###"><img src="__ROOT__/Public/Img/testUserImg_4.png" /></a>
+					<a href="###"><img src="__ROOT__/Public/Img/testUserImg_5.png" /></a>
+					<a href="###"><img src="__ROOT__/Public/Img/testUserImg_6.png" /></a>
+					<a href="###"><img src="__ROOT__/Public/Img/testUserImg_1.png" /></a>
+					<a href="###"><img src="__ROOT__/Public/Img/testUserImg_2.png" /></a>
+					<a href="###"><img src="__ROOT__/Public/Img/testUserImg_3.png" /></a>
+					<a href="###"><img src="__ROOT__/Public/Img/testUserImg_4.png" /></a>
+					<a href="###"><img src="__ROOT__/Public/Img/testUserImg_5.png" /></a>
+					<a href="###"><img src="__ROOT__/Public/Img/testUserImg_6.png" /></a>
+				</dd>
+			</dl>
+		</div>
+	</div>
+</div>
+</body>
+</html>
