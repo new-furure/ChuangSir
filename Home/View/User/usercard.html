@@ -1,23 +1,28 @@
-<img hight='54' width='40' src="{$vo.user_avatar_url}" />
-<div class="userConWindow rn ss">
-
-	<php>$user=M('User')->getByUserId($uid);</php>
-	<img class="userConImg" src="{$user.user_avatar_url|default=random_img('user')}" />
-	<div class="userConWindowBox">
+<dt>
+	<?php
+		$user=M('User')-> getByUserId($uid);
+		if(empty($user['user_avatar_url']))
+			$user['user_avatar_url']=random_img('user');
+	?>
+	<img hight='54' width='40' src="{$user.user_avatar_url|default=random_img('user')}" />
+	<div class="userConWindow rn ss">
 		<img class="userConImg" src="{$user.user_avatar_url|default=random_img('user')}" />
-		<span> <b class="rs add_friend">加好友</b> <b class="rs focus_user" to="{:U('User/focus','id='.$user['user_id'])}"><php>echo is_focus_on($user['user_id'])?"取消关注" : "关注TA"</php></b> 
-			<b class="rs">私信</b>
-		</span>
-		<p>
-			<a class="userConWindowUserName">{$user.user_nickname}</a>
-			{$user.user_signature}
-			<br />
-			<a class="focus_num">好友({$user['user_focus_number']})</a> <strong>|</strong>
-			<a class="focus_num">粉丝({$user['user_focus_number']})</a>
-		</p>
-		<p>{$user['user_profile']|default="没有详细资料"}</p> <font><a href="{:get_url_by_id($user['user_id'])}">个人主页</a> <strong>|</strong>
-			<a href="{:get_url_by_id($user['user_id'])}">个人资料</a>
-			<strong>|</strong>
-			<a href="{:get_url_by_id($user['user_id'])}">项目主页</a></font> 
+		<div class="userConWindowBox">
+			<img class="userConImg" src="{$user.user_avatar_url|default=random_img('user')}" />
+			<span> <b class="rs add_friend">加好友</b> <b class="rs focus_user" to="{:U('User/focus','id='.$user['user_id'])}"><php>echo is_focus_on($user['user_id'])?"取消关注" : "关注TA"</php></b> 
+				<b class="rs">私信</b>
+			</span>
+			<p>
+				<a class="userConWindowUserName">{$user.user_nickname}</a>
+				{$user.user_signature}
+				<br />
+				<a class="focus_num">好友({$user['user_focus_number']})</a> <strong>|</strong>
+				<a class="focus_num">粉丝({$user['user_focus_number']})</a>
+			</p>
+			<p>{$user['user_profile']|default="没有详细资料"}</p> <font><a href="{:get_url_by_id($user['user_id'])}">个人主页</a> <strong>|</strong>
+				<a href="{:get_url_by_id($user['user_id'])}">个人资料</a>
+				<strong>|</strong>
+				<a href="{:get_url_by_id($user['user_id'])}">项目主页</a></font> 
+		</div>
 	</div>
-</div>
+</dt>

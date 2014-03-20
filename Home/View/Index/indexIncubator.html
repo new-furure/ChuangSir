@@ -5,6 +5,7 @@
 <title>先生汇 - 投资人库</title>
 <link href="__ROOT__/Public/Css/normal.css" type="text/css" rel="stylesheet" />
 <script type="text/javascript" src="__ROOT__/Public/Js/jquery-1.10.2.js"><!-- 替换成其他版本可能会有问题 --></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 <script type="text/javascript" src="__ROOT__/Public/Js/normal.js"></script>
 <script type="text/javascript">
 $(function(){
@@ -73,7 +74,7 @@ $(function(){
 					<table>
 						<tr><th colspan="4"><img src="{$vo.user_avatar_url}" /></th></tr>
 						<tr><td colspan="4"><h3><a href="{$vo.article_id|get_url_by_id}">{$vo.article_title}</a></h3></td></tr>
-						<tr><td colspan="4"><p>{$vo.article_id_profile}</p></td></tr>
+						<tr><td colspan="4"><p class="profile">{$vo.article_id_profile}</p></td></tr>
 						<tr><td><a href="###">赞({$vo.article_up_number})</a></td><td><a href="###">踩({$vo.article_down_number})</a></td><td><a href="###">收藏({$vo.article_collect_number})</a></td><td><a href="###">关注({$vo.article_focus_number})</a></td></tr>
 					</table>
 				</li>
@@ -84,4 +85,22 @@ $(function(){
 	</div>
 </div>
 </body>
+<script type="text/javascript">
+//用于index.html
+//简介超出85字显示省略号
+//需要有jquery文件
+
+//jquery实现多行文本溢出时显示省略号
+$(document).ready(function(){ 
+//对象：圈子简介
+$(".profile").each(function()
+{ var maxwidth=85;
+ if($(this).text().length>maxwidth){
+ $(this).text($(this).text().substring(0,maxwidth)); 
+$(this).html($(this).html()+'...'); 
+} 
+});
+ });  
+
+</script>
 </html>

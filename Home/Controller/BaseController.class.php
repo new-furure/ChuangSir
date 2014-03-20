@@ -483,12 +483,23 @@ class BaseController extends Controller {
 	//文章发布提交 这里也是根据不同的文章类型进行不同的处理
 	//数据存档和数据提交数据库
 	//@作者
+	/**
+	* @version 2.0 by Future
+	* 使用模板，直接返回渲染之后的html
+	* ajax使用error和success自动判断
+	*	common.js对应接口做同样修改
+	*/
 	public function submit() {
 		if ( !IS_AJAX ) {
 			$this->error( '页面不存在！' );
 			return;
 		}
 		$user_id = get_id( false );
+		if($user_id<=0){
+			//error返回
+			$this->error('请先登录,再发布!');
+
+		}
 		$article_type=I( 'post.article_type' );
 		switch ( $article_type ) {
 			//时光机
@@ -535,7 +546,10 @@ class BaseController extends Controller {
 		$article = D( 'Article' );
 		$result = $article->create( $data );
 		if ( !$result ) {
-			$this->ajaxReturn( $article->getError(), 'json' );
+			//改为error,自动判断ajax
+			//修改中 Future
+			$this->error($article->getError());
+			//$this->ajaxReturn( $article->getError(), 'json' );
 		}
 		if ( $result ) {
 			$article_id=$article->add( $data );
@@ -576,7 +590,7 @@ class BaseController extends Controller {
 					->find();
 					$data1['user_id']=$user['organization_user_id'];
 				}*/
-				$data['policy_url'] = I('post.policy_url');//政策url的添加
+				$data1['policy_url'] = I('post.policy_url');//政策url的添加
 				$result = M( 'policy' )->add( $data1 );
 				break;
 			case 'question':
@@ -597,16 +611,47 @@ class BaseController extends Controller {
 			$article_tag->add($data1);
 		}	*/
 		if ( !$result ) {
-			$data['type'] = 1;
-			$this->ajaxReturn( $data, 'json' );
-			return;
+			/**
+			*这个result应该是判断在插入article表成功后，插入子表出错
+			*此时是不是应该删掉原来的article内容？
+			*改为error自动判断ajax
+			*/
+			// $data['type'] = 1;
+			// $this->ajaxReturn( $data, 'json' );
+			// return;
+			$this->error('发布失败');
 		}else {
-			$data['article_id']=$article_id;
-			$name=M('user')->where("user_id = $user_id")->find();
-			$data['user_name'] = $name['user_nickname'];
-			$data['time'] = time();
-			$data['type']=2;
-			$this->ajaxReturn( $data, 'json' );
+			if($article_type=='idea' || $article_type=='talk' ||$article_type=='question')
+			{
+				//返回渲染之后的html
+				//$data['time'] = time();
+				$this->uid=$user_id;
+				$this->article=M('Article')->getByArticleId($article_id);
+				$html=$this->fetch('Index:articlecard');
+				$this->success($html);
+			}else{
+				switch ($article_type) {
+					case 'policy':
+						$article_type='Policy';
+						break;
+					case 'project':
+						$article_type='Project';
+						break;
+					case 'vc':
+						$article_type='Vc';
+						break;
+					case 'incubator':
+						$article_type='Incubator';
+						break;
+					default:
+						break;
+				}
+				$this->success('发布成功',U('/'.$article_type.'/detail/aid/'.$article_id));
+			}
+			
+			//$data['type']=2;
+			
+			//$this->ajaxReturn( $data, 'json' );
 		}
 	}
 	//编辑页面再次保存成草稿。
