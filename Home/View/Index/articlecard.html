@@ -1,6 +1,6 @@
 <dl>
 	<include file="User:usercard"/>
-	<dd class="withdrawComment" id="panel{$article.article_id}" aid="{$article.article_id}"  atype="{$article.article_type}"> <i>{$article.user_name}在{$article.article_type|type_name}上有了新动态</i> <em>{$article.article_time|time_format}</em>
+	<dd class="withdrawComment" id="panel{$article.article_id}" aid="{$article.article_id}"  atype="{$article.article_type}"> <i>{:M('User')->getFieldByUserId($uid,'user_nickname')}(您)在{$article.article_type|type_name}上有了新动态</i> <em>{$article.article_time|time_format}</em>
 		<h3>{$article.article_title}</h3>
 		<p>{$article.article_content}</p>
 		<notempty name="vo.article_picture_url">
