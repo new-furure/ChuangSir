@@ -115,7 +115,8 @@ a{ text-decoration:none;}
 .mainConRight dt{ line-height:30px; color:#196790; font-size:14px; font-weight:bold; padding:0px 0px 10px 0px;}
 .mainConRight dd{ overflow:hidden;}
 
-.recommendUser a{ overflow:hidden;}
+.recommendUser a{ overflow:hidden; display:inline-block; width:35px; overflow:hidden;}
+.recommendUser a b{ display:inline-block; width:36px; height:20px; line-height:20px; overflow:hidden; color:#777;}
 .hotActivity li{ display:block; position:relative; z-index:100; padding:10px 0px;}
 .hotActivity img{ display:block; position:absolute; top:15px; left:0px; z-index:110;}
 .hotActivity p{ display:block; line-height:14px; color:#777; padding:0px 0px 10px 70px;}
