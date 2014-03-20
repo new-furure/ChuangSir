@@ -161,7 +161,7 @@ span, center { color: #777;}
             <form>
                 <textarea cols="60" class="ping" name="commentContent">发表评论...</textarea>
             </form>
-             <input class="tosubmit" id="comment_submit" type="submit" value="提交" aid="{$article_id}" onclick="post_submit()"/> 
+             <input class="tosubmit" id="comment_submit" type="submit" value="提交" aid="{$data.article_id}" onclick="post_submit()" uname="{$data.user_nickname}" uau="{$data.user_avatar_url}"/> 
              <!-- <input id="comment_submit"  class="tosubmit" aid="{$article_id}" type="button" value="提交"  onclick="post_submit()")/> -->
         </div>
     </div>

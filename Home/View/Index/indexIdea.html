@@ -32,18 +32,7 @@ var pic_url='';
 </style>
 </head>
 <body>
-<div class="top">
-	<div class="topBox">
-		<a class="logo" href="###"><img src="__ROOT__/Public/Img/logo.gif" /></a>
-		<span class="searchInput rs"><input type="text" value="搜索话题、问题或人..." /></span>
-		<input class="searchButton rs" type="button" value="提问" />
-		<ul>
-			<li><a href="{:U('Index/indexAll')}">先生汇</a></li><li>|</li><li><a href="###">爱闯圈</a></li><li>|</li>
-			<li><a href="{:U('Policy/index')}">政策通</a></li><li>|</li><li><a href="###">消息</a></li>
-		</ul>
-		<a class="userImg"><img src="__ROOT__/Public/Img/userImg.gif" /></a>
-	</div>
-</div>
+<include file="Home/Public/header.html"/>
 <div class="main">
 	<div class="mainListMenu">
 		<ul>
@@ -111,7 +100,7 @@ var pic_url='';
 							</div>
 						</div>
 					</dt>
-					<dd>
+					<dd id="withdrawComment" aid="{$vo.article_id}"  atype="{$vo.article_type}" uname="{$vo.user_nickname}" uau="{$vo.user_avatar_url}">
 						<i>{$vo.user_name}在{$vo.article_type|type_name}上有了新动态</i><em>{$vo.article_time|time_format}</em>
 						<h3>{$vo.article_title}</h3>
 						<!-- <font>我是动感超人</font> -->
