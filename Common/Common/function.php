@@ -713,3 +713,8 @@ function type_name($type){
   }
   return $typeName;
 }
+
+//project默认图片
+function project_avatar_default(){
+  return __ROOT__."/Public/Img/project_".rand(1,8).'.jpg';
+}
