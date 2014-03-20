@@ -26,14 +26,37 @@ div, a { color:#a7a9ac;}
 		<a class="userImg"><img src="__ROOT__/Public/Img/userImg.gif" /></a>
 	</div>
 </div>
-
+<style>
+		.projectTab{ height:40px; padding:20px 15px 20px 25px;}
+		.projectTab dt,.projectTab dd{ float:left;}
+		.projectTab dd{ color:#48c9b0; font-size:14px; font-weight:bold; margin:0px 20px;}
+		.projectTab a{ color:#196790; font-size:14px; font-weight:bold;}
+		.projectTab .sel a{ color:#48c9b0;}
+		.projectTab .rightBtn{ float:right;}
+		.projectTab .rightBtn a{ display:block; width:100px; height:24px; line-height:24px; background:#48c9b0; color:#FFF; text-align:center; font-size:14px; font-weight:bold;}
+		
+		.projectCon{ overflow:hidden;}
+		.projectCon ul{ overflow:hidden; padding:5px 5px 5px 5px;}
+		.projectCon li{ float:left; overflow:hidden; border:solid 2px #196790; margin:5px 5px 25px 20px;}
+		.projectCon li.over{ border:solid 2px #48c9b0; margin:0px 5px 30px 20px;}
+		.projectCon table{ width:180px; height:300px;}
+		.projectCon th{ height:135px; padding:5px 0px 20px 0px; border-bottom:solid 1px #BBB;}
+		.projectCon td h3{ display:block; text-align:center; font-size:14px; font-weight:bold; color:#777;}
+		.projectCon td p{ display:block; padding:0px 10px; text-align:left; font-size:12px; color:#777;}
+		.projectCon td a{ display:block; line-height:20px; text-align:center; color:#BBB;}
+		.projectCon td a:hover{ color:#196790;}
+		</style>
 <div class="main bor">
-	<div class="tools">
-		<a href="#">最新发布</a>
-		<a href="#">本周热门</a>
-		<a href="#">本月最热</a>
-		<a href="#">高级搜索</a>
-	</div>
+	<dl class="projectTab">
+			<dt class="tab sel"><a href="###">全部</a></dt>
+			<dd>|</dd>
+			<dt class="tab"><a href="###">最新</a></dt>
+			<dd>|</dd>
+			<dt class="tab"><a href="###">最热</a></dt>
+			<dd>|</dd>
+			<dt class="tab"><a href="###">高级搜索</a></dt>
+			<dt class="rightBtn"><a class=" rs ss" href="{:U('Policy/publish')}">发布新政策</a></dt>
+	</dl>
 	<div class="row">
 	  <div class="col-md-8 he bor">
        <div id="localuser">
