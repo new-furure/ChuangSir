@@ -61,13 +61,13 @@ div, a { color:#a7a9ac;}
 	  <div class="col-md-8 he bor">
        <div id="localuser">
 		  <div class="person" >
-		  	<img class="userlogo" src="__ROOT__/Public/Img/testUserImg_6.png" />	
+		  	<img class="userlogo" src="{$vo.user_avatar_url | default='__ROOT__/Public/Img/Index/avatar/1/11.png'}" />	
             <div class="Udetail" >
-            	<span>隋  蓉<img src="__ROOT__/Public/Img/userConWindowSex.gif" />
+            	<span>{$user.user_nickname}<img src="__ROOT__/Public/Img/userConWindowSex.gif" />
                 </span>
                 <em>个人用户</em>
-                <em><i>好友(123)</i><i style="border-left: 2px #48c9b0 solid;">粉丝(234)</i></em>
-                <div>签名：纯属现代派，追寻自己的女权王国</div>
+                <em><i>好友({$user.user_focus_number})</i><i style="border-left: 2px #48c9b0 solid;">粉丝({$user.user_focus_number})</i></em>
+                <div>签名：{$user.user_profile}</div>
             </div>
             <ul>
                 <li><a href="#">个人主页</a></li>
@@ -81,13 +81,13 @@ div, a { color:#a7a9ac;}
       		<volist name="list" id="vo">
 				<dl>
 					<dt>
-						<img src="{$vo.user_avatar_url}" />
+						<img src="{$vo.user_avatar_url|default=''}" />
 						<div class="userConWindow rn ss">
 							<div class="userConWindowBox">
 								<img class="userConImg" src="{$vo.user_avatar_url}" />
 								<span><b class="rs">加好友</b><b class="rs">关注</b><b class="rs">私信</b></span>
 								<p>
-									<a class="userConWindowUserName" href="###">十一的眼泪</a>
+									<a class="userConWindowUserName" href="###">{$vo.user_name}</a>
 									<br /><a href="###">关注（{$vo.user_focus_number}）</a><strong>|</strong><a href="###">粉丝（{$vo.user_focus_number}）</a>
 								</p>
 								<font><a href="###">个人主页</a><strong>|</strong><a href="###">个人资料</a><strong>|</strong><a href="###">项目主页</a></font>
@@ -96,9 +96,9 @@ div, a { color:#a7a9ac;}
 					</dt>
 					<dd>
 						<font>{$vo.user_name}<i>V</i></font>
-						<h3><a href="">{$vo.article_title}</a></h3>
-						<p>{$vo.article_content}<strong>显示更多</strong></p>
-						<i>发布了</i><em>{$vo.article_time|time_format}</em>
+						<h3><a href="{$vo.article_id|get_url_by_id}">{$vo.article_title}</a></h3>
+						<p>{$vo.article_content}</p>
+						<em>发布于{$vo.article_time|time_format}</em>
 						<ul>
 							<li class="msgIcon_1 mo clk">关注问题{$vo.article_focus_number}</li>
 							<li class="msgIcon_2 mo clk">收藏{$vo.article_collect_number}</li>

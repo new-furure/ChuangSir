@@ -85,6 +85,8 @@ class IndexController extends Controller {
                 $fieldSql.=',policy.policy_url';
                 $joinSql[1]="left join __POLICY__ as policy on article.article_id=policy.article_id";
             }
+        }else{
+            $typeSql=' and article.article_type='.C("IDEA_TYPE").' or article.article_type='.C("TALK_TYPE").' or article.article_type='.C("QUESTION_TYPE");
         }
         $rows=12;
         $listRows=6;
@@ -107,7 +109,8 @@ class IndexController extends Controller {
             break;
         }
         //条件先忽略，后期去掉注释
-        //$condition='article_effective=1 and user.user_id in (select user_id_focused from focus_on_user where user_id='.$user_id.')'.$typeSql;
+        //$user_condition='and user.user_id in (select user_id_focused from focus_on_user where user_id='.$user_id.')';
+        $condition='article_effective=1 '.$typeSql;
         $count=$Article->where( $condition )->count();
         import( 'ORG.Util.Page' );
         $Page=new \Think\Page( $count, $rows );
@@ -120,7 +123,7 @@ class IndexController extends Controller {
             $maxArticleId=I( 'post.maxArticleId' );//新页最大article id
             $articleList=$Article
             ->join( $joinSql )
-            ->where( 'article_id<='.$maxArticleId )
+            ->where( $condition.' and article_id<='.$maxArticleId )
             ->field( $fieldSql )
             ->order( 'article_id desc' )
             ->limit( $Page->listRows/2, $Page->listRows/2 )//加载更多

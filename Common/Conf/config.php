@@ -23,7 +23,7 @@ return array(
 	//系统配置
 	'SHOW_PAGE_TRACE'      =>true, //显示页面Trace信息
 	'URL_CASE_INSENSITIVE' =>true, //不区分大小写
-	'URL_MODEL'            =>2, //URL重写
+	//'URL_MODEL'            =>2, //URL重写
 	'MODULE_ALLOW_LIST'    =>array( 'Home', 'Admin' ), //默认模块Home
 	//上传目录
 	"UPLOAD_ROOT"=>__ROOT__."/Uploads/", //上传文件根目录
