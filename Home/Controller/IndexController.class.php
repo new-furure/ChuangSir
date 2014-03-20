@@ -19,7 +19,6 @@ class IndexController extends Controller {
 
         if ( get_id( false ) ) {
             $this->indexAll();
-            $this->display('Index/indexAll');
         }else{
             $this->display();
         }
