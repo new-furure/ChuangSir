@@ -21,6 +21,8 @@ class UserModel extends Model
 		array( "user_email", "", "邮箱已经注册!", 0/*存在字段时验证*/, "unique", 1/*self::MODEL_INSTERT*/, ),
 		//密码非空
 		array( 'user_passwd', "require", '密码不能为空', 0, '', 1 ),
+		//密码长度
+		array('user_passwd',"4,32","密码4到32位之间",0,'length'),
 	);
 	//自动填充
 	protected $_auto = array(
