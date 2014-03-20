@@ -23,55 +23,7 @@ class IncubatorController extends BaseController {
 
 	public function index()
 	{
-		$project = M('project');
-		$condition['article_effective'] = 1;
-		$condition['article_draft'] = 0;
-		$condition['article_type'] = C('INCUBATOR_TYPE');
-		$count = $project
-		->join('article ON article.article_id = project.article_id')
-		->where($condition)
-		->count();
-		import('ORG.Util.Page');
-		$Page = new \Think\Page($count,30);// 实例化分页类 传入总记录数和每页显示的记录数(25)
-		$show = $Page
-		->show();
-		$this->assign('page',$show);// 赋值分页输出
-		
-		$project_list = $project
-		->join('article ON article.article_id = project.article_id')
-		->join('user ON user.user_id = article.user_id')
-		->where($condition)	
-		->order('article_time DESC')
-		->field('article.article_id,article.user_id,article_profile,article_up_number,article_focus_number,
-			article_title,article_time,user_nickname,user_avatar_url,project_avatar_url')
-		->limit($Page->firstRow.','.$Page->listRows)
-		->select();
-		$tag = M('article_have_tag');
-		$tag = $tag
-		->join('tag ON article_have_tag.tag_id = tag.tag_id')
-		->select();
-		/*
-		我关注的项目列表，项目模块暂时用不上。
-		if ($user_id != '')
-		{
-			$focus_on_article = M('focus_on_article');
-			$focus = $focus_on_article->where(array(
-				'user_id' => $user_id
-			))->select();
-			$total_count = $focus_on_article->where(array(
-				'user_id' => $user_id
-			))->count(); //获取关注的项目数。
-			$my_focus = array(); //关注的项目数组。
-			foreach ($focus as $k => $v) {
-				if ($v['user_id'] == $user_id) {
-					$my_focus[] = $v['article_id'];
-				}
-			}
-		}	*/
-		//$this->assign('my_focus', $my_focus);
-		$this->assign('count', $count);//总项目数	
-		$this->assign('project_list', $project_list);
-		$this->assign('tag',$tag_list);
+		A('Index')->indexData(C("INCUBATOR_TYPE"));
 		$this->display(); 
 	}
 //搜索

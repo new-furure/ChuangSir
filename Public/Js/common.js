@@ -6,10 +6,9 @@
 var new_talk=0;
 var new_question = 0;
 var new_idea = 0;
-$(function () {
-	//alert('function');
-	var layer=document.createElement("div");
+var layer=document.createElement("div");
 	layer.id="layer";
+$(function () {
 	var top_num = document.documentElement.scrollTop + 
     	document.documentElement.clientHeight/2-60+"px";
 $('#up').click(function() //点赞函数，实现点赞之后赞数+1并显示取消赞，已赞则-1并显示赞。
@@ -108,8 +107,6 @@ $('#collect').click(function() //收藏函数。
 });
 //发布按钮点击之后的处理函数，对用户类型和用户登录状态进行判断。
 function publish(){ 
-	var layer=document.createElement("div");
-	layer.id="layer";
 	var top_num = document.documentElement.clientHeight/2-30+"px";
 	$.post(verify_url,{article_type:article_type},function(data)
 	{
@@ -150,8 +147,74 @@ function edit(){
 //提交的处理函数。根据不同的文章类型先判断输入的合法性。异步提交并返回一定的信息。
 //提交的处理函数。根据不同的文章类型先判断输入的合法性。异步提交并返回一定的信息。
 function submit(){ 
-	
-
+	var top_num =  document.documentElement.scrollTop -700 +"px";
+	var profile;
+	var title;
+	var policy_url;
+	var content;
+	if(article_type == 'talk' ||article_type == 'idea' || article_type == 'question')
+	{
+		$(".upImgWindow").hide();
+		document.getElementById('send_state').innerHTML = '';//图片发送状态。
+		document.getElementById("imgPreview").innerHTML="<img id='img1' src='/Public/Img/error.jpg' width='110' height='140' onclick='openBrowse()'/>";
+	}
+	if(article_type=='policy' || article_type=='project' || article_type=='incubator' ||article_type=='vc'){
+		//内容
+		content=UE.getEditor('editor').getContent();
+		//标题
+		title=$('input[name=article_title]');
+		if(title.val()==''){
+			title.focus();
+			return;
+		}
+		title=title.val();
+		//简介
+		profile=$('textarea[name=profile]');
+		if(profile.val()==''){
+		profile.focus();
+		return;
+		}
+		profile=profile.val();
+		//政策的情况下有政策链接
+		if(article_type=='policy'){
+			policy_url=$('input[name=policy_url]');
+			if(policy_url.val()==''){
+			policy_url.focus();
+			return;
+			}
+			policy_url = policy_url.val();
+		}
+	}else{
+		//时光机和创意汇只有一个内容框
+		content=$('textarea[name=content]');
+		if(content.val()==''){
+			content.focus();
+			return;
+		}
+		content=content.val();
+		//问答除了内容还需要一个标题。
+		if(article_type == 'question'){
+			title=$('input[name=article_title]');
+			if(title.val()==''){
+				title.focus();
+				return;
+			}
+			title=title.val();
+		}
+	}
+	//新动态，这个还没有想好怎么做，暂时这么放着吧
+	switch(article_type){
+	case 'question':
+		new_question+=1;
+	case 'talk':
+		new_talk+=1;
+		break;
+	case 'idea':
+		new_idea += 1;
+		break;
+	default:
+		break;
+	}
 	//pic_url，submit_url,article_type在发布的页面上传值过来
 	$.post(submit_url,{article_type:article_type,title:title,content:content,
 		profile:profile,pic_url:pic_url,policy_url:policy_url},
@@ -196,8 +259,6 @@ function submit(){
 }
 //存草稿函数，根据不同的文章类型异步传值，并返回状态信息。
 function save_draft(){
-	var layer=document.createElement("div");
-	layer.id="layer";
 	var top_num =  document.documentElement.scrollTop -480 +"px";
 	var profile;
 	var biaoqian;
@@ -277,8 +338,6 @@ function join(){
  	//alert('点击参与');
  	var top_num = document.documentElement.scrollTop + 
     	document.documentElement.clientHeight/2-30+"px";
- 	var layer=document.createElement("div");
-	layer.id="layer";
     var newDigi = document.getElementById("collect");
 	var aid=newDigi.getAttribute("aid");
 	var content=$('textarea[name=canyu_content]');

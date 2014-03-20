@@ -85,7 +85,7 @@ div, a { color:#a7a9ac;}
 					</dt>
 					<dd>
 						<font>{$vo.user_name}<i>V</i></font>
-						<h3><a href="{:get_url_by_id($vo.article_id)}">{$vo.article_title}</a></h3>
+						<h3><a href="{$vo.article_id|get_url_by_id}">{$vo.article_title}</a></h3>
 						<p>{$vo.article_content|htmlspecialchars_decode}</p>
 						<em>发布于{$vo.article_time|time_format}</em>
 						<ul>
