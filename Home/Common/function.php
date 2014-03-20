@@ -510,6 +510,12 @@ function random_img($type='user'){
 		case 'circle':
 			$url=__ROOT__."/Public/Img/circle_logo.png";
 			break;
+		case 'project':
+			$url=__ROOT__."/Public/Img/project_".rand(1,8).".jpg";
+			break;
+		case 'incubator':
+			$url=__ROOT__."/Public/Img/project_0.jpg";
+			break;
 		default:
 			# code...
 			break;

@@ -15,14 +15,14 @@ class IndexController extends Controller {
      *
      * @add 判断登陆 by Future
      */
-    public function index() {
+    // public function index() {
 
-        if ( get_id( false ) ) {
-            $this->indexAll();
-        }else{
-            $this->display();
-        }
-    }
+    //     if ( get_id( false ) ) {
+    //         $this->indexAll();
+    //     }else{
+    //         $this->display();
+    //     }
+    // }
     /**
      * 修改者：夏闪闪
      * 添加逻辑
@@ -31,14 +31,6 @@ class IndexController extends Controller {
         $this->indexGoto();
     }
 
-    //项目页
-    public function project() {
-        $this->indexGoto( C( "PROJECT_TYPE" ) );
-    }
-    //政策页
-    public function policy() {
-        $this->indexGoto( C( "POLICY_TYPE" ) );
-    }
     //创意页
     public function idea() {
         $this->indexGoto( C( "IDEA_TYPE" ) );
@@ -47,22 +39,31 @@ class IndexController extends Controller {
     public function talk() {
         $this->indexGoto( C( "TALK_TYPE" ) );
     }
-    //孵化器页
-    public function incubator() {
-        $this->indexGoto( C( "INCUBATOR_TYPE" ) );
-    }
-    //投资人页
-    public function vc() {
-        $this->indexGoto( C( "VC_TYPE" ) );
-    }
+    //问答
     public function question() {
         $this->indexGoto( C( "QUESTION_TYPE" ) );
     }
+    // //孵化器页
+    // public function incubator() {
+    //     $this->indexGoto( C( "INCUBATOR_TYPE" ) );
+    // }
+    // //投资人页
+    // public function vc() {
+    //     $this->indexGoto( C( "VC_TYPE" ) );
+    // }
+    // //项目页
+    public function project() {
+        $this->indexGoto( C( "PROJECT_TYPE" ) );
+    }
+    // //政策页
+    // public function policy() {
+    //     $this->indexGoto( C( "POLICY_TYPE" ) );
+    // }
 
 
     //先生汇不同页面数据
 
-    public function indexGoto( $article_type ) {
+    public function indexGoto( $article_type=null ) {
         $this->indexData( $article_type );
         $this->goPage( $article_type );
     }
@@ -83,6 +84,9 @@ class IndexController extends Controller {
             if ( $article_type==C( "POLICY_TYPE" ) ) {
                 $fieldSql.=',policy.policy_url';
                 $joinSql[1]="left join __POLICY__ as policy on article.article_id=policy.article_id";
+            }else if($article_type==C("INCUBATOR_TYPE") || $article_type==C("PROJECT_TYPE")){
+                $fieldSql.=',project.project_avatar_url';
+                $joinSql[1]="left join __PROJECT__ as project on project.article_id=article.article_id";
             }
         }else{
             $typeSql=' and article.article_type='.C("IDEA_TYPE").' or article.article_type='.C("TALK_TYPE").' or article.article_type='.C("QUESTION_TYPE");
@@ -146,10 +150,9 @@ class IndexController extends Controller {
             ->order( 'article_id desc' )
             ->limit( $Page->firstRow, $listRows )
             ->select();
+            //var_dump($articleList);
             //下次操作（加载更多）的最大articleId
             $maxArticleId=$articleList[0]['article_id'];
-            //echo $article_type;
-            /*dump($articleList);*/
             $this->assign( 'maxArticleId', $maxArticleId );
             $this->assign( 'list', $articleList );
             $this->assign( 'page', $show );
@@ -165,20 +168,11 @@ class IndexController extends Controller {
         case C( "QUESTION_TYPE" ):
             $goto='indexQuestion';
             break;
-        case C( "PROJECT_TYPE" ):
-            $goto='indexProject';
-            break;
         case C( "TALK_TYPE" ):
             $goto='indexTalk';
             break;
-        case C( "POLICY_TYPE" ):
-            $goto='policyIndex';
-            break;
-        case C( "VC_TYPE" ):
-            $goto='indexVc';
-            break;
-        case C( "INCUBATOR_TYPE" ):
-            $goto='indexIncubator';
+        case C( "PROJECT_TYPE" ):
+            $goto='Project:index';
             break;
 
         }

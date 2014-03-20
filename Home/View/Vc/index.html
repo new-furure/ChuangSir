@@ -57,7 +57,7 @@ $(function(){
 				<volist name="list" id="vo">
 					<li>
 						<img width="70" height="90" src="{$vo.user_avatar_url}" />
-						<a href="###">{$vo.article_title}</a>
+						<a href="{$vo.article_id|get_url_by_id}">{$vo.article_title}</a>
 						<p>{$vo.article_profile}</p>
 						<i>好友数量：{$vo.user_focus_number}<br />粉丝数量：{$vo.user_focus_number}</i>
 					</li>
