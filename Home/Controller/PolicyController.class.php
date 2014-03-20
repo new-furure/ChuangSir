@@ -13,6 +13,8 @@ class PolicyController extends BaseController {
 	{
 
 		//$this->redirect('Index/policy');
+		$user=M('User')->where('user_id='.get_id())->find();
+        $this->assign('user',$user);
 		A('Index')->indexData(C('POLICY_TYPE'));
 		/*$policy = M('policy');
 		$tag  = M('article_have_tag');

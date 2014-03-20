@@ -85,7 +85,7 @@
         <div>
           <div class="row text-left">  
             <volist name="project_list" id="vo">
-                <include file="Project:projectcard" pic="{$vo['project_avatar_url'] | default='__ROOT__/Public/Img/error.jpg'}" workgroup_name="{$vo['user_nickname']}" up_number="{$vo['article_up_number']}" time="{$vo['article_time']}" title="{$vo['article_title']}" profile="{$vo['article_profile']}" id="{$vo['article_id']}" focus_number="{$vo['article_focus_number']}"/>
+                <include file="Project:projectcard" pic="{$vo['project_avatar_url'] | default='__ROOT__/Public/Img/project_1.jpg'}" workgroup_name="{$vo['user_nickname']}" up_number="{$vo['article_up_number']}" time="{$vo['article_time']}" title="{$vo['article_title']}" profile="{$vo['article_profile']}" id="{$vo['article_id']}" focus_number="{$vo['article_focus_number']}"/>
             </volist> 
             <div class="page-division" style="text-align:center;margin-left:auto;margin-right:auto;font-size:120%">
         {$page}
