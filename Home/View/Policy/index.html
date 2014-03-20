@@ -79,17 +79,17 @@ div, a { color:#a7a9ac;}
 									<a class="userConWindowUserName" href="###">{$vo.user_name}</a>
 									<br /><a href="###">关注（{$vo.user_focus_number}）</a><strong>|</strong><a href="###">粉丝（{$vo.user_focus_number}）</a>
 								</p>
-								<font><a href="###">个人主页</a><strong>|</strong><a href="###">个人资料</a><strong>|</strong><a href="###">项目主页</a></font>
+								<font><a href="###">个人主页</a><strong>|</strong><a href="###">个人资料</a><!-- <strong>|</strong><a href="###">项目主页</a--></font>
 							</div>
 						</div>
 					</dt>
 					<dd>
 						<font>{$vo.user_name}<i>V</i></font>
 						<h3><a href="{$vo.article_id|get_url_by_id}">{$vo.article_title}</a></h3>
-						<p>{$vo.article_content|htmlspecialchars_decode}</p>
-						<em>发布于{$vo.article_time|time_format}</em>
+						<p>{$vo.article_profile|htmlspecialchars_decode}</p>
+						<!-- <em>发布于{$vo.article_time|time_format}</em> -->
 						<ul>
-							<li class="msgIcon_1 mo clk">关注问题{$vo.article_focus_number}</li>
+							<li class="msgIcon_1 mo clk">关注{$vo.article_focus_number}</li>
 							<li class="msgIcon_2 mo clk">收藏{$vo.article_collect_number}</li>
 							<li class="msgIcon_3 mo clk">赞({$vo.article_up_number})</li>
 							<li class="msgIcon_4 mo clk">踩({$vo.article_down_number})</li>
