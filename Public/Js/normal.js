@@ -7,6 +7,14 @@ $(function(){
 			$(this).removeClass("over");
 		});
 	});
+	$(".tab").each(function(){
+		$(this).mousedown(function(){
+			$(this).addClass("sel").siblings().removeClass("sel");
+			if($(this).attr("target")!=""){
+				$($(this).attr('target')).addClass("sel").siblings().removeClass("sel");
+			}
+		});
+	});
 	$(".clk").each(function(){
 		$(this).mousedown(function(){
 			$(this).addClass("sel");
