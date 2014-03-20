@@ -151,7 +151,7 @@ function edit(){
 function submit(){ 
 	var layer=document.createElement("div");
 	layer.id="layer";
-	var top_num =  document.documentElement.scrollTop -480 +"px";
+	var top_num =  document.documentElement.scrollTop -700 +"px";
 	var profile;
 	var title;
 	var policy_url;
@@ -162,93 +162,66 @@ function submit(){
 		document.getElementById('send_state').innerHTML = '';//图片发送状态。
 		document.getElementById("imgPreview").innerHTML="<img id='img1' src='/ChuangSir/Public/Img/error.jpg' width='110' height='140' onclick='openBrowse()'/>";
 	}
-
-
-	// content_area=$('textarea[name=content]');
-	// if(content_area.val()==''){
-	// 	content_area.focus();
-	// 	return;
-	// }
-	//content=content_area.val();
-	switch(article_type){
-	case 'policy':
+	if(article_type=='policy' || article_type=='project' || article_type=='incubator' ||article_type=='vc'){
+		//内容
 		content=UE.getEditor('editor').getContent();
+		//标题
 		title=$('input[name=article_title]');
 		if(title.val()==''){
 			title.focus();
 			return;
 		}
 		title=title.val();
-		profile=$('textarea[name=profile]');
-		if(profile.val()==''){
-		profile.focus();
-		return;
-		}
-		
-		policy_url=$('input[name=policy_url]');
-		if(profile.val()==''){
-		profile.focus();
-		return;
-		}
-		profile=profile.val();
-		policy_url = policy_url.val();
-		break;
-	case 'project':
-		content=UE.getEditor('editor').getContent();
-		title=$('input[name=article_title]');
-		if(title.val()==''){
-			title.focus();
-			return;
-		}
-		title=title.val();
+		//简介
 		profile=$('textarea[name=profile]');
 		if(profile.val()==''){
 		profile.focus();
 		return;
 		}
 		profile=profile.val();
-		break;
-	case 'question':
-		title=$('input[name=article_title]');
-		if(title.val()==''){
-			title.focus();
+		//政策的情况下有政策链接
+		if(article_type=='policy'){
+			policy_url=$('input[name=policy_url]');
+			if(policy_url.val()==''){
+			policy_url.focus();
 			return;
+			}
+			policy_url = policy_url.val();
 		}
-		title=title.val();
-		profile ='';
-		new_question+=1;
+	}else{
+		//时光机和创意汇只有一个内容框
 		content=$('textarea[name=content]');
 		if(content.val()==''){
 			content.focus();
 			return;
 		}
 		content=content.val();
-		break;
+		//问答除了内容还需要一个标题。
+		if(article_type == 'question'){
+			title=$('input[name=article_title]');
+			if(title.val()==''){
+				title.focus();
+				return;
+			}
+			title=title.val();
+		}
+	}
+	//新动态，这个还没有想好怎么做，暂时这么放着吧
+	switch(article_type){
+	case 'question':
+		new_question+=1;
 	case 'talk':
 		new_talk+=1;
-		content=$('textarea[name=content]');
-		if(content.val()==''){
-			content.focus();
-			return;
-		}
-		content=content.val();
 		break;
 	case 'idea':
 		new_idea += 1;
-		content=$('textarea[name=content]');
-		if(content.val()==''){
-			content.focus();
-			return;
-		}
-		content=content.val();
 		break;
 	default:
-		profile ='';
 		break;
 	}
 	
 	
-	//alert(pic_url);
+	//pic_url，submit_url,article_type在发布的页面上传值过来
 	$.post(submit_url,{article_type:article_type,title:title,content:content,
 		profile:profile,pic_url:pic_url,policy_url:policy_url},
 		function(data){
@@ -258,29 +231,22 @@ function submit(){
 					layout(layer,top_num);	
 					break;
 				case 2:
-					var time=new Date();
-					switch(article_type){
-						case 'project':
-							window.location.href = article_url+'/'+data.article_id;	
-							break;
-						case 'policy':
-							window.location.href = article_url+'/'+data.article_id;	
-							break;
-						default:
+				if(article_type=='policy' || article_type=='project' || article_type=='incubator' ||article_type=='vc'){
+					window.location.href = article_url+'/'+data.article_id;	
+				}else{
+
 						if(data.article_picture_url){
 						var Content = "<dl><dt><img src='/mrchuang/Public/Img/msgUserImg_2.png' /><div class='userConWindow rn ss'><div class='userConWindowBox'><img class='userConImg' src='/mrchuang/Public/Img/msgUserImg_2.png' /><span><b class='rs'>加好友</b><b class='rs'>关注</b><b class='rs'>私信</b></span><p><a class='userConWindowUserName' href='###'>十一的眼泪</a><br /><a href='###'>关注（0）</a><strong>|</strong><a href='###'>粉丝（0）</a></p><font><a href='###'>个人主页</a><strong>|</strong><a href='###'>个人资料</a><strong>|</strong><a href='###'>项目主页</a></font></div></div></dt><dd><i>"+data.user_name+"在"+article_cat+"有了新动态</i><em>刚刚</em><h3>"+data.article_title+"</h3><p>"+data.article_content+"<strong>显示更多</strong></p>"+"<div><img id='img1' width='110px' height='140px' src='"+data.article_picture_url+"'/></div>"+"<ul><li class='msgIcon_1 mo clk'>关注问题</li><li class='msgIcon_2 mo clk'>收藏</li><li class='msgIcon_3 mo clk'>赞(0)</li><li class='msgIcon_4 mo clk'>踩(0)</li><li class='msgIcon_5 mo clk flip'>评论(0)</li><li class='msgIcon_6 mo clk'>分享</li></ul></dd></dl>";
 						}else{
 							var Content = "<dl><dt><img src='/mrchuang/Public/Img/msgUserImg_2.png' /><div class='userConWindow rn ss'><div class='userConWindowBox'><img class='userConImg' src='/mrchuang/Public/Img/msgUserImg_2.png' /><span><b class='rs'>加好友</b><b class='rs'>关注</b><b class='rs'>私信</b></span><p><a class='userConWindowUserName' href='###'>十一的眼泪</a><br /><a href='###'>关注（0）</a><strong>|</strong><a href='###'>粉丝（0）</a></p><font><a href='###'>个人主页</a><strong>|</strong><a href='###'>个人资料</a><strong>|</strong><a href='###'>项目主页</a></font></div></div></dt><dd><i>"+data.user_name+"在"+article_cat+"有了新动态</i><em>刚刚</em><h3>"+data.article_title+"</h3><p>"+data.article_content+"<strong>显示更多</strong></p><ul><li class='msgIcon_1 mo clk'>关注问题</li><li class='msgIcon_2 mo clk'>收藏</li><li class='msgIcon_3 mo clk'>赞(0)</li><li class='msgIcon_4 mo clk'>踩(0)</li><li class='msgIcon_5 mo clk flip'>评论(0)</li><li class='msgIcon_6 mo clk'>分享</li></ul></dd></dl>";
 						}
-					
 						$(".msgBox").prepend(Content);
-						break;
-
-					}
+				}
+				layer.innerHTML = "发布成功";
+				layout(layer,top_num);	
+				break;
 				default:
-					layer.innerHTML = "发布失败！"+data;
-					layout(layer,top_num);	
-					break;
+				break;
 			}
 		}
 		,'json');

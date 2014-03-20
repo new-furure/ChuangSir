@@ -2,10 +2,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>先生汇 - 投资人库</title>
-<link href="../css/normal.css" type="text/css" rel="stylesheet" />
-<script type="text/javascript" src="../js/jquery-1.10.2.js"><!-- 替换成其他版本可能会有问题 --></script>
-<script type="text/javascript" src="../js/normal.js"></script>
+<title>先生汇 - 孵化器人库</title>
+<link href="__ROOT__/Public/Css/normal.css" type="text/css" rel="stylesheet" />
+<script type="text/javascript" src="__ROOT__/Public/Js/jquery-1.10.2.js"><!-- 替换成其他版本可能会有问题 --></script>
+<script type="text/javascript" src="__ROOT__/Public/Js/normal.js"></script>
 <script type="text/javascript">
 $(function(){
   $(".mainListMenu a").eq(3).addClass("sel");
@@ -18,25 +18,25 @@ $(function(){
 <body>
 <div class="top">
   <div class="topBox">
-    <a class="logo" href="###"><img src="../img/logo.gif" /></a>
+    <a class="logo" href="###"><img src="__ROOT__/Public/Img/logo.gif" /></a>
     <span class="searchInput rs"><input type="text" value="搜索话题、问题或人..." /></span>
     <input class="searchButton rs" type="button" value="提问" />
     <ul>
-      <li><a href="###">先升汇</a></li><li>|</li><li><a href="###">爱创圈</a></li><li>|</li>
-      <li><a href="###">政策</a></li><li>|</li><li><a href="###">消息</a></li>
+      <li><a href="{:U('Index/indexAll')}">先生汇</a></li><li>|</li><li><a href="###">爱创圈</a></li><li>|</li>
+      <li><a href="{:U('Policy/index')}">政策</a></li><li>|</li><li><a href="###">消息</a></li>
     </ul>
-    <a class="userImg"><img src="../img/userImg.gif" /></a>
+    <a class="userImg"><img src="__ROOT__/Public/Img/userImg.gif" /></a>
   </div>
 </div>
 <div class="main">
   <div class="mainListMenu">
     <ul>
-      <li><a class="mlmIcon_1" href="home.html">创意汇</a></li>
-      <li><a class="mlmIcon_2" href="###">时光机</a></li>
-      <li><a class="mlmIcon_3" href="project.html">项目库</a></li>
-      <li><a class="mlmIcon_4" href="invest.html">投资人库</a></li>
-      <li><a class="mlmIcon_5" href="###">孵化器库</a></li>
-      <li><a class="mlmIcon_6" href="qa.html">问答</a></li>
+      <li><a class="mlmIcon_1" href="{:U('Index/idea')}">创意汇</a></li>
+      <li><a class="mlmIcon_2" href="{:U('Index/talk')}">时光机</a></li>
+      <li><a class="mlmIcon_3" href="{:U('Index/project')}">项目库</a></li>
+      <li><a class="mlmIcon_4" href="{:U('Index/vc')}">投资人库</a></li>
+      <li><a class="mlmIcon_5" href="{:U('Index/incubator')}">孵化器库</a></li>
+      <li><a class="mlmIcon_6" href="{:U('Index/question')}">问答</a></li>
       <li><a class="mlmIcon_7" href="###">专栏</a></li>
       <li><a class="mlmIcon_8" href="###">我的关注</a></li>
       <li><a class="mlmIcon_9" href="###">我的收藏</a></li>
@@ -105,9 +105,9 @@ $(function(){
       }
       </script>
       <div class="investTitle">
-        <img width="70" height="90" src="../img/msgUserImg_1.png" />
-        <h3>好企业</h3>
-        <p>给予产品的创业投资，理财顾问方面的创业企业。为客户打造全方位的理财顾问，精心呵护投资人您的金钱。</p>
+        <img width="70" height="90" src="__ROOT__/Public/Img/msgUserImg_1.png" />
+        <h3>{$data.article_title}</h3>
+        <p>{$data.article_profile}</p>
         <i>好友数量：165<br />粉丝数量：353</i>
       </div>
       <dl class="investTab">
@@ -120,34 +120,19 @@ $(function(){
           <div class="investSlide">
             <dl>
               <dt>
-                <a href="###"><img src="../img/investSlide_1.gif" /></a>
+                <a href="###"><img src="__ROOT__/Public/Img/investSlide_1.gif" /></a>
                 <span class="investSlideLeft" onclick="runSlide($(this));">&lt;</span>
                 <span class="investSlideRight" onclick="runSlide($(this));">&gt;</span>
               </dt>
-              <dd onclick="runSlide($(this));" class="sel"><img src="../img/investSlide_1.gif" /></dd>
-              <dd onclick="runSlide($(this));"><img src="../img/investSlide_2.gif" /></dd>
-              <dd onclick="runSlide($(this));"><img src="../img/investSlide_3.gif" /></dd>
-              <dd onclick="runSlide($(this));"><img src="../img/investSlide_4.gif" /></dd>
+              <dd onclick="runSlide($(this));" class="sel"><img src="__ROOT__/Public/Img/investSlide_1.gif" /></dd>
+              <dd onclick="runSlide($(this));"><img src="__ROOT__/Public/Img/investSlide_2.gif" /></dd>
+              <dd onclick="runSlide($(this));"><img src="__ROOT__/Public/Img/investSlide_3.gif" /></dd>
+              <dd onclick="runSlide($(this));"><img src="__ROOT__/Public/Img/investSlide_4.gif" /></dd>
             </dl>
           </div>
           <h2 class="title">产品视频/图片</h2>
           <p class="investCon">
-          “好阿姨”APP是一款。ber模式的家政020软件，它提供一个平台，让有空闲
-    时间的钟点家政服务人员全部通过手机app显示自己的位置、价格、是否空闲等状
-    态，为附近的客户提供及时、廉价的钟点工服务。用户可以通过打开手机，点击
-    即叫到附近的钟点工阿姨。公司为所有阿姨进行标准化培训，从而为用户提供
-    标准化服务。
-    <br /><br />平台中的阿姨资源，并非来自传统家政公司，而由好阿姨团队直接寻找，签订合
-    作协议。
-    <br /><br />选择家政领域主要是因为:一是家政市场足够大，是个千亿级市场;二是小时工是
-    个相对标准化的工作，社会中有大量的闲散资源(即阿姨资源)可以胜任这一工作;
-    三是价格对双方都有优势。
-    <br /><br />类似模式的美国Homejoy的公司，也在这一领域探索，通过线上平台对接需要家
-    政服务的用户和闲散的钟点工资源，并在今年3月获得来自Andreessen
-    Horowitz等风投的170万美元的种子投资。12月7日，再次获得3800万美金投
-    资。该投资公司是租房应用A i rbnb和私家车共享应用Lyft的投资方，他们的共同
-    点都是通过线上平台，把线下的闲散资源(房子、汽车、钟点工)等利用起来。
-    
+            {$data.article_profile}    
           </p>
         </div>
         <div class="detailed">
@@ -155,19 +140,20 @@ $(function(){
           <div class="investMember">
             <table>
               <tr>
-                <th><img src="../img/msgUserImg_1.png" /></th><td><a href="###">PF</a><b>投资领域：</b><i>移动支付</i></td>
-                <th><img src="../img/msgUserImg_1.png" /></th><td><a href="###">PF</a><b>投资领域：</b><i>移动支付</i></td>
-                <th><img src="../img/msgUserImg_1.png" /></th><td><a href="###">PF</a><b>投资领域：</b><i>移动支付</i></td>
+                <th><img src="__ROOT__/Public/Img/msgUserImg_1.png" /></th><td><a href="###">PF</a><b>投资领域：</b><i>移动支付</i></td>
+                <th><img src="__ROOT__/Public/Img/msgUserImg_1.png" /></th><td><a href="###">PF</a><b>投资领域：</b><i>移动支付</i></td>
+                <th><img src="__ROOT__/Public/Img/msgUserImg_1.png" /></th><td><a href="###">PF</a><b>投资领域：</b><i>移动支付</i></td>
               </tr>
               <tr>
-                <th><img src="../img/msgUserImg_1.png" /></th><td><a href="###">PF</a><b>投资领域：</b><i>移动支付</i></td>
-                <th><img src="../img/msgUserImg_1.png" /></th><td><a href="###">PF</a><b>投资领域：</b><i>移动支付</i></td>
-                <th><img src="../img/msgUserImg_1.png" /></th><td><a href="###">PF</a><b>投资领域：</b><i>移动支付</i></td>
+                <th><img src="__ROOT__/Public/Img/msgUserImg_1.png" /></th><td><a href="###">PF</a><b>投资领域：</b><i>移动支付</i></td>
+                <th><img src="__ROOT__/Public/Img/msgUserImg_1.png" /></th><td><a href="###">PF</a><b>投资领域：</b><i>移动支付</i></td>
+                <th><img src="__ROOT__/Public/Img/msgUserImg_1.png" /></th><td><a href="###">PF</a><b>投资领域：</b><i>移动支付</i></td>
               </tr>
             </table>
           </div>
           <h2 class="title">产品视频/图片</h2>
           <p class="investCon">
+            {$data.article_content|htmlspecialchars_decode}
           “好阿姨”APP是一款。ber模式的家政020软件，它提供一个平台，让有空闲
     时间的钟点家政服务人员全部通过手机app显示自己的位置、价格、是否空闲等状
     态，为附近的客户提供及时、廉价的钟点工服务。用户可以通过打开手机，点击
@@ -230,35 +216,35 @@ $(function(){
       <dl class="recommendUser">
         <dt>好友</dt>
         <dd>
-          <a href="###"><img src="../img/testUserImg_1.png" /></a>
-          <a href="###"><img src="../img/testUserImg_2.png" /></a>
-          <a href="###"><img src="../img/testUserImg_3.png" /></a>
-          <a href="###"><img src="../img/testUserImg_4.png" /></a>
-          <a href="###"><img src="../img/testUserImg_5.png" /></a>
-          <a href="###"><img src="../img/testUserImg_6.png" /></a>
-          <a href="###"><img src="../img/testUserImg_1.png" /></a>
-          <a href="###"><img src="../img/testUserImg_2.png" /></a>
-          <a href="###"><img src="../img/testUserImg_3.png" /></a>
-          <a href="###"><img src="../img/testUserImg_4.png" /></a>
-          <a href="###"><img src="../img/testUserImg_5.png" /></a>
-          <a href="###"><img src="../img/testUserImg_6.png" /></a>
+          <a href="###"><img src="__ROOT__/Public/Img/testUserImg_1.png" /></a>
+          <a href="###"><img src="__ROOT__/Public/Img/testUserImg_2.png" /></a>
+          <a href="###"><img src="__ROOT__/Public/Img/testUserImg_3.png" /></a>
+          <a href="###"><img src="__ROOT__/Public/Img/testUserImg_4.png" /></a>
+          <a href="###"><img src="__ROOT__/Public/Img/testUserImg_5.png" /></a>
+          <a href="###"><img src="__ROOT__/Public/Img/testUserImg_6.png" /></a>
+          <a href="###"><img src="__ROOT__/Public/Img/testUserImg_1.png" /></a>
+          <a href="###"><img src="__ROOT__/Public/Img/testUserImg_2.png" /></a>
+          <a href="###"><img src="__ROOT__/Public/Img/testUserImg_3.png" /></a>
+          <a href="###"><img src="__ROOT__/Public/Img/testUserImg_4.png" /></a>
+          <a href="###"><img src="__ROOT__/Public/Img/testUserImg_5.png" /></a>
+          <a href="###"><img src="__ROOT__/Public/Img/testUserImg_6.png" /></a>
         </dd>
       </dl>
       <dl class="recommendUser">
         <dt>粉丝</dt>
         <dd>
-          <a href="###"><img src="../img/testUserImg_1.png" /></a>
-          <a href="###"><img src="../img/testUserImg_2.png" /></a>
-          <a href="###"><img src="../img/testUserImg_3.png" /></a>
-          <a href="###"><img src="../img/testUserImg_4.png" /></a>
-          <a href="###"><img src="../img/testUserImg_5.png" /></a>
-          <a href="###"><img src="../img/testUserImg_6.png" /></a>
-          <a href="###"><img src="../img/testUserImg_1.png" /></a>
-          <a href="###"><img src="../img/testUserImg_2.png" /></a>
-          <a href="###"><img src="../img/testUserImg_3.png" /></a>
-          <a href="###"><img src="../img/testUserImg_4.png" /></a>
-          <a href="###"><img src="../img/testUserImg_5.png" /></a>
-          <a href="###"><img src="../img/testUserImg_6.png" /></a>
+          <a href="###"><img src="__ROOT__/Public/Img/testUserImg_1.png" /></a>
+          <a href="###"><img src="__ROOT__/Public/Img/testUserImg_2.png" /></a>
+          <a href="###"><img src="__ROOT__/Public/Img/testUserImg_3.png" /></a>
+          <a href="###"><img src="__ROOT__/Public/Img/testUserImg_4.png" /></a>
+          <a href="###"><img src="__ROOT__/Public/Img/testUserImg_5.png" /></a>
+          <a href="###"><img src="__ROOT__/Public/Img/testUserImg_6.png" /></a>
+          <a href="###"><img src="__ROOT__/Public/Img/testUserImg_1.png" /></a>
+          <a href="###"><img src="__ROOT__/Public/Img/testUserImg_2.png" /></a>
+          <a href="###"><img src="__ROOT__/Public/Img/testUserImg_3.png" /></a>
+          <a href="###"><img src="__ROOT__/Public/Img/testUserImg_4.png" /></a>
+          <a href="###"><img src="__ROOT__/Public/Img/testUserImg_5.png" /></a>
+          <a href="###"><img src="__ROOT__/Public/Img/testUserImg_6.png" /></a>
         </dd>
       </dl>
     </div>

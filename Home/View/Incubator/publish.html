@@ -12,12 +12,11 @@
     <script type="text/javascript">
     /*common.js里面的各种需要用到的url*/
     var save_url='{:U("/Home/Base/save")}';
-    var preview_url='{:U("/Home/Base/preview")}';
     var submit_url ='{:U("/Home/Base/submit")}';
-    var article_type='project';
+    var article_type='incubator';
     var log_url = '{:U("/Home/User/log")}';
-    var article_url = '{:U("/Home/Project/detail/aid/","","")}';
-    var home_url = '{:U("/Home/Project")}';
+    var article_url = '{:U("/Home/Incubator/detail/aid/","","")}';
+    var home_url = '{:U("/Home/Project")}';//存草稿后的跳转链接
     var pic_url = '';
     </script>
 </block>
@@ -47,8 +46,7 @@
         <div id="div_content" style="color:red"></div>
         
 <div>
-    <script id="editor" name="content" type="text/plain" style="height:600px">
-      孵化器内容
+    <script id="editor" name="content" type="text/plain" style="height:600px">孵化器内容<br/>
     </script>
 </div>
 

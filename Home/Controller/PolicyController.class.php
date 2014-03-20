@@ -118,15 +118,18 @@ class PolicyController extends BaseController {
 		/*if($policy) {
 			$this->assign('data',$policy);
 			$user_id = get_id(false);
-			//$user_id = 2;
 			$this->assign('curr_user_id',$user_id);
 			//$article->where("article_id = $article_id")->setInc('article_hits');//点击次数更新
 		}else{
 			$this->error('您查看的文章不存在');
 			return;
+<<<<<<< HEAD
+		}
+=======
 		}*/
 		//echo $aid;
 		//echo $policy['article_type'];	
+>>>>>>> e6b62b9220677f7ff00b747fe86d2259422c21da
 		//$this->withdraw_comment($aid,$policy['article_type']);
 		$this->display();
 	}

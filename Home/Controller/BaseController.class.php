@@ -490,7 +490,6 @@ class BaseController extends Controller {
 		}
 		$user_id = get_id( false );
 		$article_type=I( 'post.article_type' );
-		$data['article_title']=I('post.title');
 		switch ( $article_type ) {
 			//时光机
 		case 'talk':
@@ -500,13 +499,19 @@ class BaseController extends Controller {
 		case 'idea':
 			$data['article_type'] = C( 'IDEA_TYPE' );
 			break;
+			//问题
+		case 'question':
+			$data['article_type'] = C( 'QUESTION_TYPE' );
+			break;
 			//风投
 		case 'vc':
 			$data['article_type'] = C( 'VC_TYPE' );
+			$data['article_profile']=I('post.profile');
 			break;
 			//孵化器
 		case 'incubator':
 			$data['article_type'] = C( 'INCUBATOR_TYPE' );
+			$data['article_profile']=I('post.profile');
 			break;
 			//政策
 		case 'policy':
@@ -518,15 +523,12 @@ class BaseController extends Controller {
 			$data['article_type'] = C( 'PROJECT_TYPE' );
 			$data['article_profile']=I( 'post.profile' );
 			break;
-			//问题
-		case 'question':
-			$data['article_type'] = C( 'QUESTION_TYPE' );
-			break;
 			//帖子
 		case 'post':
 			$data['article_type'] = C( 'POST_TYPE' );
 			break;
 		}
+		$data['article_title']=I('post.title');
 		$data['user_id'] = $user_id;
 		$data['article_content']=I( 'post.content' );
 		$data['article_picture_url']=I('post.pic_url');
@@ -535,13 +537,17 @@ class BaseController extends Controller {
 		if ( !$result ) {
 			$this->ajaxReturn( $article->getError(), 'json' );
 		}
-		//dump($result);
 		if ( $result ) {
 			$article_id=$article->add( $data );
-			//echo '提交文章';
-			//echo $article_id;
 			$data1['article_id']=$article_id;
 			switch ( $article_type ) {
+				//incubator,project,vc都归为项目一类;
+			case 'incubator':
+				$result = M( 'project' )->add( $data1 );
+				break;
+			case 'vc':
+				$result = M( 'project' )->add( $data1 );
+				break;
 			case 'project':
 				/*$pic_name = I( 'post.pic_name' );
 				if ( $pic_name != "" )
@@ -570,6 +576,7 @@ class BaseController extends Controller {
 					->find();
 					$data1['user_id']=$user['organization_user_id'];
 				}*/
+				$data['policy_url'] = I('post.policy_url');//政策url的添加
 				$result = M( 'policy' )->add( $data1 );
 				break;
 			case 'question':
