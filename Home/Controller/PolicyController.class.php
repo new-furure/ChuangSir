@@ -85,7 +85,7 @@ class PolicyController extends BaseController {
 //@作者 
 	public function detail()
 	{
-		/*$article = M('article');
+		$article = M('article');
 		$comment = M('comment');
 		$article_id = $aid;
 		$policy = $article
@@ -93,7 +93,7 @@ class PolicyController extends BaseController {
 		->join('policy ON article.article_id = policy.article_id')
 		->where("article.article_id = $article_id and article_draft=0 
 		and article_effective=1")//查找到该项
-		->find();*/
+		->find();
 		//dump($policy);
 		/*$tag=M('tag')
 		->join('article_have_tag A ON A.tag_id = tag.tag_id')
@@ -115,7 +115,7 @@ class PolicyController extends BaseController {
 		} 
 		$this->focus_sec_list = $focus_sec_list;
 		$this->focus_list = $focus_list;*/
-		/*if($policy) {
+		if($policy) {
 			$this->assign('data',$policy);
 			$user_id = get_id(false);
 			$this->assign('curr_user_id',$user_id);
@@ -123,13 +123,8 @@ class PolicyController extends BaseController {
 		}else{
 			$this->error('您查看的文章不存在');
 			return;
-<<<<<<< HEAD
+
 		}
-=======
-		}*/
-		//echo $aid;
-		//echo $policy['article_type'];	
->>>>>>> e6b62b9220677f7ff00b747fe86d2259422c21da
 		//$this->withdraw_comment($aid,$policy['article_type']);
 		$this->display();
 	}

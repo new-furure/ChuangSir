@@ -85,11 +85,11 @@ class VcController extends BaseController {
 		$comment = M('comment');
 		$article_id = $aid;
 		//查找项目标签
-		$tag=M('tag')
+		/*$tag=M('tag')
 		->join('article_have_tag A ON A.tag_id = tag.tag_id')
 		->where("article_id = $article_id")
 		->select();
-		$this->tag=$tag;
+		$this->tag=$tag;*/
 		//查找到项目	
 		$article_item = $article
 		->join('project ON project.article_id = article.article_id')

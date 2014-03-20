@@ -81,33 +81,33 @@ class ProjectController extends BaseController {
 //@作者 
 	public function detail()
 	{
-		/*$article = M('article');
+		$article = M('article');
 		$comment = M('comment');
 		$article_id = $aid;
 		//查找项目标签
-		$tag=M('tag')
+		/*$tag=M('tag')
 		->join('article_have_tag A ON A.tag_id = tag.tag_id')
 		->where("article_id = $article_id")
 		->select();
-		$this->tag=$tag;
+		$this->tag=$tag;*/
 		//查找到项目	
 		$article_item = $article
 		->join('project ON project.article_id = article.article_id')
 		->join('user ON user.user_id = article.user_id')
 		->where("article.article_id = $article_id and article_effective=1 and article_draft=0")
 		->find();
-		*/
+
 		/*$focus_list = M('focus_on_article')
 		->join('user ON user.user_id=focus_on_article.user_id')
 		->where("article_id = $article_id and user_type")
 		->select();*/
 
 		//$this->withdraw_comment($aid,$article_item['article_type']);
-/*		$this->assign('article_id',$article_id);
+		$this->assign('article_id',$article_id);
 		
 		if($article_item) {
 			//点击次数更新
-			$article->where("article_id =$article_id")->setInc('article_hits');
+			//$article->where("article_id =$article_id")->setInc('article_hits');
 			$curr_user_id = get_id(false);
 			$this->assign('data',$article_item);
 			$this->assign('curr_user_id',$curr_user_id);
@@ -115,7 +115,7 @@ class ProjectController extends BaseController {
 		}else{
 			$this->error('您查看的文章不存在');
 			return;
-		}	*/
+		}	
 		$this->display();
 	}
 	
