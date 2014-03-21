@@ -221,7 +221,7 @@ class UserController extends Controller{
    */
   public function login() {
     $User=D( "User" );
-    $error="登录失败！";
+    $error="登录失败：请检查邮箱和密码是否正确！";
 
     $log_info= $User->create( $_POST, 2 ) ;
     if ( $log_info ) {
@@ -1000,14 +1000,14 @@ class UserController extends Controller{
     if ( $url==null ) {
       // 上传错误
       $this->error( "头像上传失败！" );
-      return;
     }else {
       //更新数据库
-      $User=M( 'user' );
-      $conditon['user_id']=$id;
-      $user_info['user_avatar_url']=$url;
-      $User->where( $conditon )->save( $user_info );
-      $this->success( "修改成功！" );
+      $result=M( 'user' )->where( "user_id=".$id )->setField( "user_avatar_url", $url );
+      if ( $result===false ) {
+        $this->error( "保存失败！" );
+      }else {
+        $this->success( "修改成功！" );
+      }
     }
   }
 
@@ -1712,7 +1712,7 @@ class UserController extends Controller{
    * 空操作相当于404
    */
   public function _empty() {
-    $this->redirect("Index/index");
+    $this->redirect( "Index/index" );
   }
   //--------------------------------测试-------------------------------------
   //测试

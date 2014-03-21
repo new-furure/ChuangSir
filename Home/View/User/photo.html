@@ -1,19 +1,16 @@
-<div class="col-md-2">
-    <img id="user_Img" src="{$user.user_avatar_url|default=random_img()}" class="thumbnail userphoto" style="width:100%"/>
+<div class="col-md-2 col-sm-4 col-xs-10">
+    <a><img id="user_Img" title="点击修改头像" src="{$user.user_avatar_url|default=random_img()}" class="thumbnail userphoto" style="width:100%" onclick="openBrowse()"/></a>
     <IF condition="$isself">
         <div id="uploadPhoto" style="display:none">
             <form method="post" enctype="multipart/form-data" action="{:U('User/uploadPhoto')}" >
                 <input id="photo" type="file" name="photo" onChange="PreviewImage(this)" style="display:none" size="1" hidefocus/>
-                <div id="imgPreview" style='width:110px; height:140px;'>
-                    <img id="img1" src="{$user.user_avatar_url|default=random_img()}" width="110" height="140" onclick="openBrowse()"/>
-                </div>
-                <h5 class="text-muted">
-                    <input  type="submit" class="btn btn-default" value="保存头像"/>
-                </h5>
+                <span class="glyphicon glyphicon-check"><input  type="submit" class="glyphicon glyphicon-check" value="保存"/>
+                </span>
             </form>
         </div>
 
         <script type="text/javascript">
+        $('').style
 $(".userphoto").click(function(){
 $("#uploadPhoto").show();
 });
@@ -43,15 +40,16 @@ $("#uploadPhoto").show();
             {
                 imgFile.select();
                 path = document.selection.createRange().text;
-                document.getElementById("imgPreview").innerHTML="";
-                document.getElementById("imgPreview").style.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled='true',sizingMethod='scale',src=\"" + path + "\")";//使用滤镜效果      
+                document.getElementById("user_Img").innerHTML="";
+                document.getElementById("user_Img").style.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled='true',sizingMethod='scale',src=\"" + path + "\")";//使用滤镜效果      
             }
             else//FF
             {
                 path=window.URL.createObjectURL(imgFile.files[0]);// FF 7.0以上
                 //path = imgFile.files[0].getAsDataURL();// FF 3.0
-                document.getElementById("imgPreview").innerHTML = "<img id='img1' width='110px' height='140px' src='"+path+"'/>";
-            }
+                document.getElementById("user_Img").setAttribute('src',path);
+
+                            }
         }
  }
  </script>
