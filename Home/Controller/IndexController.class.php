@@ -100,10 +100,8 @@ class IndexController extends Controller {
             $listRows=16;
             break;
         case C( "INCUBATOR_TYPE" ):
-            $rows=8;
-            $listRows=8;
-            break;
         case C( "PROJECT_TYPE" ):
+        case C( "POLICY_TYPE" ):
             $rows=8;
             $listRows=8;
             break;
