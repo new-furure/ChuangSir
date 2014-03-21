@@ -133,7 +133,13 @@ class IndexController extends Controller {
             ->select();
             if ( $articleList ) {
                 $data['status']=1;
-                $data['articleList']=$articleList;
+                foreach ($articleList as $key => $value) {
+                    $this->uid=$value['user_id'];
+                    $this->article=$value;
+                    $articles.=$this->fetch('Index:articlecard');
+                }
+                
+                $data['articles']=$articles;
                 $this->ajaxReturn( $data, 'json' );
             }else {
                 $data['status']=0;

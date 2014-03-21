@@ -99,41 +99,12 @@ var pic_url='';
 			<div class="newMsgBtn rs"><div class="mo">有 3 条 新 动 态</div></div>
 			<div class="msgBox">				
 				<volist name="list" id="vo">
-				<dl>
-					<dt>
-						<img   src="{$vo.user_avatar_url}" />
-						<div class="userConWindow rn ss">
-							<div class="userConWindowBox">
-								<img   class="userConImg" src="{$vo.user_avatar_url}" />
-								<span><b class="rs">加好友</b><b class="rs">关注</b><b class="rs">私信</b></span>
-								<p>
-									<a class="userConWindowUserName" href="###">{$vo.user_name}</a>
-									<br /><a href="###">关注（{$vo.user_focus_number}）</a><strong>|</strong><a href="###">粉丝（{$vo.user_focus_number}）</a>
-								</p>
-								<font><a href="###">个人主页</a><strong>|</strong><a href="###">个人资料</a><strong>|</strong><a href="###">项目主页</a></font>
-							</div>
-						</div>
-					</dt>
-					<dd id="withdrawComment" aid="{$vo.article_id}"  atype="{$vo.article_type}" uname="{$vo.user_nickname}" uau="{$vo.user_avatar_url}">
-						<i>{$vo.user_name}在{$vo.article_type|type_name}上有了新动态</i><em>{$vo.article_time|time_format}</em>
-						<h3>{$vo.article_title}</h3>
-						<!-- <font>我是动感超人</font> -->
-						<p>{$vo.article_content}<!-- <strong>显示更多</strong> --></p>
-						<notempty name="vo.article_picture_url">
-							<div><img id='img1' width='110px' height='140px' src='{$vo.article_picture_url}'/></div>
-						</notempty>
+				<php>
+					$uid=$vo['user_id'];
+					$article=$vo;
+				</php>
+				<include file='Index:articlecard' />
 
-						<ul >
-							<li class="msgIcon_1 mo clk">关注问题</li>
-							<li class="msgIcon_2 mo clk">收藏</li>
-							<li class="msgIcon_3 mo clk">赞({$vo.article_up_number})</li>
-							<li class="msgIcon_4 mo clk">踩({$vo.article_down_number})</li>
-							<li class="msgIcon_5 mo clk flip" aid="{$vo.article_id}"  onclick="response(this)">评论({$vo.article_comment_number})</li>
-							<li class="msgIcon_6 mo clk">分享</li>
-						</ul>
-						<include file="Home/Public/commentList.html"/>
-					</dd>
-				</dl>
 				</volist>
 			</div>
 			<div class="space"></div><div class="space"></div>

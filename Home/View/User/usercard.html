@@ -1,14 +1,16 @@
 <dt>
 	<?php
 		$user=M('User')-> getByUserId($uid);
-		if(empty($user['user_avatar_url']))
-			$user['user_avatar_url']=random_img('user');
+		if(empty($user['user_avatar_url'])){
+			$imgurl=random_img('user');}
+			else{
+			$imgurl=$user['user_avatar_url'];
+		}
 	?>
-	<img hight='54' width='40' src="{$user.user_avatar_url|default=random_img('user')}" />
+	<img hight='54' width='40' src="{$imgurl}" />
 	<div class="userConWindow rn ss">
-		<img class="userConImg" src="{$user.user_avatar_url|default=random_img('user')}" />
 		<div class="userConWindowBox">
-			<img class="userConImg" src="{$user.user_avatar_url|default=random_img('user')}" />
+			<img class="userConImg" src="{$imgurl}" />
 			<span> <b class="rs add_friend">加好友</b> <b class="rs focus_user" to="{:U('User/focus','id='.$user['user_id'])}"><php>echo is_focus_on($user['user_id'])?"取消关注" : "关注TA"</php></b> 
 				<b class="rs">私信</b>
 			</span>
