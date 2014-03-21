@@ -33,7 +33,7 @@
 		$user_img_url=M('User')->getFieldByUserId($user_id,'user_avatar_url');
 		?>
 		<a class="userImg" href="{:U('User/info')}">
-			<img width='36' hight='36' src="{$user_img_url|default=random_img('user')}" />
+			<img width='36' height='36' src="{$user_img_url|default=random_img('user')}" />
 		</a>
 
 	</div>
