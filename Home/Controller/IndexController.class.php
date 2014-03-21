@@ -15,14 +15,14 @@ class IndexController extends Controller {
      *
      * @add 判断登陆 by Future
      */
-    // public function index() {
+    public function index() {
 
-    //     if ( get_id( false ) ) {
-    //         $this->indexAll();
-    //     }else{
-    //         $this->display();
-    //     }
-    // }
+        if ( get_id( false ) ) {
+            $this->indexAll();
+        }else{
+            $this->display();
+        }
+    }
     /**
      * 修改者：夏闪闪
      * 添加逻辑

@@ -1,5 +1,5 @@
 <div class="col-md-2">
-    <img src="{$user.user_avatar_url|default=random_img()}" class="thumbnail userphoto" style="width:100%"/>
+    <img id="user_Img" src="{$user.user_avatar_url|default=random_img()}" class="thumbnail userphoto" style="width:100%"/>
     <IF condition="$isself">
         <div id="uploadPhoto" style="display:none">
             <form method="post" enctype="multipart/form-data" action="{:U('User/uploadPhoto')}" >
