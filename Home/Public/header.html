@@ -1,3 +1,7 @@
+		<?php
+		$user_id=get_id(false);
+		$user_img_url=M('User')->getFieldByUserId($user_id,'user_avatar_url');
+		?>
 <div class="top">
 	<div class="topBox">
 		<a class="logo" href="/">
@@ -25,13 +29,14 @@
 			</li>
 			<li>|</li>
 			<li>
+			<IF condition="$user_id">
 			<a href="{:U('User/logout')}">退出</a>
+			<ELSE/>
+			<a href="{:U('User/log')}">登录</a>
+			</IF>
 		</li>
 		</ul>
-		<?php
-		$user_id=get_id(false);
-		$user_img_url=M('User')->getFieldByUserId($user_id,'user_avatar_url');
-		?>
+
 		<a class="userImg" href="{:U('User/info')}">
 			<img width='36' hight='36' src="{$user_img_url|default=random_img('user')}" />
 		</a>

@@ -15,14 +15,14 @@ class IndexController extends Controller {
      *
      * @add 判断登陆 by Future
      */
-    // public function index() {
+    public function index() {
 
-    //     if ( get_id( false ) ) {
-    //         $this->indexAll();
-    //     }else{
-    //         $this->display();
-    //     }
-    // }
+        if ( get_id( false ) ) {
+            $this->indexAll();
+        }else{
+            $this->display();
+        }
+    }
     /**
      * 修改者：夏闪闪
      * 添加逻辑
@@ -100,10 +100,8 @@ class IndexController extends Controller {
             $listRows=16;
             break;
         case C( "INCUBATOR_TYPE" ):
-            $rows=8;
-            $listRows=8;
-            break;
         case C( "PROJECT_TYPE" ):
+        case C( "POLICY_TYPE" ):
             $rows=8;
             $listRows=8;
             break;
@@ -133,7 +131,13 @@ class IndexController extends Controller {
             ->select();
             if ( $articleList ) {
                 $data['status']=1;
-                $data['articleList']=$articleList;
+                foreach ($articleList as $key => $value) {
+                    $this->uid=$value['user_id'];
+                    $this->article=$value;
+                    $articles.=$this->fetch('Index:articlecard');
+                }
+                
+                $data['articles']=$articles;
                 $this->ajaxReturn( $data, 'json' );
             }else {
                 $data['status']=0;

@@ -73,7 +73,7 @@ div, a { color:#a7a9ac;}
 						<img src="{$vo.user_avatar_url|default=''}"  />
 						<div class="userConWindow rn ss">
 							<div class="userConWindowBox">
-								<img class="userConImg" src="{$vo.user_avatar_url}" />
+								<img class="userConImg" src="{$vo.user_avatar_url|default=random_img()}" />
 								<span><b class="rs">加好友</b><b class="rs">关注</b><b class="rs">私信</b></span>
 								<p>
 									<a class="userConWindowUserName" href="###">{$vo.user_name}</a>
@@ -100,80 +100,8 @@ div, a { color:#a7a9ac;}
 					</dd>
 				</dl>
 				</volist>
-				<dl>
-					<dt>
-						<img src="__ROOT__/Public/Img/policy1.png" />
-						<div class="userConWindow rn ss">
-							<div class="userConWindowBox">
-								<img class="userConImg" src="__ROOT__/Public/Img/policy1.png" />
-								<span><b class="rs">加好友</b><b class="rs">关注</b><b class="rs">私信</b></span>
-								<p>
-									<a class="userConWindowUserName" href="###">十一的眼泪</a>
-									<br /><a href="###">关注（465）</a><strong>|</strong><a href="###">粉丝（374）</a>
-								</p>
-								<font><a href="###">个人主页</a><strong>|</strong><a href="###">个人资料</a><strong>|</strong><a href="###">项目主页</a></font>
-							</div>
-						</div>
-					</dt>
-					<dd>
-                    	<font>国务院公报<i>V</i></font>
-						<h3>（2014年第7号） 【质检总局  工业和信息化部关于加强建筑防水行业质量建设促进建筑防水卷材产品―质量提升的指导意见】</h3>
-						<p>各省、自治区、直辖市质量技术监督局、工业和信息化主管部门：<br />为了贯彻落实国务院《质量发展纲要（2011-2020）》，全面加强建筑防水行业质量建设，提升防水卷材质量，促进行业持续健康发展、制定本意见。一、加强建筑防水卷材行业质量建设的重要性建筑防水卷材作为工程建设的基础性材料，是关系国计民生的重要功能性产品。近年来，我国建筑防水卷材产业持续快速增长，产量已连续多年居世界首位。但是，我国建筑防水卷材产业大而不强，结构不合理、生产集中度低、产能利用率不高、市场竞争……</p>
-						<em>发布于2014-03-08 15:25</em>
-						<ul>
-							<li class="msgIcon_1 mo clk">关注问题</li>
-							<li class="msgIcon_2 mo clk">收藏</li>
-							<li class="msgIcon_3 mo clk">赞(142)</li>
-							<li class="msgIcon_4 mo clk">踩(657)</li>
-							<li class="msgIcon_5 mo clk">评论(6841)</li>
-							<li class="msgIcon_6 mo clk">分享</li>
-						</ul>
-					</dd>
-				</dl>
-				<dl>
-					<dt>
-						<img src="__ROOT__/Public/Img/policy1.png" />
-						<div class="userConWindow rn ss">
-							<div class="userConWindowBox">
-								<img class="userConImg" src="__ROOT__/Public/Img/policy1.png" />
-								<span><b class="rs">加好友</b><b class="rs">关注</b><b class="rs">私信</b></span>
-								<p>
-									<a class="userConWindowUserName" href="###">十一的眼泪</a>
-									<br /><a href="###">关注（465）</a><strong>|</strong><a href="###">粉丝（374）</a>
-								</p>
-								<font><a href="###">个人主页</a><strong>|</strong><a href="###">个人资料</a><strong>|</strong><a href="###">项目主页</a></font>
-							</div>
-						</div>
-					</dt>
-					<dd>
-                    	<font>国务院公报<i>V</i></font>
-						<h3>（2014年第7号）  【国务院办公厅关于天津东丽经济开发升级为国家级经济技术开发区的复函】</h3>
-						<p>（一）推进完善应用领域的招投标机制。运用市场机制，有效破除单纯的“最低价中标”招投标模式坚持以质量为核心要素的招投标导向。支持招标方、生产企业和用户要联合起来，共同抵制恶意低价竞标，有效防止低价竞标代带来的偷工减料、以次充好……<strong>显示更多</strong></p>
-                        <em>发布于2014-03-19 17:62</em>
-						<ul>
-							<li class="msgIcon_1 mo clk">关注问题</li>
-							<li class="msgIcon_2 mo clk">收藏</li>
-							<li class="msgIcon_3 mo clk">赞(142)</li>
-							<li class="msgIcon_4 mo clk">踩(657)</li>
-							<li class="msgIcon_5 mo clk">评论(6841)</li>
-							<li class="msgIcon_6 mo clk">分享</li>
-						</ul>
-					</dd>
-				</dl>
-                <ul class="pagelist">
-                	<li class="page"><a href="#">首页</a></li>
-                    <li class="page now"><a href="#">1</a></li>
-                    <li class="page"><a href="#">2</a></li>
-                    <li class="page"><a href="#">3</a></li>
-                    <li class="page"><a href="#">4</a></li>
-                    <li class="page"><a href="#">5</a></li>
-                    <li class="page">...</li>
-                    <li class="page"><a href="#">末页</a></li>
-                </ul>
-			</div>
-	  	
-	  	
-	 
+				<div style="float:right" class="pagination">{$page}</div>			
+			</div> 
       </div>
 	</div>
 </div>
