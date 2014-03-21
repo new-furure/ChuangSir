@@ -23,7 +23,7 @@ $(function(){
     <input class="searchButton rs" type="button" value="提问" />
     <ul>
       <li><a href="{:U('Index/indexAll')}">先生汇</a></li><li>|</li><li><a href="###">爱创圈</a></li><li>|</li>
-      <li><a href="{:U('Policy/index')}">政策</a></li><li>|</li><li><a href="###">消息</a></li>
+      <li><a href="{:U('Policy/index')}">政策通</a></li><li>|</li><li><a href="###">消息</a></li>
     </ul>
     <a class="userImg"><img src="__ROOT__/Public/Img/userImg.gif" /></a>
   </div>
@@ -105,18 +105,18 @@ $(function(){
       }
       </script>
       <div class="investTitle">
-        <img width="70" height="90" src="__ROOT__/Public/Img/msgUserImg_1.png" />
+        <img width="70" height="90" src="{$data.article_piture_url|default=random_img()}" />
         <h3>{$data.article_title}</h3>
         <p>{$data.article_profile}</p>
         <i>好友数量：165<br />粉丝数量：353</i>
       </div>
       <dl class="investTab">
-        <dt class="tab sel" target=".synopsis">项目简介</dt>
+        <dt class="tab sel" target=".synopsis">投资人简介</dt>
         <dt class="tab" target=".detailed">详细介绍</dt>
       </dl>
       <div class="investTabCon">
         <div class="synopsis sel">
-          <h2 class="title">产品视频/图片</h2>
+          <h2 class="title">投资人图片</h2>
           <div class="investSlide">
             <dl>
               <dt>
@@ -133,7 +133,7 @@ $(function(){
               </volist>
             </dl>
           </div>
-          <h2 class="title">产品视频/图片</h2>
+          <h2 class="title"投资人简介</h2>
           <p class="investCon">
             {$data.article_profile}
           <!-- “好阿姨”APP是一款。ber模式的家政020软件，它提供一个平台，让有空闲
@@ -155,7 +155,7 @@ $(function(){
           </p>
         </div>
         <div class="detailed">
-          {$data.article_content}
+          {$data.article_content|htmlspecialchars_decode}
          <!--  <h2 class="title">团队成员</h2>
           <div class="investMember">
             <table>

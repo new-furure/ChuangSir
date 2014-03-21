@@ -23,11 +23,11 @@ $(function(){
 		<ul>
 			<li><a class="mlmIcon_1" href="{:U('Index/idea')}">创意汇</a></li>
 			<li><a class="mlmIcon_2" href="{:U('Index/talk')}">时光机</a></li>
+			<li><a class="mlmIcon_3" href="{:U('Index/project')}">项目库</a></li>
+			<li><a class="mlmIcon_4" href="{:U('Index/vc')}">投资人库</a></li>
+			<li><a class="mlmIcon_5" href="{:U('Index/incubator')}">孵化器库</a></li>
 			<li><a class="mlmIcon_6" href="{:U('Index/question')}">问答</a></li>
 			<li><a class="mlmIcon_7" href="###">专栏</a></li>
-			<li><a class="mlmIcon_3" href="{:U('Project/index')}">项目库</a></li>
-			<li><a class="mlmIcon_4" href="{:U('Vc/index')}">投资人库</a></li>
-			<li><a class="mlmIcon_5" href="{:U('Incubator/index')}">孵化器库</a></li>
 			<li><a class="mlmIcon_8" href="###">我的关注</a></li>
 			<li><a class="mlmIcon_9" href="###">我的收藏</a></li>
 		</ul>
@@ -48,7 +48,6 @@ $(function(){
 		.projectCon li{ float:left; overflow:hidden; border:solid 2px #196790; margin:5px 5px 25px 20px;}
 		.projectCon li.over{ border:solid 2px #48c9b0; margin:0px 5px 30px 20px;}
 		.projectCon table{ width:180px; height:300px;}
-		.projectCon table img{ width:160px;height: 140px;}
 		.projectCon th{ height:135px; padding:5px 0px 20px 0px; border-bottom:solid 1px #BBB;}
 		.projectCon td h3{ display:block; text-align:center; font-size:14px; font-weight:bold; color:#777;}
 		.projectCon td p{ display:block; padding:0px 10px; text-align:left; font-size:12px; color:#777;}
@@ -73,7 +72,7 @@ $(function(){
 				<volist name="list" id="vo">
 				<li class="rn ss mo">
 					<table>
-						<tr><th colspan="4"><img src="{$vo.project_avatar_url|default=random_img('project')}" height="135px" width="170px"/></th></tr>
+						<tr><th colspan="4"><img src="{$vo.user_avatar_url}" /></th></tr>
 						<tr><td colspan="4"><h3><a href="{$vo.article_id|get_url_by_id}">{$vo.article_title}</a></h3></td></tr>
 						<tr><td colspan="4"><p class="profile">{$vo.article_id_profile}</p></td></tr>
 						<tr><td><a href="###">赞({$vo.article_up_number})</a></td><td><a href="###">踩({$vo.article_down_number})</a></td><td><a href="###">收藏({$vo.article_collect_number})</a></td><td><a href="###">关注({$vo.article_focus_number})</a></td></tr>

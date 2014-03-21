@@ -8,7 +8,7 @@
 <script type="text/javascript" src="__ROOT__/Public/Js/normal.js"></script>
 <script type="text/javascript">
 $(function(){
-  $(".mainListMenu a").eq(4).addClass("sel");
+  $(".mainListMenu a").eq(3).addClass("sel");
 });
 </script>
 <style>
@@ -33,11 +33,11 @@ $(function(){
     <ul>
       <li><a class="mlmIcon_1" href="{:U('Index/idea')}">创意汇</a></li>
       <li><a class="mlmIcon_2" href="{:U('Index/talk')}">时光机</a></li>
+      <li><a class="mlmIcon_3" href="{:U('Index/project')}">项目库</a></li>
+      <li><a class="mlmIcon_4" href="{:U('Index/vc')}">投资人库</a></li>
+      <li><a class="mlmIcon_5" href="{:U('Index/incubator')}">孵化器库</a></li>
       <li><a class="mlmIcon_6" href="{:U('Index/question')}">问答</a></li>
       <li><a class="mlmIcon_7" href="###">专栏</a></li>
-      <li><a class="mlmIcon_3" href="{:U('Project/index')}">项目库</a></li>
-      <li><a class="mlmIcon_4" href="{:U('Vc/index')}">投资人库</a></li>
-      <li><a class="mlmIcon_5" href="{:U('Incubator/index')}">孵化器库</a></li>
       <li><a class="mlmIcon_8" href="###">我的关注</a></li>
       <li><a class="mlmIcon_9" href="###">我的收藏</a></li>
     </ul>
@@ -116,7 +116,7 @@ $(function(){
       </dl>
       <div class="investTabCon">
         <div class="synopsis sel">
-          <h2 class="title">项目视频/图片</h2>
+          <h2 class="title">产品视频/图片</h2>
           <div class="investSlide">
             <dl>
               <dt>
@@ -129,11 +129,11 @@ $(function(){
               <dd onclick="runSlide($(this));"><img src="__ROOT__/Public/Img/investSlide_3.gif" /></dd>
               <dd onclick="runSlide($(this));"><img src="__ROOT__/Public/Img/investSlide_4.gif" /></dd> -->
               <volist name="article_picture" id="vo">
-              <dd onclick="runSlide($(this));"><img src="{$vo.picture_url}" /></dd>
+              <dd onclick="runSlide($(this));"><img src="{$vo.piture_url}" /></dd>
               </volist>
             </dl>
           </div>
-          <h2 class="title">项目简介</h2>
+          <h2 class="title">产品视频/图片</h2>
           <p class="investCon">
             {$data.article_profile}
           <!-- “好阿姨”APP是一款。ber模式的家政020软件，它提供一个平台，让有空闲

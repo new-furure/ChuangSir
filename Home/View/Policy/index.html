@@ -70,7 +70,7 @@ div, a { color:#a7a9ac;}
       		<volist name="list" id="vo">
 				<dl>
 					<dt>
-						<img src="{$vo.user_avatar_url|default=random_img()}"  />
+						<img src="{$vo.user_avatar_url|default=''}"  />
 						<div class="userConWindow rn ss">
 							<div class="userConWindowBox">
 								<img class="userConImg" src="{$vo.user_avatar_url}" />
@@ -79,7 +79,7 @@ div, a { color:#a7a9ac;}
 									<a class="userConWindowUserName" href="###">{$vo.user_name}</a>
 									<br /><a href="###">关注（{$vo.user_focus_number}）</a><strong>|</strong><a href="###">粉丝（{$vo.user_focus_number}）</a>
 								</p>
-								<font><a href="###">个人主页</a><strong>|</strong><a href="###">个人资料</a><!-- <strong>|</strong><a href="###">项目主页</a--></font>
+								<font><a href="###">个人主页</a><strong>|</strong><a href="###">个人资料</a><!-- <strong>|</strong><a href="###">项目主页</a--></font> 
 							</div>
 						</div>
 					</dt>
@@ -89,8 +89,8 @@ div, a { color:#a7a9ac;}
 						<p>{$vo.article_profile|htmlspecialchars_decode}</p>
 						<!-- <em>发布于{$vo.article_time|time_format}</em> -->
 						<ul>
-							<li class="msgIcon_1 mo clk">关注{$vo.article_focus_number}</li>
-							<li class="msgIcon_2 mo clk">收藏{$vo.article_collect_number}</li>
+							<li class="msgIcon_1 mo clk">关注({$vo.article_focus_number})</li>
+							<li class="msgIcon_2 mo clk">收藏({$vo.article_collect_number})</li>
 							<li class="msgIcon_3 mo clk">赞({$vo.article_up_number})</li>
 							<li class="msgIcon_4 mo clk">踩({$vo.article_down_number})</li>
 							<li class="msgIcon_5 mo clk flip" aid="{$vo.article_id}" id="withdrawComment">评论({$vo.article_comment_number})</li>

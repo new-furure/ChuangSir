@@ -72,7 +72,7 @@ var pic_url='';
 					<dt class="senderIcon_1 mo">表情</dt>
 					<dt class="senderIcon_2 mo upImg">
 						图片
-						<div id="upImgWindow" class="upImgWindow rn ss">
+						<div id="upImgWindow" class="upImgWindow rn ss" style="width:115px">
 							<font class="rn"><i></i>图片上传</font>
 							<!-- <table>
 								<tr><td><a href="###">添加图片</a></td><td><a href="###">掷图上传</a></td></tr>
@@ -96,7 +96,7 @@ var pic_url='';
 				</dl>
 			</div>
 			<div class="space"></div><div class="space"></div>
-			<div class="newMsgBtn rs"><div class="mo">有 3 条 新 动 态</div></div>
+			<div class="newMsgBtn rs" style="display:none"><div class="mo">有 3 条 新 动 态</div></div>
 			<div class="msgBox">				
 				<volist name="list" id="vo">
 				<dl>
@@ -138,7 +138,7 @@ var pic_url='';
 			</div>
 			<div class="space"></div><div class="space"></div>
 			<div class="newMsgBtn rs" id="loadMore"><div class="mo"><a href="javascript:void(0)" onclick="listMore({$maxArticleId})">加载更多</a></div></div>
-			<div><em>{$page}</em></div>
+			<div class="pageBox">{$page}</div>
 		</div>
 		<div class="mainConRight">
 			<dl class="recommendUser">

@@ -455,7 +455,7 @@ function edit_verify( $article_id ) {
 	$article = M( 'article' )
 	->where( "article_id = $article_id" )
 	->find();
-	/*$article_type = $article['article_type'];
+	$article_type = $article['article_type'];
 	switch ( $article_type ) {
 	case C( "POLICY_TYPE" ):
 		$policy=M( 'policy' )
@@ -483,16 +483,16 @@ function edit_verify( $article_id ) {
 		else
 			return false;
 		break;
-	case C( "QUESTION_TYPE" ):*/
+	case C( "QUESTION_TYPE" ):
 		$user_id = $article['user_id'];
 		if ( $curr_user_id == $user_id )
 			return true;
 		else
 			return false;
-		/*break;
+		break;
 	default:
 		break;
-	}*/
+	}
 }
 
 /**

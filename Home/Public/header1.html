@@ -4,7 +4,7 @@
 			<img src="__ROOT__/Public/Img/logo.gif" />
 		</a>
 		<span class="searchInput rs">
-			<input type="text" placeholder="搜索话题、问题或人..." />
+			<input type="text" value="搜索话题、问题或人..." />
 		</span>
 		<input class="searchButton rs" type="button" value="搜索" />
 		<ul>
@@ -13,7 +13,7 @@
 			</li>
 			<li>|</li>
 			<li>
-				<a href="{:U('Circle/index')}">爱闯圈</a>
+				<a href="{:U('Circle/index')}">爱创圈</a>
 			</li>
 			<li>|</li>
 			<li>
@@ -29,7 +29,7 @@
 		</li>
 		</ul>
 		<?php
-		$user_id=get_id(false);
+		$user_id=get_id();
 		$user_img_url=M('User')->getFieldByUserId($user_id,'user_avatar_url');
 		?>
 		<a class="userImg" href="{:U('User/info')}">

@@ -454,7 +454,6 @@ function formatTime(time){
           		$.each(data.user_comment,function(idx,item)
 				{	/*alert('haha');*/
           		html+='<dl><dt><img src="'+item.user_avatar_url+'" /></dt><dd><p> <a href="">'+item.user_nickname+'</a>'+item.comment_content+'</p><ul><li class="msgIcon_3 mo clk">赞(0)</li><li class="msgIcon_4 mo clk">踩(0)</li><li class="msgIcon_5 mo clk">回复(0)</li></ul></dd></dl>';
-          		$(".discussCon").html(html);
           
           		}); 
           		break;
@@ -553,8 +552,8 @@ function listMore (maxArticleId) {
 //评论的提交
 function post_submit(){
 
-  var oComment = document.getElementById("comment_submit"); 
-  var article_id=oComment.getAttribute("aid");
+  var newDigi = document.getElementById("comment_submit"); 
+  var article_id=newDigi.getAttribute("aid");
   var user_nickname=oComment.getAttribute("uname");
   var user_avatar_url=oComment.getAttribute("uau");
 
@@ -569,7 +568,7 @@ function post_submit(){
    			/*$(".discussCon i").eq(0).css({"textAlign":"center","height":"0"});  */       	
           }
           else{
-            var con='<dl><dt><img src="'+user_avatar_url+'" /></dt><dd><p> <a href="">'+user_nickname+'</a>'+content.val()+'</p><ul><li class="msgIcon_3 mo clk">赞(0)</li><li class="msgIcon_4 mo clk">踩(0)</li><li class="msgIcon_5 mo clk">回复(0)</li></ul></dd></dl>';
+            var con='<dl><dt><img src="__ROOT__/Public/Img/msgUserImg_1.png" /></dt><dd><p> <a href="">匿名用户：</a>'+commentContent.val()+'</p><ul><li class="msgIcon_3 mo clk">赞(142)</li><li class="msgIcon_4 mo clk">踩(657)</li><li class="msgIcon_5 mo clk">回复(6841)</li></ul></dd></dl>';
   			$(".pinh").prepend(con);
   			$(".ping").val("");
           }
